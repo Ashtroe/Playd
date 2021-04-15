@@ -1,0 +1,473 @@
+body {
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #E3E3E3;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+nav {
+  background: #E4E4E4;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+nav .logo-ctnr {
+  min-width: 13.55%;
+  margin-right: 8%;
+  background-image: url(img/logos/logo.png);
+  background-size: 30%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+nav a {
+  color: #343434;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 1% 0 1% 0;
+  text-decoration: none;
+  margin-right: 8%;
+  min-width: 13.5%;
+  max-width: 13.5%;
+  text-align: center;
+}
+
+nav a:hover {
+  color: #3765A9;
+}
+
+nav :nth-child(4) {
+  margin-right: 14.37%;
+}
+
+nav .profile-ctnr {
+  width: 7.3%;
+}
+
+main {
+  height: 1457px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main #search {
+  border: none;
+  border-radius: 1rem;
+  background-color: #E4E4E4;
+  font-size: 1.5rem;
+  max-height: 5%;
+  width: 56.67%;
+  margin-top: 2.7%;
+  padding: 1%;
+}
+
+main #graph-ctnr {
+  border: none;
+  border-radius: 1rem;
+  background-color: #F1F1F1;
+  margin-top: 2.7%;
+  width: 86%;
+  height: 27%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .recently-played-ctnr {
+  height: 20%;
+  margin-top: 2.7%;
+  width: 86%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .recently-played-ctnr .recent-game {
+  border-radius: 1rem;
+  height: 100%;
+  max-width: 13.25%;
+  min-width: 13.25%;
+  margin-right: 1em;
+  background-position: center;
+  background-size: contain;
+}
+
+main .friends-played-ctnr {
+  overflow-x: scroll;
+  background-color: #E4E4E4;
+  height: 23.8%;
+  margin-top: 2.7%;
+  width: 86%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .friends-played-ctnr .friend-ctnr {
+  background-color: #F1F1F1;
+  border-radius: 1rem;
+  min-width: 32%;
+  height: 83%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 1em;
+}
+
+main .friends-played-ctnr .friend-ctnr .img {
+  border-radius: 1rem;
+  width: 34%;
+  height: 86%;
+  margin-left: 1em;
+  background-position: center;
+  background-size: contain;
+}
+
+main .friends-played-ctnr .friend-ctnr .friend-text-ctnr {
+  width: 64%;
+  height: 58%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .friends-played-ctnr .friend-ctnr .friend-text-ctnr .username {
+  color: #3765A9;
+  font-size: 2rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+main .slide-ctnr {
+  min-width: 66%;
+  min-height: 50%;
+  margin-bottom: 3%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .slide-ctnr .top-month-ctnr {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: black;
+}
+
+main .slide-ctnr .top-month-ctnr .top-game {
+  visibility: hidden;
+  position: absolute;
+  height: 94%;
+  width: 50%;
+  background-position: center;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .slide-ctnr .top-month-ctnr .top-game .info-ctnr {
+  position: relative;
+  width: 80%;
+  height: 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .slide-ctnr .top-month-ctnr .top-game .info-ctnr p {
+  margin: 0;
+}
+
+main .slide-ctnr .top-month-ctnr .top-game .info-ctnr .game-info-ctnr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30%;
+}
+
+main .slide-ctnr .top-month-ctnr .top-game .info-ctnr .game-info {
+  font-weight: bold;
+  color: #E3E3E3;
+  text-align: center;
+  white-space: pre;
+}
+
+main .slide-ctnr .top-month-ctnr .top-game .info-ctnr .info-text {
+  color: #E3E3E3;
+}
+
+main .slide-ctnr .top-month-ctnr .top-game .info-background {
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  z-index: 0;
+  background: black;
+  opacity: .3;
+}
+
+main .slide-ctnr .top-month-ctnr .background-cover {
+  position: absolute;
+  z-index: 0;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  visibility: hidden;
+}
+
+main .slide-ctnr .top-month-ctnr .visible {
+  visibility: visible;
+}
+
+main .slide-ctnr .slide-btn {
+  height: 8vw;
+  width: 8vw;
+  border: none;
+  background-color: inherit;
+  opacity: .5;
+}
+
+main .slide-ctnr .slide-btn:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+main .slide-ctnr #left-btn {
+  background-image: url(/img/Arrow.png);
+  background-position: center;
+  background-size: contain;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+main .slide-ctnr #right-btn {
+  background-image: url(/img/Arrow.png);
+  background-position: center;
+  background-size: contain;
+}
+
+main .list-ctnr {
+  width: 100%;
+  padding: 0 5% 0 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .list-row {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 1em;
+}
+
+main .list {
+  width: 24em;
+  height: 19em;
+  margin-right: 1em;
+  background: black;
+  color: #E3E3E3;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .list .list-info {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .list .list-info img {
+  max-width: 50%;
+  max-height: 80px;
+}
+
+main .list .list-info p {
+  width: 50%;
+  font-size: 1.15em;
+  text-align: center;
+  font-weight: bold;
+}
+
+main .list-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 0;
+  opacity: 0.4;
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+
+main #ign {
+  background-image: url(img/screenshots/Hades.jpg);
+  background-position: center;
+  background-size: 150%;
+  background-repeat: no-repeat;
+}
+
+main #metacritic {
+  background-image: url(img/screenshots/LastofUS2.png);
+  background-position: center;
+  background-size: 150%;
+  background-repeat: no-repeat;
+}
+
+main #polygon {
+  background-image: url(img/screenshots/Kentucky.jpg);
+  background-position: center;
+  background-size: 150%;
+  background-repeat: no-repeat;
+}
+
+main #gamesradar {
+  background-image: url(img/screenshots/Valhalla.jpg);
+  background-position: center;
+  background-size: 150%;
+  background-repeat: no-repeat;
+}
+
+main #reddit {
+  background-image: url(img/screenshots/Alyx.jpg);
+  background-position: center;
+  background-size: 150%;
+  background-repeat: no-repeat;
+}
+
+main #pc {
+  background-image: url(img/screenshots/DiscoElysium.jpg);
+  background-position: center;
+  background-size: 150%;
+  background-repeat: no-repeat;
+}
+
+main #xbox {
+  background-image: url(img/screenshots/Gears5.jpg);
+  background-position: center;
+  background-size: 150%;
+  background-repeat: no-repeat;
+}
+
+main #playstation {
+  background-image: url(img/screenshots/Spider-man.jpeg);
+  background-position: center;
+  background-size: 150%;
+  background-repeat: no-repeat;
+}
+
+Footer {
+  width: 100%;
+  background: #343434;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+Footer a {
+  color: #E4E4E4;
+  font-weight: bold;
+  font-size: 2rem;
+  text-decoration: none;
+  margin-right: 2%;
+  min-width: 13.5%;
+  max-width: 13.5%;
+  text-align: center;
+}
+/*# sourceMappingURL=styles.css.map */
