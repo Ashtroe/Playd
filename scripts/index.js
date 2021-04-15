@@ -1,4 +1,4 @@
-import { games, randomNum } from './games'
+import { games, randomNum } from './games.js'
 
 
 
