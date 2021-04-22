@@ -1,3 +1,4 @@
+<<<<<<< HEAD:public/scripts/index.js
 
 
 import { games } from './games.js'
@@ -7,6 +8,9 @@ const randomNum = (min, max) => {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+=======
+import { games, randomNum } from './games.js'
+>>>>>>> 30c9072f4af6c1cc44cf5001f5038702b0cbaddc:scripts/index.js
 
 
 
