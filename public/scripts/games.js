@@ -4,6 +4,10 @@ export const randomNum = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+
+
+
+
 export const games = [
     {
         title: 'Dragonball: FighterZ',
@@ -134,3 +138,50 @@ export const games = [
     },
 ]
 
+export const futureGames = [
+  {
+    title: 'Resident Evil: Village',
+    completed: false,
+    players: randomNum(40000,350000),
+    released:'May 7, 2021',
+    category: 'Horror',
+    rating: randomNum(50,100),
+    cover: '../img/RE8.jpg',
+  },
+  {
+    title: 'Deathloop',
+    completed: false,
+    players: randomNum(40000,350000),
+    released:'September 14, 2021',
+    category: 'Horror',
+    rating: randomNum(50,100),
+    cover: '../img/RE8.jpg',
+  },
+  {
+    title: 'God of War: Ragnarok',
+    completed: false,
+    players: randomNum(40000,350000),
+    released:'TBA',
+    category: 'Horror',
+    rating: randomNum(50,100),
+    cover: '../img/Gow.jpg',
+  },
+  {
+    title: 'Horizon Zero Dawn: Far West',
+    completed: false,
+    players: randomNum(40000,350000),
+    released:'TBA',
+    category: 'Horror',
+    rating: randomNum(50,100),
+    cover: '../img/Horizon.jpg',
+  },
+  {
+    title: 'Halo Infinite',
+    completed: false,
+    players: randomNum(40000,350000),
+    released:'TBA',
+    category: 'Horror',
+    rating: randomNum(50,100),
+    cover: '../img/Halo.jpg',
+  },
+]

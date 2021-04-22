@@ -1,4 +1,12 @@
-import { games, randomNum } from './games'
+
+
+import { games } from './games.js'
+
+const randomNum = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
 
@@ -113,7 +121,7 @@ if(document.querySelector('.recently-played-ctnr')){
     type: 'bar'
   },
   title: {
-    text: 'Recently Played Genres'
+    text: 'Recent Genres'
   },
   xAxis: {
     categories: pastWeek
@@ -412,4 +420,119 @@ if(document.querySelector('.slide-ctnr')){
     })
     
   }
+}
+
+// Account page
+if(document.querySelector('.username-ctnr')){
+  let usernameContainer = document.querySelector('.username-ctnr')
+  let usernameInput = document.querySelector("input[name='username']")
+  let passwordInput = document.querySelector('input[name="password"')
+  let bioInput = document.querySelector('input[name="bio"')
+  let birthdayInput = document.querySelector('input[name="birthday"')
+  let profilePic = document.createElement('img')
+
+  profilePic.src = user.picture
+  usernameInput.value = user.username
+
+  usernameContainer.appendChild(profilePic)
+
+  
+
+  let changePassword = (input) =>{
+    user.password = input.value
+  }
+
+  passwordInput.addEventListener('keydown',(e)=>{
+    if(e.key === "Enter" || e.keyCode === 13){
+      changePassword(passwordInput)
+      console.log(user);
+    }
+  })
+}
+
+
+// Search 
+if(document.querySelector('.search-btn')){
+let button = document.querySelector('.search-btn')
+let search = document.querySelector('#search')
+
+button.addEventListener('click',()=>{
+  let query = search.value
+  
+  axios({
+    method: 'post',
+    url: '/search',
+    data: {
+      search: query,
+    },
+  })
+  .then(response=>{
+    if(response.status === 200){
+      window.location.href = '/results'
+    }
+  })
+
+
+})}
+
+// Results page
+let results;
+if(document.querySelector('.results-ctnr')){
+  axios({
+    method:'post',
+    useCredentials: true,
+    url: '/results'
+  }
+    )
+  .then(response=>{
+    results = response.data
+    console.log(results);
+  })
+  .then(()=>{
+    results.forEach((game)=>{
+      let resultContainer = document.querySelector('.results-ctnr')
+      let result = document.createElement('a')
+      let gameTitle = document.createElement('h2')
+
+      result.classList.add('result')
+      result.id = game.name
+      result.href = game.url
+      if(game.cover){
+        gameTitle.style.visibility = 'hidden'
+        result.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg)`
+      }else{
+        result.style.backgroundImage = ''
+      }
+
+      gameTitle.textContent = game.name
+      result.appendChild(gameTitle)
+      resultContainer.appendChild(result)
+
+    })
+
+  })
+}
+
+// Login 
+if(document.querySelector('.login-ctnr')){
+  let username = document.querySelector('.username').value
+  let password = document.querySelector('.password').value
+  
+
+  document.querySelector('.login-submit-btn').addEventListener('click',()=>{
+    axios({
+      method:'post',
+      
+      url:'/login',
+      data:{
+        username: username,
+        password: password,
+      }
+    })
+    .then(response=>{
+      if(response.status === 200){
+        window.location.href = '/'
+      }
+    })
+  })
 }

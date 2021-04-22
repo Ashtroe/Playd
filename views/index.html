@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <title>Home</title>
 </head>
 <body>
@@ -13,17 +13,20 @@
     <head>
         
         <nav>
-            <a href= '/index.html' class="logo-ctnr"></a>
-            <a href="">Calendar</a>
+            <a href= "/index.html"class="logo-ctnr"></a>
+            <a href="/Calendar.html">Calendar</a>
             <a href="/Discover.html">Discover</a>
-            <a href="">News</a>
-            <div class="profile-ctnr"></div>
+            <a href="/News.html">News</a>
+            <a href= "/Account.html" class="profile-ctnr">
+                <img src='/img/profile.png' class="profile-pic"></img>
+            </a>
 
         </nav>
     </head>
 
     <main>
         <input type="search" class="textbox" id="search" placeholder="Search for a game">
+        <button type="submit" class="search-btn">Search</button>
 
         <div id='graph-ctnr'></div>
 
@@ -37,13 +40,15 @@
     </main>
 
     <footer>
-        <a href=""><p>About</p></a>
-        <a href=""><p>Forums</p></a>
-        <a href=""><p>Import Game</p></a>
+        <a href="/About.html"><p>About</p></a>
+        <a href="/Forums.html"><p>Forums</p></a>
+        <a href="/Import.html"><p>Import</p></a>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js" integrity="sha512-otOZr2EcknK9a5aa3BbMR9XOjYKtxxscwyRHN6zmdXuRfJ5uApkHB7cz1laWk2g8RKLzV9qv/fl3RPwfCuoxHQ==" crossorigin="anonymous"></script>
     <script src="scripts/luxon.js"></script>
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts/index.js" type='module' ></script>
 </body>
 </html>

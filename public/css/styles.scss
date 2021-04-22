@@ -13,20 +13,22 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: $bgColor;
-    width: 100vw;
+    width: 100%;
     overflow-x: hidden;
 }
 
 nav{
-    
+    position: relative;
     background: $secondaryColor;
     width: 100%;
     display: flex;
+    max-height: 5em;
 
     .logo-ctnr{
+        
         min-width: 13.55%;
         margin-right: 8%;
-        background-image: url(img/logos/logo.png);
+        background-image: url(../img/logos/logo.png);
         background-size: 30%;
         background-position: center;
         background-repeat: no-repeat;
@@ -49,11 +51,21 @@ nav{
     }
     
     :nth-child(4){
-        margin-right: 14.37%;
+
     }
 
     .profile-ctnr{
-        width: 7.3%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 1%;
+        img{
+            width: auto;
+            max-height: 100%;
+            background-color: $primaryColor;
+            border-radius: 50%;
+        }
     }
 }
 
@@ -70,10 +82,16 @@ main{
         border-radius: 1rem;
         background-color: $secondaryColor;
         font-size: 1.5rem;
+        text-align: center;
         max-height: 5%;
         width: 56.67%;
         margin-top: 2.7%;
         padding: 1%;
+
+        &:focus{
+            
+            outline: none;
+        }
     }
 
     #graph-ctnr{
@@ -92,7 +110,7 @@ main{
 
     .recently-played-ctnr{
         
-        height: 20%;
+        height: 19.5%;
         margin-top: 2.7%;
         width: 86%;
         display: flex;
@@ -254,13 +272,13 @@ main{
             }
         }
         #left-btn{
-            background-image: url(/img/Arrow.png);
+            background-image: url(/../img/Arrow.png);
             background-position: center;
             background-size: contain;
             transform: rotate(180deg);
         }
         #right-btn{
-            background-image: url(/img/Arrow.png);
+            background-image: url(/../img/Arrow.png);
             background-position: center;
             background-size: contain;
         }
@@ -326,52 +344,189 @@ main{
         transition: all .3s;
     }
     #ign{
-        background-image: url(img/screenshots/Hades.jpg);
+        background-image: url(../img/screenshots/Hades.jpg);
         background-position: center;
         background-size: 150%;
         background-repeat: no-repeat;
     }
     #metacritic{
-        background-image: url(img/screenshots/LastofUS2.png);
+        background-image: url(../img/screenshots/LastofUS2.png);
         background-position: center;
         background-size: 150%;
         background-repeat: no-repeat;
     }
     #polygon{
-        background-image: url(img/screenshots/Kentucky.jpg);
+        background-image: url(../img/screenshots/Kentucky.jpg);
         background-position: center;
         background-size: 150%;
         background-repeat: no-repeat;
     }
     #gamesradar{
-        background-image: url(img/screenshots/Valhalla.jpg);
+        background-image: url(../img/screenshots/Valhalla.jpg);
         background-position: center;
         background-size: 150%;
         background-repeat: no-repeat;
     }
     #reddit{
-        background-image: url(img/screenshots/Alyx.jpg);
+        background-image: url(../img/screenshots/Alyx.jpg);
         background-position: center;
         background-size: 150%;
         background-repeat: no-repeat;
     }
     #pc{
-        background-image: url(img/screenshots/DiscoElysium.jpg);
+        background-image: url(../img/screenshots/DiscoElysium.jpg);
         background-position: center;
         background-size: 150%;
         background-repeat: no-repeat;
     }
     #xbox{
-        background-image: url(img/screenshots/Gears5.jpg);
+        background-image: url(../img/screenshots/Gears5.jpg);
         background-position: center;
         background-size: 150%;
         background-repeat: no-repeat;
     }
     #playstation{
-        background-image: url(img/screenshots/Spider-man.jpeg);
+        background-image: url(../img/screenshots/Spider-man.jpeg);
         background-position: center;
         background-size: 150%;
         background-repeat: no-repeat;
+    }
+
+    .calendar-ctnr{
+        height: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    // Account Page
+    
+    .settings-ctnr{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .username-ctnr{
+            position: relative;
+            border: solid;
+            width: 100%;
+            height: 18%;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            margin-bottom: 2%;
+
+            h1{
+                position: absolute;
+                z-index: -1;
+                font-size:10em ;
+            }
+
+            img{
+                background-color: $primaryColor;
+                border-radius: 50%;
+                height: 80%;
+                margin-top: 1%;
+            }
+        }
+
+        .account-settings{
+            position: relative;
+            width: 42%;
+            height: 36%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color:#F1F1F1;
+            h2{
+                position: absolute;
+                top: 0;
+                left: 0;
+                margin-left: 3%;
+                color: $primaryColor;
+            }
+
+            input{
+                width: 72%;
+                border: none;
+            }
+
+            label{
+                margin-right: 1%;
+                text-align: left;
+                width: 22%;
+                font-weight: bold;
+                font-size: 1.25em;
+
+            }
+            .account-username{
+                width: 68%;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                margin-top: 5%;
+                margin-bottom: 5%;
+               
+            }
+
+            .account-password{
+                width: 68%;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                margin-bottom: 5%;
+            }
+
+            .account-bio{
+                width: 68%;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                margin-bottom: 5%;
+            }
+
+            .account-birthday{
+                width: 68%;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                margin-bottom: 5%;
+            }
+        }
+
+    }
+
+    // Results Page
+    .results-ctnr{
+        width: 100%;
+        min-height: 16%;
+        max-height: 16%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .result{
+            position: relative;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 13%;
+            height: 100%;
+            margin-right: 1%;
+            margin-top: 1%;
+            display: flex;
+            justify-content: center;
+
+            h2{
+                position: absolute;
+                width: 80%;
+                text-align: center;
+            }
+        }
     }
 }
 
@@ -379,22 +534,24 @@ Footer{
    
     width: 100%;
     background: #343434;
-    width: 100%;
     display: flex;
-    
+    justify-content: center;
 
+    p{
+        margin: 0;
+    }
     a{
         color:$secondaryColor;
         font-weight: bold;
         font-size: 2rem;
         text-decoration: none;
-        margin-right: 2%;
+        margin: 1% 1% 1% 0;
         min-width: 13.5%;
         max-width: 13.5%;
         text-align: center;
 
-        &:first-of-type{
-            
+         &:hover{
+            color: $primaryColor;
         }
     }
 }
