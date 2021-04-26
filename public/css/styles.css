@@ -663,6 +663,12 @@ main .results-ctnr .result h2 {
   text-align: center;
 }
 
+main .results-ctnr .result button {
+  height: 20%;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
 Footer {
   width: 100%;
   background: #343434;

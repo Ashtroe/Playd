@@ -1,20 +1,110 @@
-<<<<<<< HEAD:public/scripts/index.js
+
+let games = ['']
+
+if(document.querySelector('.recently-played-ctnr')){
+  window.onload = 
+  axios({
+    method: 'post',
+    url: '/user-games',
+  })
+  .then((response)=>{
+    games = response.data
+    
+    games.forEach(game=>{
+      
+      let statusIcon = document.createElement('button')
+      let removeGame = document.createElement('button')
+      let gameWrapper = document.createElement('a')
+      
+      gameWrapper.classList.add('recent-game')
+      gameWrapper.style.backgroundImage = `url(${game.cover})`
+
+      statusIcon.classList.add('status-icon')
+
+      removeGame.classList.add('remove-btn')
+      removeGame.textContent= 'Remove'
+
+      // Determine completion Status
+      if(game.isCompleted === true){
+        statusIcon.style.backgroundColor = 'green'
+      }else{
+        statusIcon.style.backgroundColor = 'red'
+      }
+
+      statusIcon.addEventListener('click',()=>{
+        axios({
+          method:'post',
+          url:'/update-status',
+          data:{
+            gameID:game._id
+          }
+        })
+        .then(response=>console.log(response.data))
+        .catch(err=>console.log(err))
+      })
+
+      removeGame.addEventListener('click',()=>{
+        axios({
+          method:'post',
+          url:'/remove-game',
+          data:{
+            gameID:game._id
+          }
+        })
+        .then(response=>console.log(response.data))
+        .catch(err=>console.log(err))
+      })
+      gameWrapper.appendChild(removeGame)
+      gameWrapper.appendChild(statusIcon)
+      document.querySelector('.recently-played-ctnr').appendChild(gameWrapper)
+    })
+  
+
+  })
+
+}
 
 
-import { games } from './games.js'
 
 const randomNum = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-=======
-import { games, randomNum } from './games.js'
->>>>>>> 30c9072f4af6c1cc44cf5001f5038702b0cbaddc:scripts/index.js
+
+
 
 
 
 let recentCategories = {}
+
+let friends = [
+  {
+      username: 'Friend 1',
+      currentgames:[
+          games[randomNum(0,5)]
+      ]
+    },
+  {
+      username: 'Friend 2',
+      currentgames:[
+        games[randomNum(0,5)] 
+      ]
+  },
+  {
+      username: 'Friend 3',
+      currentgames:[
+        games[randomNum(0,5)] 
+      ]
+  },
+  {
+      username: 'Friend 4',
+      currentgames:[
+        games[randomNum(0,5)]
+          
+      ]
+  },
+]
 
 
 // Get past Week
@@ -48,215 +138,182 @@ let pastWeek =
 
 
 
-let friends = [
-    {
-        username: 'Friend 1',
-        currentgames:[
-            games[randomNum(0,5)]
-        ]
-      },
-    {
-        username: 'Friend 2',
-        currentgames:[
-          games[randomNum(0,5)] 
-        ]
-    },
-    {
-        username: 'Friend 3',
-        currentgames:[
-          games[randomNum(0,5)] 
-        ]
-    },
-    {
-        username: 'Friend 4',
-        currentgames:[
-          games[randomNum(0,5)]
-            
-        ]
-    },
-]
 
 // Get Recent Categories
 
 
-if(document.querySelector('.recently-played-ctnr')){
-  let showPlayedgames = (game) => {
-    let gameWrapper = document.createElement('a')
-    gameWrapper.href = '#'
-
-    gameWrapper.classList.add('recent-game')
-    gameWrapper.style.backgroundImage = `url(${game.cover})`
-    document.querySelector('.recently-played-ctnr').appendChild(gameWrapper)
-}
-
-  let populateCategories = ()=>{
-    games.forEach(game=>{
-      
-      recentCategories[game.category] = {
-                                          hoursPlayed: {
-                                            [yesterday]: 0,
-                                            [twoDaysAgo]: 0,
-                                            [threeDaysAgo]: 0,
-                                            [fourDaysAgo]: 0,
-                                            [fiveDaysAgo]: 0,
-                                            [sixDaysAgo]: 0,
-                                            [sevenDaysAgo]: 0
-                                          }
-                                        }
-      showPlayedgames(game)
-    })
-  }
-  populateCategories()
-
-  games.forEach(game=>{
-    recentCategories[game.category].hoursPlayed[yesterday] = recentCategories[game.category].hoursPlayed[yesterday] + game.playTime[0] || 0
-    recentCategories[game.category].hoursPlayed[twoDaysAgo] = recentCategories[game.category].hoursPlayed[twoDaysAgo] + game.playTime[1] || 0
-    recentCategories[game.category].hoursPlayed[threeDaysAgo] = recentCategories[game.category].hoursPlayed[threeDaysAgo] + game.playTime[2] || 0
-    recentCategories[game.category].hoursPlayed[fourDaysAgo] = recentCategories[game.category].hoursPlayed[fourDaysAgo] + game.playTime[3] || 0
-    recentCategories[game.category].hoursPlayed[fiveDaysAgo] = recentCategories[game.category].hoursPlayed[fiveDaysAgo] + game.playTime[4] || 0
-    recentCategories[game.category].hoursPlayed[sixDaysAgo] = recentCategories[game.category].hoursPlayed[sixDaysAgo] + game.playTime[5] || 0
-    recentCategories[game.category].hoursPlayed[sevenDaysAgo] = recentCategories[game.category].hoursPlayed[sevenDaysAgo] + game.playTime[6] || 0
- })
-
-
- // Generate Graph
- Highcharts.chart('graph-ctnr', {
-  chart: {
-    type: 'bar'
-  },
-  title: {
-    text: 'Recent Genres'
-  },
-  xAxis: {
-    categories: pastWeek
-  },
-  yAxis: {
-    min: 0,
-    title: {
-      text: 'Total Hours Played'
-    }
-  },
-  legend: {
-    reversed: true
-  },
-  plotOptions: {
-    series: {
-      stacking: 'normal'
-    }
-  },
-  series: [
-    {
-    name: Object.keys(recentCategories)[0],
-    data: [
-      recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[yesterday],
-      recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[twoDaysAgo],
-      recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[threeDaysAgo],
-      recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[fourDaysAgo],
-      recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[fiveDaysAgo],
-      recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[sixDaysAgo],
-      recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[sevenDaysAgo],
-    ]
-    },
-    {
-    name: Object.keys(recentCategories)[1],
-    data: [
-      recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[yesterday],
-      recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[twoDaysAgo],
-      recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[threeDaysAgo],
-      recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[fourDaysAgo],
-      recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[fiveDaysAgo],
-      recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[sixDaysAgo],
-      recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[sevenDaysAgo],
-    ]
-    },
-    {
-    name: Object.keys(recentCategories)[2],
-    data: [
-      recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[yesterday],
-      recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[twoDaysAgo],
-      recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[threeDaysAgo],
-      recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[fourDaysAgo],
-      recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[fiveDaysAgo],
-      recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[sixDaysAgo],
-      recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[sevenDaysAgo],
-    ]
-    },
-    {
-    name: Object.keys(recentCategories)[3],
-    data: [
-      recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[yesterday],
-      recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[twoDaysAgo],
-      recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[threeDaysAgo],
-      recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[fourDaysAgo],
-      recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[fiveDaysAgo],
-      recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[sixDaysAgo],
-      recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[sevenDaysAgo],
-    ]
-    },
-    {
-    name: Object.keys(recentCategories)[4],
-    data: [
-      recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[yesterday],
-      recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[twoDaysAgo],
-      recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[threeDaysAgo],
-      recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[fourDaysAgo],
-      recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[fiveDaysAgo],
-      recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[sixDaysAgo],
-      recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[sevenDaysAgo],
-    ]
-    },
-    {
-    name: Object.keys(recentCategories)[5],
-    data: [
-      recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[yesterday],
-      recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[twoDaysAgo],
-      recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[threeDaysAgo],
-      recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[fourDaysAgo],
-      recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[fiveDaysAgo],
-      recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[sixDaysAgo],
-      recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[sevenDaysAgo],
-    ]
-    },
-  ]
-});
+// if(document.querySelector('.recently-played-ctnr')){
 
   
-  // Render Friends Activiy
-  let showFriend = (friend) =>{
-    let friendWrapper = document.createElement('div')
-    let textContainer = document.createElement('div')
-    let username = document.createElement('a')
-    let img = document.createElement('div')
-    let recentPlaytime = document.createElement('h4')
-    let recentDate = document.createElement('h4')
+//   let populateCategories = ()=>{
+//     games.forEach(game=>{
+     
+//       recentCategories[game.category] = {
+//                                           hoursPlayed: {
+//                                             [yesterday]: 0,
+//                                             [twoDaysAgo]: 0,
+//                                             [threeDaysAgo]: 0,
+//                                             [fourDaysAgo]: 0,
+//                                             [fiveDaysAgo]: 0,
+//                                             [sixDaysAgo]: 0,
+//                                             [sevenDaysAgo]: 0
+//                                           }
+//                                         }
+      
+//     })
+//   }
+//   populateCategories()
 
-    img.style.backgroundImage = `url(${friend.currentgames[0].cover})`
-    username.textContent = friend.username
-    recentDate.textContent = ` Last Active: ${pastWeek[Math.floor(Math.random() * pastWeek.length)]}`
-    recentPlaytime.textContent = `Recent play time: ${randomNum(0,5)} hrs`
+//   // games.forEach(game=>{
+//   //   recentCategories[game.category].hoursPlayed[yesterday] = recentCategories[game.category].hoursPlayed[yesterday] + game.playTime[0] || 0
+//   //   recentCategories[game.category].hoursPlayed[twoDaysAgo] = recentCategories[game.category].hoursPlayed[twoDaysAgo] + game.playTime[1] || 0
+//   //   recentCategories[game.category].hoursPlayed[threeDaysAgo] = recentCategories[game.category].hoursPlayed[threeDaysAgo] + game.playTime[2] || 0
+//   //   recentCategories[game.category].hoursPlayed[fourDaysAgo] = recentCategories[game.category].hoursPlayed[fourDaysAgo] + game.playTime[3] || 0
+//   //   recentCategories[game.category].hoursPlayed[fiveDaysAgo] = recentCategories[game.category].hoursPlayed[fiveDaysAgo] + game.playTime[4] || 0
+//   //   recentCategories[game.category].hoursPlayed[sixDaysAgo] = recentCategories[game.category].hoursPlayed[sixDaysAgo] + game.playTime[5] || 0
+//   //   recentCategories[game.category].hoursPlayed[sevenDaysAgo] = recentCategories[game.category].hoursPlayed[sevenDaysAgo] + game.playTime[6] || 0
+//  })
 
-    friendWrapper.classList.add('friend-ctnr')
-    textContainer.classList.add('friend-text-ctnr')
-    username.classList.add('username')
-    username.href = '#'
-    img.classList.add('img')
-    recentDate.classList.add('recent-date')
-    recentPlaytime.classList.add('recent-time')
 
-    friendWrapper.appendChild(img)
-    textContainer.appendChild(username)
-    textContainer.appendChild(recentPlaytime)
-    textContainer.appendChild(recentDate)
-    friendWrapper.appendChild(textContainer)
-    document.querySelector('.friends-played-ctnr').appendChild(friendWrapper)
+// //  Generate Graph
+
+//  Highcharts.chart('graph-ctnr', {
+//   chart: {
+//     type: 'bar'
+//   },
+//   title: {
+//     text: 'Recent Genres'
+//   },
+//   xAxis: {
+//     categories: pastWeek
+//   },
+//   yAxis: {
+//     min: 0,
+//     title: {
+//       text: 'Total Hours Played'
+//     }
+//   },
+//   legend: {
+//     reversed: true
+//   },
+//   plotOptions: {
+//     series: {
+//       stacking: 'normal'
+//     }
+//   },
+//   series: [
+//     {
+//     name: Object.keys(recentCategories)[0],
+//     data: [
+//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[yesterday],
+//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[twoDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[threeDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[fourDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[fiveDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[sixDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[sevenDaysAgo],
+//     ]
+//     },
+//     {
+//     name: Object.keys(recentCategories)[1],
+//     data: [
+//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[yesterday],
+//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[twoDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[threeDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[fourDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[fiveDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[sixDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[sevenDaysAgo],
+//     ]
+//     },
+//     {
+//     name: Object.keys(recentCategories)[2],
+//     data: [
+//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[yesterday],
+//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[twoDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[threeDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[fourDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[fiveDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[sixDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[sevenDaysAgo],
+//     ]
+//     },
+//     {
+//     name: Object.keys(recentCategories)[3],
+//     data: [
+//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[yesterday],
+//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[twoDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[threeDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[fourDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[fiveDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[sixDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[sevenDaysAgo],
+//     ]
+//     },
+//     {
+//     name: Object.keys(recentCategories)[4],
+//     data: [
+//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[yesterday],
+//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[twoDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[threeDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[fourDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[fiveDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[sixDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[sevenDaysAgo],
+//     ]
+//     },
+//     {
+//     name: Object.keys(recentCategories)[5],
+//     data: [
+//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[yesterday],
+//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[twoDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[threeDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[fourDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[fiveDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[sixDaysAgo],
+//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[sevenDaysAgo],
+//     ]
+//     },
+//   ]
+// });
+
+  
+//   // Render Friends Activiy
+//   let showFriend = (friend) =>{
+//     let friendWrapper = document.createElement('div')
+//     let textContainer = document.createElement('div')
+//     let username = document.createElement('a')
+//     let img = document.createElement('div')
+//     let recentPlaytime = document.createElement('h4')
+//     let recentDate = document.createElement('h4')
+
+//     img.style.backgroundImage = `url(${friend.currentgames[0].cover})`
+//     username.textContent = friend.username
+//     recentDate.textContent = ` Last Active: ${pastWeek[Math.floor(Math.random() * pastWeek.length)]}`
+//     recentPlaytime.textContent = `Recent play time: ${randomNum(0,5)} hrs`
+
+//     friendWrapper.classList.add('friend-ctnr')
+//     textContainer.classList.add('friend-text-ctnr')
+//     username.classList.add('username')
+//     username.href = '#'
+//     img.classList.add('img')
+//     recentDate.classList.add('recent-date')
+//     recentPlaytime.classList.add('recent-time')
+
+//     friendWrapper.appendChild(img)
+//     textContainer.appendChild(username)
+//     textContainer.appendChild(recentPlaytime)
+//     textContainer.appendChild(recentDate)
+//     friendWrapper.appendChild(textContainer)
+//     document.querySelector('.friends-played-ctnr').appendChild(friendWrapper)
     
-  }
+//   }
 
-  friends.forEach(item=>{
-    showFriend(item)
-  })
+//   friends.forEach(item=>{
+//     showFriend(item)
+//   })
 
-}
+
 
 
 
@@ -435,8 +492,7 @@ if(document.querySelector('.username-ctnr')){
   let birthdayInput = document.querySelector('input[name="birthday"')
   let profilePic = document.createElement('img')
 
-  profilePic.src = user.picture
-  usernameInput.value = user.username
+
 
   usernameContainer.appendChild(profilePic)
 
@@ -454,15 +510,9 @@ if(document.querySelector('.username-ctnr')){
   })
 }
 
-
-// Search 
-if(document.querySelector('.search-btn')){
-let button = document.querySelector('.search-btn')
-let search = document.querySelector('#search')
-
-button.addEventListener('click',()=>{
+let searchForGame = ()=>{
   let query = search.value
-  
+  let results;
   axios({
     method: 'post',
     url: '/search',
@@ -471,36 +521,29 @@ button.addEventListener('click',()=>{
     },
   })
   .then(response=>{
-    if(response.status === 200){
-      window.location.href = '/results'
-    }
-  })
-
-
-})}
-
-// Results page
-let results;
-if(document.querySelector('.results-ctnr')){
-  axios({
-    method:'post',
-    useCredentials: true,
-    url: '/results'
-  }
-    )
-  .then(response=>{
     results = response.data
     console.log(results);
   })
   .then(()=>{
+    if(document.querySelector('#graph-ctnr')){
+      document.querySelector('#graph-ctnr').remove()
+      document.querySelector('.recently-played-ctnr').remove()
+      document.querySelector('.friends-played-ctnr').remove()
+  }else if(document.querySelector('.results-ctnr')){
+    document.querySelector('.results-ctnr').remove()
+  }
+
+    let resultContainer = document.createElement('div')
+    resultContainer .classList.add('results-ctnr')
+
+    document.querySelector('main').appendChild(resultContainer)
     results.forEach((game)=>{
-      let resultContainer = document.querySelector('.results-ctnr')
       let result = document.createElement('a')
       let gameTitle = document.createElement('h2')
+      let button = document.createElement('button')
 
       result.classList.add('result')
       result.id = game.name
-      result.href = game.url
       if(game.cover){
         gameTitle.style.visibility = 'hidden'
         result.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg)`
@@ -508,7 +551,97 @@ if(document.querySelector('.results-ctnr')){
         result.style.backgroundImage = ''
       }
 
+      button.classList.add('result-add-btn')
+      button.textContent = 'Add'
+
+      button.addEventListener('click',()=>{
+        axios({
+          method:'post',
+          url: '/save',
+          data:{
+            title:game.name,
+            cover:`//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`,
+            url:game.url,
+            platforms: game.platforms
+          }
+        })
+        .then((response)=>console.log(response.data))
+      })
+
       gameTitle.textContent = game.name
+
+      result.appendChild(button)
+      result.appendChild(gameTitle)
+      resultContainer.appendChild(result)
+
+    })
+})}
+// Search 
+if(document.querySelector('.search-btn')){
+let button = document.querySelector('.search-btn')
+let search = document.querySelector('#search')
+
+button.addEventListener('click',()=>{
+    searchForGame()
+  })
+search.addEventListener('keydown',(e)=>{
+    if (e.keyCode===13){
+      searchForGame()
+    }
+  })
+
+
+}
+
+// Results page
+
+if(document.querySelector('.results-ctnr')){
+  axios({
+    method:'post',
+    useCredentials: true,
+    url: '/results'
+  })
+  .then(response=>{
+    results = response.data
+    console.log(results);
+  })
+  .then(()=>{
+    document.querySelector('.main')
+    results.forEach((game)=>{
+      let resultContainer = document.querySelector('.results-ctnr')
+      let result = document.createElement('a')
+      let gameTitle = document.createElement('h2')
+      let button = document.createElement('button')
+
+      result.classList.add('result')
+      result.id = game.name
+      if(game.cover){
+        gameTitle.style.visibility = 'hidden'
+        result.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg)`
+      }else{
+        result.style.backgroundImage = ''
+      }
+
+      button.classList.add('result-add-btn')
+      button.textContent = 'Add'
+
+      button.addEventListener('click',()=>{
+        axios({
+          method:'post',
+          url: '/save',
+          data:{
+            title:game.name,
+            cover:game.cover.url,
+            url:game.url,
+            platforms: game.platforms
+          }
+        })
+        .then((response)=>console.log(response.data))
+      })
+
+      gameTitle.textContent = game.name
+
+      result.appendChild(button)
       result.appendChild(gameTitle)
       resultContainer.appendChild(result)
 

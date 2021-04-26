@@ -12,11 +12,11 @@
 
     <head>
         <nav>
-            <a href= '/index.html' class="logo-ctnr"></a>
-            <a href="/Calendar.html">Calendar</a>
-            <a href="/Discover.html">Discover</a>
-            <a href="/News.html">News</a>
-            <a href= "/Account.html" class="profile-ctnr">
+            <a href= '/' class="logo-ctnr"></a>
+            <a href="/Calendar">Calendar</a>
+            <a href="/Discover">Discover</a>
+            <a href="/News">News</a>
+            <a href= "/Account" class="profile-ctnr">
                 <img src='/img/profile.png' class="profile-pic"></img>
             </a>
         </nav>
@@ -26,16 +26,15 @@
 
         <div class="settings-ctnr">
                 <div class="username-ctnr">
-                    
+                    <h2><%= user.username %></h2>
                 </div>
                 
                 <div class="account-settings">
 
-                    <h2>Account</h2>
 
                     <div class="account-username">
                         <label for="username">Username:</label>
-                        <input  name="username" >
+                        <input  name="username" placeholder= <%= user.username %>>
                     </div>
 
                     <div class="account-password">
@@ -65,9 +64,9 @@
     </main>
 
     <footer>
-        <a href="/About.html"><p>About</p></a>
-        <a href="/Forums.html"><p>Forums</p></a>
-        <a href="/Import.html"><p>Import</p></a>
+        <a href="/About"><p>About</p></a>
+        <a href="/Forums"><p>Forums</p></a>
+        <a href="/Import"><p>Import</p></a>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="../css/styles.css">
+    <title>Home</title>
+</head>
+<body>
+
+    <head>
+        
+        <nav>
+            <a href= "/index"class="logo-ctnr"></a>
+            <a href="/Calendar">Calendar</a>
+            <a href="/Discover">Discover</a>
+            <a href="/News">News</a>
+            <a href= "/Account" class="profile-ctnr">
+                <img src='/img/profile.png' class="profile-pic"></img>
+            </a>
+
+        </nav>
+    </head>
+
+    <main>
+        <div class='signup-ctnr'>
+            <input type="email" placeholder= 'Email' name="email" class='signup-input' id="email">
+            <input type="text" placeholder= 'Username' name="username" class='signup-input' id="username">
+            <input type="text" placeholder= 'Password' name="password" class='signup-input' id="password">
+            <input type="text" placeholder= 'Confirm Password' name="password" class='signup-input' id="password">
+        </div>
+    </main>
+
+    <footer>
+        <a href="/About"><p>About</p></a>
+        <a href="/Forums"><p>Forums</p></a>
+        <a href="/Import"><p>Import</p></a>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js" integrity="sha512-otOZr2EcknK9a5aa3BbMR9XOjYKtxxscwyRHN6zmdXuRfJ5uApkHB7cz1laWk2g8RKLzV9qv/fl3RPwfCuoxHQ==" crossorigin="anonymous"></script>
+    <script src="scripts/luxon.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="scripts/index.js" type='module' ></script>
+</body>
+</html>
