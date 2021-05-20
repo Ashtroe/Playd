@@ -193,8 +193,8 @@ main .friends-played-ctnr .friend-ctnr .friend-text-ctnr .username {
 }
 
 main .slide-ctnr {
-  min-width: 66%;
-  min-height: 50%;
+  min-width: 50%;
+  min-height: 38%;
   margin-bottom: 3%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -221,7 +221,6 @@ main .slide-ctnr .top-month-ctnr {
 }
 
 main .slide-ctnr .top-month-ctnr .top-game {
-  visibility: hidden;
   position: absolute;
   height: 94%;
   width: 50%;
@@ -236,6 +235,7 @@ main .slide-ctnr .top-month-ctnr .top-game {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  visibility: hidden;
 }
 
 main .slide-ctnr .top-month-ctnr .top-game .info-ctnr {
@@ -486,6 +486,36 @@ main .calendar-ctnr {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 100%;
+}
+
+main .calendar-ctnr .month-ctnr {
+  width: 90%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .calendar-ctnr .month-ctnr .day-ctnr {
+  border: solid;
+  width: 100%;
+  min-height: 5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .calendar-ctnr .month-ctnr .day-ctnr h4 {
+  margin-left: 2em;
+}
+
+main .calendar-ctnr .month-ctnr .day-ctnr h6 {
+  position: absolute;
 }
 
 main .settings-ctnr {
@@ -592,12 +622,55 @@ main .settings-ctnr .account-settings .account-password {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -ms-flex-line-pack: center;
       align-content: center;
   margin-bottom: 5%;
+}
+
+main .settings-ctnr .account-settings .account-password .password-top {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin-bottom: 5%;
+}
+
+main .settings-ctnr .account-settings .account-password .password-top input {
+  min-height: 2em;
+  max-height: 2em;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
+main .settings-ctnr .account-settings .account-password .password-bottom {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+main .settings-ctnr .account-settings .account-password .password-bottom input {
+  min-height: 2em;
+  max-height: 2em;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
 }
 
 main .settings-ctnr .account-settings .account-bio {
@@ -638,6 +711,7 @@ main .results-ctnr {
           justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  cursor: pointer;
 }
 
 main .results-ctnr .result {
@@ -645,7 +719,7 @@ main .results-ctnr .result {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 13%;
+  width: 10%;
   height: 100%;
   margin-right: 1%;
   margin-top: 1%;
@@ -667,6 +741,82 @@ main .results-ctnr .result button {
   height: 20%;
   -ms-flex-item-align: end;
       align-self: flex-end;
+}
+
+main .form-container {
+  position: absolute;
+  background-color: #E4E4E4;
+  width: 50%;
+  height: 50%;
+  opacity: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .modal-ctnr {
+  position: relative;
+  z-index: 2;
+  left: 0;
+  top: -15em;
+  width: 60%;
+  height: 40%;
+  overflow: auto;
+  background-color: #F1F1F1;
+}
+
+main .modal-ctnr .cover-modal {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 30%;
+  height: 40%;
+}
+
+main .modal-ctnr .modal-info-ctnr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin-bottom: 1em;
+}
+
+main .modal-ctnr .modal-info-ctnr h3, main .modal-ctnr .modal-info-ctnr p {
+  margin: 0;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  z-index: 0;
+  height: 1624px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 Footer {

@@ -9,7 +9,6 @@
     <title>Home</title>
 </head>
 <body>
-    <h2><%= user %></h2>
     <head>
         
         <nav>
@@ -18,7 +17,7 @@
             <a href="/Discover">Discover</a>
             <a href="/News">News</a>
             <a href= "/Account" class="profile-ctnr">
-                <img src='/img/profile.png' class="profile-pic"></img>
+                <img src= <%= user.image %> class="profile-pic"></img>
             </a>
 
         </nav>

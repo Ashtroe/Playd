@@ -1,15 +1,60 @@
 
 let games = ['']
+let recentHistory = []
 
+// Get past Week
+let DateTime = luxon.DateTime
+let Info = luxon.Info
+let now = DateTime.local()
+var newFormat = delete DateTime.DATETIME_MED.time
+
+let yesterday = now.minus({days:1}).toLocaleString(DateTime.newFormat)
+let twoDaysAgo = now.minus({days:2}).toLocaleString(DateTime.newFormat)
+let threeDaysAgo = now.minus({days:3}).toLocaleString(DateTime.newFormat)
+let fourDaysAgo = now.minus({days:4}).toLocaleString(DateTime.newFormat)
+let fiveDaysAgo = now.minus({days:5}).toLocaleString(DateTime.newFormat)
+let sixDaysAgo = now.minus({days:6}).toLocaleString(DateTime.newFormat)
+let sevenDaysAgo = now.minus({days:7}).toLocaleString(DateTime.newFormat)
+
+let today = DateTime.now().toSeconds()
+let jan = DateTime.local(2021, 1, 1).toSeconds()
+let feb = DateTime.local(2021, 2, 1).toSeconds()
+let mar = DateTime.local(2021, 3, 1).toSeconds()
+let apr = DateTime.local(2021, 4, 1).toSeconds()
+let may = DateTime.local(2021, 5, 1).toSeconds()
+let jun = DateTime.local(2021, 6, 1).toSeconds()
+let jul = DateTime.local(2021, 7, 1).toSeconds()
+let aug = DateTime.local(2021, 8, 1).toSeconds()
+let sep = DateTime.local(2021, 9, 1).toSeconds()
+let oct = DateTime.local(2021, 10, 1).toSeconds()
+let nov = DateTime.local(2021, 11, 1).toSeconds()
+let dec = DateTime.local(2021, 12, 1).toSeconds()
+
+let pastWeek = 
+  [
+  yesterday,
+  twoDaysAgo,
+  threeDaysAgo,
+  fourDaysAgo,
+  fiveDaysAgo,
+  sixDaysAgo,
+  sevenDaysAgo
+]
+
+
+
+
+// Render Page 
 if(document.querySelector('.recently-played-ctnr')){
   window.onload = 
+  
   axios({
     method: 'post',
     url: '/user-games',
   })
   .then((response)=>{
     games = response.data
-    
+    console.log(games)
     games.forEach(game=>{
       
       let statusIcon = document.createElement('button')
@@ -43,6 +88,7 @@ if(document.querySelector('.recently-played-ctnr')){
         .catch(err=>console.log(err))
       })
 
+
       removeGame.addEventListener('click',()=>{
         axios({
           method:'post',
@@ -57,9 +103,77 @@ if(document.querySelector('.recently-played-ctnr')){
       gameWrapper.appendChild(removeGame)
       gameWrapper.appendChild(statusIcon)
       document.querySelector('.recently-played-ctnr').appendChild(gameWrapper)
-    })
-  
 
+     
+  
+     
+
+
+
+
+    })
+    
+
+  })
+  .then(()=>{
+  
+    games.forEach((game,index)=>{
+      let yesterdayTime = typeof(game.playTime.find(obj => obj.date === yesterday )) != 'undefined' ? game.playTime.find(obj => obj.date === yesterday ).time : 0
+      let twoDaysTime = typeof(game.playTime.find(obj => obj.date === twoDaysAgo )) != 'undefined' ? game.playTime.find(obj => obj.date === twoDaysAgo ).time : 0
+      let threeDaysTime = typeof(game.playTime.find(obj => obj.date === threeDaysAgo )) != 'undefined' ? game.playTime.find(obj => obj.date === threeDaysAgo ).time : 0
+      let fourDaysTime = typeof(game.playTime.find(obj => obj.date === fourDaysAgo )) != 'undefined' ? game.playTime.find(obj => obj.date === fourDaysAgo ).time : 0
+      let fiveDaysTime = typeof(game.playTime.find(obj => obj.date === fiveDaysAgo )) != 'undefined' ? game.playTime.find(obj => obj.date === fiveDaysAgo ).time : 0
+      let sixDaysTime = typeof(game.playTime.find(obj => obj.date === sixDaysAgo )) != 'undefined' ? game.playTime.find(obj => obj.date === sixDaysAgo ).time : 0
+      let sevenDaysTime = typeof(game.playTime.find(obj => obj.date === sevenDaysAgo )) != 'undefined' ? game.playTime.find(obj => obj.date === sevenDaysAgo ).time : 0
+      
+      recentHistory[index] = {
+        name: game.title,
+        data: [          
+          yesterdayTime,
+          twoDaysTime,
+          threeDaysTime,
+          fourDaysTime,
+          fiveDaysTime,
+          sixDaysTime,
+          sevenDaysTime
+        ]
+      }
+    })
+
+    let generateGraph = () =>{
+
+      Highcharts.chart('graph-ctnr', {
+        chart: {
+          type: 'bar'
+        },
+        title: {
+          text: 'Recent History'
+        },
+        xAxis: {
+          categories: pastWeek
+        },
+        yAxis: {
+          min: 0,
+          max:24,
+          title: {
+            text: 'Total Hours Played'
+          }
+        },
+        legend: {
+          reversed: true
+        },
+        plotOptions: {
+          series: {
+            stacking: 'normal'
+          }
+        },
+        series:recentHistory
+      });
+      
+    }
+
+    generateGraph()
+    return(yesterday, twoDaysAgo, threeDaysAgo, fourDaysAgo, fiveDaysAgo, sixDaysAgo, sevenDaysAgo, pastWeek)
   })
 
 }
@@ -76,7 +190,9 @@ const randomNum = (min, max) => {
 
 
 
-let recentCategories = {}
+console.log(recentHistory);
+
+
 
 let friends = [
   {
@@ -107,214 +223,6 @@ let friends = [
 ]
 
 
-// Get past Week
-let DateTime = luxon.DateTime
-let now = DateTime.local()
-var newFormat = delete DateTime.DATETIME_MED.time
-
-let yesterday = now.minus({days:1}).toLocaleString(DateTime.newFormat)
-let twoDaysAgo = now.minus({days:2}).toLocaleString(DateTime.newFormat)
-let threeDaysAgo = now.minus({days:3}).toLocaleString(DateTime.newFormat)
-let fourDaysAgo = now.minus({days:4}).toLocaleString(DateTime.newFormat)
-let fiveDaysAgo = now.minus({days:5}).toLocaleString(DateTime.newFormat)
-let sixDaysAgo = now.minus({days:6}).toLocaleString(DateTime.newFormat)
-let sevenDaysAgo = now.minus({days:7}).toLocaleString(DateTime.newFormat)
-
-let pastWeek = 
-  [
-  yesterday,
-  twoDaysAgo,
-  threeDaysAgo,
-  fourDaysAgo,
-  fiveDaysAgo,
-  sixDaysAgo,
-  sevenDaysAgo
-]
-
-
-
-
-
-
-
-
-
-// Get Recent Categories
-
-
-// if(document.querySelector('.recently-played-ctnr')){
-
-  
-//   let populateCategories = ()=>{
-//     games.forEach(game=>{
-     
-//       recentCategories[game.category] = {
-//                                           hoursPlayed: {
-//                                             [yesterday]: 0,
-//                                             [twoDaysAgo]: 0,
-//                                             [threeDaysAgo]: 0,
-//                                             [fourDaysAgo]: 0,
-//                                             [fiveDaysAgo]: 0,
-//                                             [sixDaysAgo]: 0,
-//                                             [sevenDaysAgo]: 0
-//                                           }
-//                                         }
-      
-//     })
-//   }
-//   populateCategories()
-
-//   // games.forEach(game=>{
-//   //   recentCategories[game.category].hoursPlayed[yesterday] = recentCategories[game.category].hoursPlayed[yesterday] + game.playTime[0] || 0
-//   //   recentCategories[game.category].hoursPlayed[twoDaysAgo] = recentCategories[game.category].hoursPlayed[twoDaysAgo] + game.playTime[1] || 0
-//   //   recentCategories[game.category].hoursPlayed[threeDaysAgo] = recentCategories[game.category].hoursPlayed[threeDaysAgo] + game.playTime[2] || 0
-//   //   recentCategories[game.category].hoursPlayed[fourDaysAgo] = recentCategories[game.category].hoursPlayed[fourDaysAgo] + game.playTime[3] || 0
-//   //   recentCategories[game.category].hoursPlayed[fiveDaysAgo] = recentCategories[game.category].hoursPlayed[fiveDaysAgo] + game.playTime[4] || 0
-//   //   recentCategories[game.category].hoursPlayed[sixDaysAgo] = recentCategories[game.category].hoursPlayed[sixDaysAgo] + game.playTime[5] || 0
-//   //   recentCategories[game.category].hoursPlayed[sevenDaysAgo] = recentCategories[game.category].hoursPlayed[sevenDaysAgo] + game.playTime[6] || 0
-//  })
-
-
-// //  Generate Graph
-
-//  Highcharts.chart('graph-ctnr', {
-//   chart: {
-//     type: 'bar'
-//   },
-//   title: {
-//     text: 'Recent Genres'
-//   },
-//   xAxis: {
-//     categories: pastWeek
-//   },
-//   yAxis: {
-//     min: 0,
-//     title: {
-//       text: 'Total Hours Played'
-//     }
-//   },
-//   legend: {
-//     reversed: true
-//   },
-//   plotOptions: {
-//     series: {
-//       stacking: 'normal'
-//     }
-//   },
-//   series: [
-//     {
-//     name: Object.keys(recentCategories)[0],
-//     data: [
-//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[yesterday],
-//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[twoDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[threeDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[fourDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[fiveDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[sixDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[0]].hoursPlayed[sevenDaysAgo],
-//     ]
-//     },
-//     {
-//     name: Object.keys(recentCategories)[1],
-//     data: [
-//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[yesterday],
-//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[twoDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[threeDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[fourDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[fiveDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[sixDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[1]].hoursPlayed[sevenDaysAgo],
-//     ]
-//     },
-//     {
-//     name: Object.keys(recentCategories)[2],
-//     data: [
-//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[yesterday],
-//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[twoDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[threeDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[fourDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[fiveDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[sixDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[2]].hoursPlayed[sevenDaysAgo],
-//     ]
-//     },
-//     {
-//     name: Object.keys(recentCategories)[3],
-//     data: [
-//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[yesterday],
-//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[twoDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[threeDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[fourDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[fiveDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[sixDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[3]].hoursPlayed[sevenDaysAgo],
-//     ]
-//     },
-//     {
-//     name: Object.keys(recentCategories)[4],
-//     data: [
-//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[yesterday],
-//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[twoDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[threeDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[fourDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[fiveDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[sixDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[4]].hoursPlayed[sevenDaysAgo],
-//     ]
-//     },
-//     {
-//     name: Object.keys(recentCategories)[5],
-//     data: [
-//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[yesterday],
-//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[twoDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[threeDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[fourDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[fiveDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[sixDaysAgo],
-//       recentCategories[Object.keys(recentCategories)[5]].hoursPlayed[sevenDaysAgo],
-//     ]
-//     },
-//   ]
-// });
-
-  
-//   // Render Friends Activiy
-//   let showFriend = (friend) =>{
-//     let friendWrapper = document.createElement('div')
-//     let textContainer = document.createElement('div')
-//     let username = document.createElement('a')
-//     let img = document.createElement('div')
-//     let recentPlaytime = document.createElement('h4')
-//     let recentDate = document.createElement('h4')
-
-//     img.style.backgroundImage = `url(${friend.currentgames[0].cover})`
-//     username.textContent = friend.username
-//     recentDate.textContent = ` Last Active: ${pastWeek[Math.floor(Math.random() * pastWeek.length)]}`
-//     recentPlaytime.textContent = `Recent play time: ${randomNum(0,5)} hrs`
-
-//     friendWrapper.classList.add('friend-ctnr')
-//     textContainer.classList.add('friend-text-ctnr')
-//     username.classList.add('username')
-//     username.href = '#'
-//     img.classList.add('img')
-//     recentDate.classList.add('recent-date')
-//     recentPlaytime.classList.add('recent-time')
-
-//     friendWrapper.appendChild(img)
-//     textContainer.appendChild(username)
-//     textContainer.appendChild(recentPlaytime)
-//     textContainer.appendChild(recentDate)
-//     friendWrapper.appendChild(textContainer)
-//     document.querySelector('.friends-played-ctnr').appendChild(friendWrapper)
-    
-//   }
-
-//   friends.forEach(item=>{
-//     showFriend(item)
-//   })
-
-
-
 
 
 
@@ -327,105 +235,110 @@ let pastWeek =
 
 
   // Discover Page 
-let currentSlide = 1
+let currentSlide = 0
 
-let topgamesMonth = [
-  games[1],
-  games[2],
-  games[3],
-  games[4],
-  
-]
+let topgamesMonth = []
 
 function kFormatter(num) {
   return Math.abs(num) > 999 ? Math.sign(num)*((Math.abs(num)/1000).toFixed(1)) + 'k' : Math.sign(num)*Math.abs(num)
 }
 if(document.querySelector('.slide-ctnr')){
-  topgamesMonth.forEach((game,index)=>{
-    let container = document.querySelector('.top-month-ctnr')
-    let gameDiv = document.createElement('div')
-    let backgroundCover = document.createElement('div')
-    let infoBackground = document.createElement('div')
 
-    let infoContainer = document.createElement('div') 
-    let playersContainer = document.createElement('div') 
-    let releaseContainer = document.createElement('div') 
-    let ratingContainer = document.createElement('div') 
-    let playerCount = document.createElement('p')
-    let playerCountText = document.createElement('p')
-    let rating = document.createElement('p')
-    let ratingText = document.createElement('p')
-    let releaseDate = document.createElement('p')
-    let releaseDateText = document.createElement('p')
-
-    releaseContainer.classList.add('game-info-ctnr')
-    playersContainer.classList.add('game-info-ctnr')
-    ratingContainer.classList.add('game-info-ctnr')
-    
-    releaseDate.classList.add('game-info')
-    rating.classList.add('game-info')
-    playerCount.classList.add('game-info')
-
-    releaseDateText.classList.add('info-text')
-    ratingText.classList.add('info-text')
-    playerCountText.classList.add('info-text')
-
-    releaseDate.classList.add('release-date')
-    rating.classList.add('rating')
-    playerCount.classList.add('player-count')
-    infoContainer.classList.add('info-ctnr')
-    gameDiv.classList.add('top-game')
-    backgroundCover.classList.add('background-cover')
-    infoBackground.classList.add('info-background')
-
-    gameDiv.id = `game-${index + 1}`
-    backgroundCover.id = `game-${index + 1}-background`
-    
-    releaseDate.textContent = ` ${game.released}\r\n`  
-    releaseDateText.textContent = `released`  
-
-    playerCount.textContent = ` ${kFormatter(game.players)}\r\n`
-    playerCountText.textContent += `players`
-
-    rating.textContent = ` ${game.rating}%\r\n`
-    ratingText.textContent = ` rating`
-    
-    gameDiv.style.backgroundImage = `url(${game.cover})`
-    backgroundCover.style.backgroundImage = `url(${game.cover})`
-    
-    if(gameDiv.id === 'game-1'){
-      gameDiv.classList.add('visible')
-      
-    }
-    if(backgroundCover.id === 'game-1-background'){
-      backgroundCover.classList.add('visible')
-      
-    }
-
-    container.appendChild(backgroundCover)
-  
-    playersContainer.appendChild(playerCount)
-    playersContainer.appendChild(playerCountText)
-
-    releaseContainer.appendChild(releaseDate)
-    releaseContainer.appendChild(releaseDateText)
-
-    ratingContainer.appendChild(rating)
-    ratingContainer.appendChild(ratingText)
-
-    infoContainer.appendChild(releaseContainer)
-    infoContainer.appendChild(playersContainer)
-    infoContainer.appendChild(ratingContainer)
-    
-    gameDiv.appendChild(infoBackground)
-    gameDiv.appendChild(infoContainer)
-    container.appendChild(gameDiv)
+  axios({
+    method: 'post',
+    url: '/discover',
 
   })
+  .then(response=>{
+    response.data.forEach((game,index)=>{
+      topgamesMonth.push(game)
+      let container = document.querySelector('.top-month-ctnr')
+      let backgroundCover = document.createElement('div')
+      let gameDiv = document.createElement('div')
+      let infoBackground = document.createElement('div')
   
+      let infoContainer = document.createElement('div') 
+      let followsContainer = document.createElement('div') 
+      let releaseContainer = document.createElement('div') 
+      let ratingContainer = document.createElement('div')
+
+      let follows = document.createElement('p')
+      let release = document.createElement('p')
+      let rating = document.createElement('p')
+
+      let ratingText = document.createElement('p')
+      let releaseText = document.createElement('p')
+      let followsText = document.createElement('p')
+      
+      gameDiv.id = `game-${index}`
+      gameDiv.classList.add('top-game')
+      gameDiv.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.game.cover.image_id}.jpg)`
+
+      infoBackground.classList.add('info-background')
+
+      backgroundCover.classList.add('background-cover')
+      backgroundCover.id = `game-${index}-background`
+      backgroundCover.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.game.cover.image_id}.jpg)`
+      
+      releaseContainer.classList.add('game-info-ctnr')
+      followsContainer.classList.add('game-info-ctnr')
+      ratingContainer.classList.add('game-info-ctnr')
+      
+      release.classList.add('game-info')
+      rating.classList.add('game-info')
+      follows.classList.add('game-info')
+
+      followsText.classList.add('info-text')
+      ratingText.classList.add('info-text')
+      releaseText.classList.add('info-text')
+
+      release.classList.add('release')
+      rating.classList.add('rating')
+      follows.classList.add('follows')
+      infoContainer.classList.add('info-ctnr')
+
+      follows.textContent = `${game.game.follows}\r\n`
+      rating.textContent = `${Math.floor(game.game.rating)}%\r\n`
+      release.textContent = `${DateTime.fromSeconds(game.game.first_release_date).toLocaleString(DateTime.DATE_MED)}\r\n` 
+
+      followsText.textContent = 'Follows'
+      releaseText.textContent = 'Released'
+      ratingText.textContent = 'Rating'
+
+      if(index === 0) {
+        gameDiv.classList.add('visible')
+      }
+      if(index === 0) {
+        backgroundCover.classList.add('visible')
+      }
+      
+      followsContainer.appendChild(follows)
+      followsContainer.appendChild(followsText)
+      releaseContainer.appendChild(release)
+      releaseContainer.appendChild(releaseText)
+      ratingContainer.appendChild(rating)
+      ratingContainer.appendChild(ratingText)
+      
+      infoContainer.appendChild(followsContainer)
+      infoContainer.appendChild(releaseContainer)
+      infoContainer.appendChild(ratingContainer)
+
+      container.appendChild(backgroundCover)
+      gameDiv.appendChild(infoBackground)
+      gameDiv.appendChild(infoContainer)
+      container.appendChild(gameDiv)
+
+      console.log(release.textContent);
   
-  let toggleSlideUp = () => {
-    if(currentSlide<topgamesMonth.length){
+    })
+    console.log(topgamesMonth);
+  })
+
+  
+
+  
+  document.querySelector('#right-btn').addEventListener('click',()=>{
+    if(currentSlide<topgamesMonth.length -1){
       let currentGame = document.querySelector(`#game-${currentSlide}`)
       let currentGameBackground = document.querySelector(`#game-${currentSlide}-background`)
   
@@ -433,16 +346,16 @@ if(document.querySelector('.slide-ctnr')){
       let nextGameBackground = document.querySelector(`#game-${currentSlide + 1}-background`)
   
       currentGame.classList.remove('visible')
-      nextGame.classList.add('visible')
       currentGameBackground.classList.remove('visible')
+
+      nextGame.classList.add('visible')
       nextGameBackground.classList.add('visible')
   
       currentSlide++
     }
-  }
-  
-  let toggleSlideDown = () => {
-    if(currentSlide!=1){
+  })
+  document.querySelector('#left-btn').addEventListener('click',()=>{
+    if(currentSlide!=0){
       let currentGame = document.querySelector(`#game-${currentSlide}`)
       let currentGameBackground = document.querySelector(`#game-${currentSlide}-background`)
   
@@ -456,13 +369,6 @@ if(document.querySelector('.slide-ctnr')){
   
       currentSlide--
     }
-  }
-  
-  document.querySelector('#right-btn').addEventListener('click',()=>{
-    toggleSlideUp()
-  })
-  document.querySelector('#left-btn').addEventListener('click',()=>{
-    toggleSlideDown()
   })
   
   // Hover Animation
@@ -510,6 +416,200 @@ if(document.querySelector('.username-ctnr')){
   })
 }
 
+let saveGame = (game) =>{
+  let yesterdayInput = document.querySelector('#yesterday-input')
+  let twoDaysInput = document.querySelector('#two-days-input')
+  let threeDaysInput = document.querySelector('#three-days-input')
+  axios({
+    method:'post',
+    url: '/save',
+    data:{
+      title:game.name,
+      cover:`//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`,
+      url:game.url,
+      category:game.genres[0].name,
+      platforms: game.platforms,
+      playTime: [
+        { date: yesterday,
+          time:yesterdayInput.value != '' ? parseInt(yesterdayInput.value) :0},
+        { date: twoDaysAgo,
+          time:twoDaysInput.value != '' ? parseInt(twoDaysInput.value) :0},
+        { date: threeDaysAgo,
+          time:threeDaysInput.value != '' ? parseInt(threeDaysInput.value) :0},
+        {date: fourDaysAgo,
+          time: 0
+        },
+        {date: fiveDaysAgo,
+          time: 0
+        },
+        {date: sixDaysAgo,
+          time: 0
+        },
+        {date: sevenDaysAgo,
+          time: 0
+        },
+        
+      ]
+    }
+  })
+  .then(response=>{
+      console.log(response.data);
+  })
+}
+
+let renderTimeInput = (game)=>{
+
+  // Render play history form 
+  let overlay = document.createElement('div')
+  let formContainer = document.createElement('div')
+  let yesterdayLabel = document.createElement('label')
+  let twoDaysLabel = document.createElement('label')
+  let threeDaysLabel = document.createElement('label')
+  let yesterdayInput = document.createElement('input')
+  let twoDaysInput = document.createElement('input')
+  let threeDaysInput = document.createElement('input')
+  let btn = document.createElement('button')
+  let heading = document.createElement('h4')
+
+  btn.textContent = 'Submit'
+  heading.textContent = 'How many hours did you play recently?'
+
+  yesterdayInput.id = 'yesterday-input'
+  twoDaysInput.id = 'two-days-input'
+  threeDaysInput.id = 'three-days-input'
+
+  yesterdayLabel.htmlFor = 'yesterday-input'
+  twoDaysLabel.htmlFor = 'two-days-input'
+  threeDaysLabel.htmlFor = 'three-days-input'
+
+  yesterdayLabel.textContent = 'Yesterday'
+  twoDaysLabel.textContent = 'Two Days Ago'
+  threeDaysLabel.textContent = 'Three Days Ago'
+
+  overlay.classList.add('overlay')
+  formContainer.classList.add('form-container')
+  
+
+  btn.addEventListener('click',()=>
+    saveGame(game)
+  )
+
+  
+
+
+  formContainer.appendChild(heading)
+  formContainer.appendChild(yesterdayLabel)
+  formContainer.appendChild(yesterdayInput)
+  formContainer.appendChild(twoDaysLabel)
+  formContainer.appendChild(twoDaysInput)
+  formContainer.appendChild(threeDaysLabel)
+  formContainer.appendChild(threeDaysInput)
+  formContainer.appendChild(btn)
+  overlay.appendChild(formContainer)
+  document.querySelector('main').appendChild(overlay)
+}
+
+let renderGameOverlay = (game) =>{
+  let overlayBackground = document.createElement('div')
+  let modalContainer = document.createElement('div')
+  let releaseContainer = document.createElement('div')
+  let descContainer = document.createElement('div')
+  let developerContainer = document.createElement('div')
+  let platformContainer = document.createElement('div')
+  let genreContainer = document.createElement('div')
+  let storeContainer = document.createElement('div')
+  let cover = document.createElement('div')
+
+  let title = document.createElement('h2')
+
+  let release = document.createElement('h3')
+  let desc = document.createElement('h3')
+  let developer = document.createElement('h3')
+  let platforms = document.createElement('h3')
+  let genre = document.createElement('h3')
+
+  let releaseBody = document.createElement('p')
+  let descBody = document.createElement('p')
+  let developerBody = document.createElement('p')
+  let genreBody = document.createElement('p')
+
+  let addBtn = document.createElement('button')
+  let closeBtn = document.createElement('button')
+
+
+  overlayBackground.classList.add('overlay')
+  overlayBackground.id = 'overlay'
+  modalContainer.classList.add('modal-ctnr')
+  modalContainer.id = 'modal'
+  cover.classList.add('cover-modal')
+  releaseContainer.classList.add('modal-info-ctnr')
+  descContainer.classList.add('modal-info-ctnr')
+  developerContainer.classList.add('modal-info-ctnr')
+  platformContainer.classList.add('modal-info-ctnr')
+  genreContainer.classList.add('modal-info-ctnr')
+
+  title.textContent = game.name
+  release.textContent = 'Released:'
+  desc.textContent = 'Summary:'
+  developer.textContent = 'Developer:'
+  platforms.textContent = 'Platforms:'
+  genre.textContent = 'Genre:'
+  addBtn.textContent = 'Add'
+  closeBtn.textContent = 'Close'
+
+  if(game.first_release_date){
+    releaseBody.textContent = `${DateTime.fromSeconds(game.first_release_date).toLocaleString(DateTime.DATE_MED)}`
+  }else{
+    release.textContent = ''
+    releaseBody.textContent = ''
+  }
+
+  descBody.textContent = game.summary
+  developerBody.textContent = ``
+  genreBody.textContent = game.genres[0].name
+  cover.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg)`
+
+  // Detect click outside modal 
+  document.addEventListener('click',(e)=>{
+    if (e.target.id === 'overlay'){
+      modalContainer.remove()
+      overlayBackground.remove()
+    }
+  })
+
+  addBtn.addEventListener('click',()=>{
+    modalContainer.remove()
+    overlayBackground.remove()
+    renderTimeInput(game)
+  })
+
+  closeBtn.addEventListener('click',()=>{
+    modalContainer.remove()
+    overlayBackground.remove()
+  })
+  
+
+  releaseContainer.appendChild(release)
+  releaseContainer.appendChild(releaseBody)
+  descContainer.appendChild(desc)
+  descContainer.appendChild(descBody)
+  developerContainer.appendChild(developer)
+  developerContainer.appendChild(developerBody)
+  genreContainer.appendChild(genre)
+  genreContainer.appendChild(genreBody)
+
+  modalContainer.appendChild(title)
+  modalContainer.appendChild(cover)
+  modalContainer.appendChild(releaseContainer)
+  modalContainer.appendChild(genreContainer)
+  modalContainer.appendChild(descContainer)
+  modalContainer.appendChild(platformContainer)
+  modalContainer.appendChild(addBtn)
+  modalContainer.appendChild(closeBtn)
+  document.querySelector('body').appendChild(overlayBackground)
+  document.querySelector('main').appendChild(modalContainer)
+}
+
 let searchForGame = ()=>{
   let query = search.value
   let results;
@@ -538,7 +638,7 @@ let searchForGame = ()=>{
 
     document.querySelector('main').appendChild(resultContainer)
     results.forEach((game)=>{
-      let result = document.createElement('a')
+      let result = document.createElement('div')
       let gameTitle = document.createElement('h2')
       let button = document.createElement('button')
 
@@ -547,6 +647,7 @@ let searchForGame = ()=>{
       if(game.cover){
         gameTitle.style.visibility = 'hidden'
         result.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg)`
+        
       }else{
         result.style.backgroundImage = ''
       }
@@ -555,27 +656,16 @@ let searchForGame = ()=>{
       button.textContent = 'Add'
 
       button.addEventListener('click',()=>{
-        axios({
-          method:'post',
-          url: '/save',
-          data:{
-            title:game.name,
-            cover:`//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg`,
-            url:game.url,
-            platforms: game.platforms
-          }
-        })
-        .then((response)=>console.log(response.data))
+        renderTimeInput(game)
       })
 
-      gameTitle.textContent = game.name
+      result.addEventListener('click', ()=>{
+        renderGameOverlay(game)
+      })
 
       result.appendChild(button)
-      result.appendChild(gameTitle)
       resultContainer.appendChild(result)
-
-    })
-})}
+    })})}
 // Search 
 if(document.querySelector('.search-btn')){
 let button = document.querySelector('.search-btn')
@@ -593,83 +683,149 @@ search.addEventListener('keydown',(e)=>{
 
 }
 
-// Results page
 
-if(document.querySelector('.results-ctnr')){
-  axios({
-    method:'post',
-    useCredentials: true,
-    url: '/results'
+// Sign Up 
+if(document.querySelector('.signup-ctnr')){
+  let image
+  let email = document.querySelector('#email').value
+  let username = document.querySelector('#username').value
+  let password = document.querySelector('#password').value
+  let confirm = document.querySelector('#confirm').value
+
+  let button1 = document.querySelector('.pic-1')
+  let button2 = document.querySelector('.pic-2')
+  let button3 = document.querySelector('.pic-3')
+  let button4 = document.querySelector('.pic-4')
+  let submit = document.querySelector('.signup-submit')
+
+  // Select profile image 
+
+let buttons = document.querySelectorAll('.profile-pic-select')
+
+buttons.forEach(btn=>{
+  btn.addEventListener('click',(e)=>{
+    e.target.classList.add('selected')
+    image = `/img/profile${e.target.id}.png`
+    console.log(image);
   })
-  .then(response=>{
-    results = response.data
-    console.log(results);
+})
+
+submit.addEventListener('click',()=>{
+  axios({
+    method: 'post',
+    url: 'signup',
+    data: {
+      email,
+      username,
+      password,
+      image
+    }
   })
   .then(()=>{
-    document.querySelector('.main')
-    results.forEach((game)=>{
-      let resultContainer = document.querySelector('.results-ctnr')
-      let result = document.createElement('a')
-      let gameTitle = document.createElement('h2')
-      let button = document.createElement('button')
-
-      result.classList.add('result')
-      result.id = game.name
-      if(game.cover){
-        gameTitle.style.visibility = 'hidden'
-        result.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg)`
-      }else{
-        result.style.backgroundImage = ''
-      }
-
-      button.classList.add('result-add-btn')
-      button.textContent = 'Add'
-
-      button.addEventListener('click',()=>{
-        axios({
-          method:'post',
-          url: '/save',
-          data:{
-            title:game.name,
-            cover:game.cover.url,
-            url:game.url,
-            platforms: game.platforms
-          }
-        })
-        .then((response)=>console.log(response.data))
-      })
-
-      gameTitle.textContent = game.name
-
-      result.appendChild(button)
-      result.appendChild(gameTitle)
-      resultContainer.appendChild(result)
-
-    })
-
+    console.log('Signup Succesful');
   })
+})
 }
-
 // Login 
 if(document.querySelector('.login-ctnr')){
-  let username = document.querySelector('.username').value
-  let password = document.querySelector('.password').value
+  
   
 
   document.querySelector('.login-submit-btn').addEventListener('click',()=>{
+    let username = document.querySelector('.username').value
+    let password = document.querySelector('.password').value
     axios({
       method:'post',
       
       url:'/login',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      withCredentials:true,
       data:{
-        username: username,
-        password: password,
-      }
-    })
+        username,
+        password,
+      }})
     .then(response=>{
       if(response.status === 200){
         window.location.href = '/'
       }
     })
+  })
+}
+
+
+
+// Calendar Page 
+let upcomingGames
+let gamesInMonth = []
+if(document.querySelector('.calendar-ctnr')){
+
+  axios({
+    method:'post',
+    url:'/calendar',
+  })
+  .then(response=>{
+    upcomingGames = response.data
+    console.log(upcomingGames);
+  })
+  .then(()=>{
+    document.querySelector('.calendar-ctnr').textContent = ''
+    let monthContainer = document.createElement('div')
+    let monthHeader = document.createElement('h2')
+    let currentMonth = DateTime.now().monthShort
+    let daysInMonth = DateTime.now().daysInMonth
+
+    monthHeader.textContent= `${currentMonth} Releases`
+    
+    monthContainer.classList.add(`month-ctnr`)
+    monthContainer.id = currentMonth
+    document.querySelector('.calendar-ctnr').appendChild(monthHeader)
+    document.querySelector('.calendar-ctnr').appendChild(monthContainer)
+
+    for (let i = 0; i <= daysInMonth; i++) {
+      let dayContainer = document.createElement('div')
+      let date = document.createElement('h6')
+
+      dayContainer.classList.add('day-ctnr')
+
+      date.textContent = i
+
+      if( i < 10){
+        dayContainer.id = 'day0'+i
+      }else{
+        dayContainer.id = 'day'+i
+      }
+
+      dayContainer.appendChild(date)
+      monthContainer.appendChild(dayContainer)   
+    }
+
+    
+    upcomingGames.forEach(game => {
+      if(Info.months('short')[(game.m -1)] === currentMonth){
+        gamesInMonth.push(game)
+      }
+    })
+
+    gamesInMonth.forEach(game=>{
+      let gameContainer = document.createElement('div')
+      let nameText = document.createElement('h4')
+      gameContainer.id = game.game.name
+      
+
+      nameText.textContent = game.game.name
+
+      let targetID = game.human.slice((currentMonth.length + 1), (currentMonth.length + 3))
+
+      monthContainer.querySelector(`#day${targetID}`).style.minHeight= '15em'
+
+      gameContainer.appendChild(nameText)
+      monthContainer.querySelector(`#day${targetID}`).appendChild(gameContainer)
+    })
+    console.log(gamesInMonth);
+
+   
+
   })
 }

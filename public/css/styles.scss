@@ -174,11 +174,13 @@ main{
             }
         }
     }
+    
+    // Discover Page 
 
     .slide-ctnr{
         
-        min-width: 66%;
-        min-height: 50%;
+        min-width: 50%;
+        min-height: 38%;
         margin-bottom: 3%;
         display: flex;
         align-items: center;
@@ -194,7 +196,6 @@ main{
             
     
             .top-game{
-                visibility: hidden;
                 position: absolute;
                 height: 94%;
                 width: 50%;
@@ -203,6 +204,7 @@ main{
                 display: flex;
                 align-items: flex-end;
                 justify-content: center;
+                visibility: hidden;
 
                 .info-ctnr{
                     position: relative;
@@ -398,6 +400,28 @@ main{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        width: 100%;
+
+        .month-ctnr{
+            width: 90%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .day-ctnr{
+                border:solid;
+                width: 100%;
+                min-height: 5em;
+                display: flex;
+
+                h4{
+                    margin-left: 2em;
+                }
+                h6{
+                    position: absolute;
+                }
+            }
+        }
     }
 
     // Account Page
@@ -476,9 +500,37 @@ main{
             .account-password{
                 width: 68%;
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-content: center;
                 margin-bottom: 5%;
+                
+                .password-top{
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    margin-bottom: 5%;
+                    
+                    input{
+                        min-height: 2em;
+                        max-height: 2em;
+                        align-self: flex-end;
+                    }
+                }
+
+                .password-bottom{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                
+                    input{
+                        min-height: 2em;
+                        max-height: 2em;
+                        align-self: flex-end;
+                    }
+                }
             }
 
             .account-bio{
@@ -508,13 +560,14 @@ main{
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+        cursor: pointer;
 
         .result{
             position: relative;
             background-position: center;
             background-size: contain;
             background-repeat: no-repeat;
-            width: 13%;
+            width: 10%;
             height: 100%;
             margin-right: 1%;
             margin-top: 1%;
@@ -533,6 +586,59 @@ main{
             }
         }
     }
+
+    
+    .form-container{
+        position: absolute;
+        background-color: $secondaryColor;
+        width: 50%;
+        height: 50%;
+        opacity: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-ctnr{
+        position: relative; 
+        z-index: 2; 
+        left: 0;
+        top: -15em;
+        width: 60%;
+        height: 40%; 
+        overflow: auto; 
+        background-color: #F1F1F1;
+
+        .cover-modal{
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 30%;
+            height: 40%;
+        }
+        .modal-info-ctnr{
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1em;
+            h3,p{
+                margin:0;
+            }
+        }
+    }
+}
+
+.overlay{
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute; 
+    top: 0;
+    z-index: 0;
+    height: 1624px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 Footer{
