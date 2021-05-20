@@ -52,17 +52,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false })); 
 
-const store = new MongoStore({
-  mongoUrl:process.env.DB_URL, 
-  collectionName: 'sessions'
-})
+
 
 app.use(session({
   secret: 'secret',
   cookie: {maxAge:5.184e9 },
   resave:false,
   saveUninitialized: true,
-  store
+  store: MongoStore.create({mongoUrl:process.env.DB_URL, collectionName: 'sessions'})
   })
 );
 app.use(express.static(path.join(__dirname, 'public')));
