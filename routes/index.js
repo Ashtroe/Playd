@@ -43,15 +43,15 @@ router.get('/', isAuth, (req,res, next)=>{
   })
   
   router.get('/calendar',  (req,res, next)=>{
-    res.render('calendar')
+    res.render('Calendar')
   })
   
   router.get('/news', (req,res, next)=>{
-    res.render('news')
+    res.render('News')
   })
   
   router.get('/discover', (req,res, next)=>{
-    res.render('discover')
+    res.render('Discover')
   })
 
   router.get('/results', (req,res, next)=>{
