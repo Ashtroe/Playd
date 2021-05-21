@@ -50,7 +50,7 @@ router.get('/', isAuth, (req,res, next)=>{
     res.sendFile(__dirname + '/views/news.html')
   })
   
-  router.get('/Discover', (req,res, next)=>{
+  router.get('/discover', (req,res, next)=>{
     res.render('discover')
   })
 
