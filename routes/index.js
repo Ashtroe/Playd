@@ -42,15 +42,15 @@ router.get('/', isAuth, (req,res, next)=>{
     res.render('index')
   })
   
-  router.get('/Calendar',  (req,res, next)=>{
+  router.get('/calendar',  (req,res, next)=>{
     res.render('calendar')
   })
   
-  router.get('/News', (req,res, next)=>{
+  router.get('/news', (req,res, next)=>{
     res.render('news')
   })
   
-  router.get('/Discover', (req,res, next)=>{
+  router.get('/discover', (req,res, next)=>{
     res.render('discover')
   })
 
