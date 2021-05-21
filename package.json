@@ -30,7 +30,6 @@
     "luxon": "^1.26.0",
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.5",
-    "mongoose-unique-validator": "^2.0.3",
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.7",
