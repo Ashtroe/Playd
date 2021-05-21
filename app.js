@@ -82,10 +82,10 @@ app.use(passport.session());
 
 app.get('/',indexRouter)
 app.get('/index',indexRouter)
-app.get('/About',indexRouter)
-app.get('/Account',indexRouter)
-app.get('/Calendar',indexRouter)
-app.get('/Discover',indexRouter)
+app.get('/about',indexRouter)
+app.get('/account',indexRouter)
+app.get('/calendar',indexRouter)
+app.get('/discover',indexRouter)
 app.get('/results',indexRouter)
 app.get('/game/:game', indexRouter)
 

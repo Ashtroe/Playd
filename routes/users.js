@@ -43,7 +43,7 @@ router.post('/signup',(req,res)=>{
 })
 
 router.get('/login',(req,res)=>{
-    res.render('Login')
+    res.render('login')
 })
 
 router.get('/account',isAuth,(req,res)=>{
