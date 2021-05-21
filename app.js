@@ -51,7 +51,10 @@ db.once('open', function() {
   console.log('mongo connected');
 });
 
-const mongo = new MongoClient(process.env.MONGODB_URI)
+const mongo = new MongoClient(process.env.MONGODB_URI,{
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
