@@ -9,5 +9,3 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('mongo connected');
 });
-
-module.exports.db = db

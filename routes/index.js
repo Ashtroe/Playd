@@ -5,7 +5,7 @@ var igdb = require('igdb-api-node').default;
 var _ = require('lodash');
 const { DateTime } = require("luxon");
 const passport = require('passport')
-const database = require('../config/database')
+
 const User = require('../models/User')
 
 const isAuth = require('../config/authMiddleware').isAuth

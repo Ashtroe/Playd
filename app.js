@@ -4,17 +4,17 @@ var path = require('path');
 var logger = require('morgan');
 var cors = require('cors')
 var passport = require('passport')
-var uuid = require('uuid')
-var session = require('express-session');
+const {MongoClient} = require('mongodb');
+const mongoose = require('mongoose')
 var MongoStore = require('connect-mongo')
+var session = require('express-session');
 var igdb = require('igdb-api-node').default;
 const isAuth = require('./config/authMiddleware').isAuth
 const { ToadScheduler, SimpleIntervalJob, Task } = require('toad-scheduler')
 const scheduler = new ToadScheduler()
 const { DateTime } = require("luxon");
 const SteamAPI = require('steamapi');
-require('./config/database')
-let db = require('./config/database')
+
 require('./config/passport')
 require('dotenv').config()
 
@@ -42,6 +42,17 @@ let yesterday = now.minus({days:1}).toLocaleString(DateTime.newFormat)
 
 
 let PORT = process.env.PORT || 5000
+
+// Connect to Mongo 
+mongoose.connect(process.env.MONGODB_URI , {useNewUrlParser: true, useUnifiedTopology: true})
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('mongo connected');
+});
+
+const mongo = new MongoClient(process.env.MONGODB_URI)
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -62,7 +73,7 @@ app.use(session({
   cookie: {maxAge:5.184e9 },
   resave:false,
   saveUninitialized: true,
-  store: MongoStore.create({mongoUrl:process.env.DB_URL, collectionName: 'sessions'})
+  store: MongoStore.create({clientPromise: mongo.connect()  , collectionName: 'sessions'})
   })
 );
 app.use(passport.initialize());
