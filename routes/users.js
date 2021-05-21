@@ -8,6 +8,7 @@ const isAuth = require('../config/authMiddleware').isAuth
 const SteamAPI = require('steamapi');
 var igdb = require('igdb-api-node').default;
 const { DateTime } = require("luxon");
+var uniqueValidator = require('mongoose-unique-validator');
 
 
 let CLIENT_ID = process.env.CLIENT_ID
@@ -98,8 +99,14 @@ router.post('/steamID',(req,res)=>{
             response.data.forEach((game,i)=>{
               
               if((typeof(game.websites) != 'undefined') && game.websites.some(obj => obj.url.includes(steamGame.appID))){
-              
-                 // Add games to User
+                
+                // Check if game already exists 
+                User.findOne({_id:req.session.passport.user})
+                .then((response)=>{
+                  if (response.savedGames.find(obj=> obj.title === game.name)){
+                    console.log(`"${game.name}" is already added to account`);
+                  }else{
+                     // Add games to User
                  User.findOneAndUpdate({_id:req.session.passport.user},
                   {$push: {
                     savedGames: [{
@@ -114,6 +121,10 @@ router.post('/steamID',(req,res)=>{
                       }]
                     }
                   })
+                  .then(response=>console.log(response.savedGames))
+                  }
+                })
+                
                 .catch(err=>console.log(err))
               }
             })

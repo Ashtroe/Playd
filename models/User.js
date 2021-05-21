@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var uniqueValidator = require('mongoose-unique-validator');
 const { DateTime } = require("luxon");
 
 
@@ -33,19 +34,11 @@ let pastWeek =
 
 let gameSchema =
   new Schema({
-    title: { type: 'String', required: true,
-            validate: {
-              validator: function(v, cb) {
-                User.find({name: v}, function(err,docs){
-                   cb(docs.length == 0);
-                });
-              },
-              message: 'User already exists!'
-            } },
+    title: { type: 'String', required: true, unique: true },
     cover: { type: 'String', required: true },
     url: { type: 'String'},
-    category: { type: 'String', required: true},
-    platforms: { type: 'Array', required: false },
+    category: { type: 'String', },
+    platforms: { type: 'Array', },
     isCompleted: {type: 'Boolean', default: false},
     playTime: {type:'Mixed', default:[
                                       { date:yesterday,
@@ -70,6 +63,7 @@ let gameSchema =
                                             }}
                            
   })
+
 
 let userSchema =
   new Schema({
