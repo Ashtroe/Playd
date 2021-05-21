@@ -80,61 +80,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// Find user games and compare total playtime with Steam 
-let checkPlaytime = () => {
-  User.find({})
-  .then(response=>{
-    response.forEach(user=>{
-      if(user.steamName){
-        steam.resolve(`https://steamcommunity.com/id/${user.steamName}`)
-        .then(id=>{
-          steam.getUserRecentGames(id)
-        .then(steamInfo=>{
-          steamInfo.forEach(steamGame=>{
-            let userGameID = (user.savedGames.find(game=>game.title.toLowerCase() === steamGame.name.toLowerCase()))._id
-            let userGameTime = (user.savedGames.find(game=>game.title.toLowerCase() === steamGame.name.toLowerCase())).totalPlaytime.time
-            let steamGameTime = Math.floor(steamGame.playTime / 60)
-            let steamTitleFormatted = steamGame.name.toLowerCase()
-            if(steamGameTime > userGameTime ){
-            
-              User.findOneAndUpdate(
-                {'_id':user._id,
-               'savedGames._id': userGameID},
-                {$set: { 'savedGames.$.playTime.0': {'date':yesterday,'time':(steamGameTime - userGameTime)}} },
-                {upsert: true, new: true}
-                )
-                .then(response=>{
-                  console.log(response.savedGames[0].playTime[0])
-                })
-                .catch(err=>console.log(`Error: ${err}`))
-              
-            }else{
-              User.findOneAndUpdate(
-                {'_id':user._id,
-               'savedGames._id': userGameID},
-                {$set: { 'savedGames.$.playTime.0': {'date':yesterday,'time':0}} },
-                {upsert: true, new: true}
-                )
-                .then(response=>{
-                  console.log(response.savedGames[0].playTime[0])
-                })
-                .catch(err=>console.log(`Error: ${err}`))
-            }
-          })
-        })
-      })
-    }})
-  })
-}
-
-let task = new Task(
-  'simple task',
-  ()=>{checkPlaytime()}
-)
-const job = new SimpleIntervalJob({ seconds: 43200, }, task)
-scheduler.addSimpleIntervalJob(job)
-
-
 app.get('/',indexRouter)
 app.get('/index',indexRouter)
 app.get('/About',indexRouter)
@@ -195,6 +140,62 @@ app.post('/save',(req,res)=>{
     })
   .then(response=>{res.send({response})})
 })
+
+// Find user games and compare total playtime with Steam 
+let checkPlaytime = () => {
+  User.find({})
+  .then(response=>{
+    response.forEach(user=>{
+      if(user.steamName){
+        steam.resolve(`https://steamcommunity.com/id/${user.steamName}`)
+        .then(id=>{
+          steam.getUserRecentGames(id)
+        .then(steamInfo=>{
+          steamInfo.forEach(steamGame=>{
+            let userGameID = (user.savedGames.find(game=>game.title.toLowerCase() === steamGame.name.toLowerCase()))._id
+            let userGameTime = (user.savedGames.find(game=>game.title.toLowerCase() === steamGame.name.toLowerCase())).totalPlaytime.time
+            let steamGameTime = Math.floor(steamGame.playTime / 60)
+            let steamTitleFormatted = steamGame.name.toLowerCase()
+            if(steamGameTime > userGameTime ){
+            
+              User.findOneAndUpdate(
+                {'_id':user._id,
+               'savedGames._id': userGameID},
+                {$set: { 'savedGames.$.playTime.0': {'date':yesterday,'time':(steamGameTime - userGameTime)}} },
+                {upsert: true, new: true}
+                )
+                .then(response=>{
+                  console.log(response.savedGames[0].playTime[0])
+                })
+                .catch(err=>console.log(`Error: ${err}`))
+              
+            }else{
+              User.findOneAndUpdate(
+                {'_id':user._id,
+               'savedGames._id': userGameID},
+                {$set: { 'savedGames.$.playTime.0': {'date':yesterday,'time':0}} },
+                {upsert: true, new: true}
+                )
+                .then(response=>{
+                  console.log(response.savedGames[0].playTime[0])
+                })
+                .catch(err=>console.log(`Error: ${err}`))
+            }
+          })
+        })
+      })
+    }})
+  })
+}
+
+let task = new Task(
+  'simple task',
+  ()=>{checkPlaytime()}
+)
+const job = new SimpleIntervalJob({ seconds: 43200, }, task)
+scheduler.addSimpleIntervalJob(job)
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
