@@ -14,6 +14,7 @@ const scheduler = new ToadScheduler()
 const { DateTime } = require("luxon");
 const SteamAPI = require('steamapi');
 require('./config/database')
+let db = require('./config/database')
 require('./config/passport')
 require('dotenv').config()
 
@@ -54,6 +55,8 @@ app.use(express.urlencoded({ extended: false }));
 
 
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(session({
   secret: 'secret',
   cookie: {maxAge:5.184e9 },
@@ -62,8 +65,6 @@ app.use(session({
   store: MongoStore.create({mongoUrl:process.env.DB_URL, collectionName: 'sessions'})
   })
 );
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
