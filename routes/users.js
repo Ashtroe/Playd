@@ -8,7 +8,6 @@ const isAuth = require('../config/authMiddleware').isAuth
 const SteamAPI = require('steamapi');
 var igdb = require('igdb-api-node').default;
 const { DateTime } = require("luxon");
-var uniqueValidator = require('mongoose-unique-validator');
 
 
 let CLIENT_ID = process.env.CLIENT_ID

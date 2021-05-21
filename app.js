@@ -7,7 +7,6 @@ var passport = require('passport')
 const {MongoClient} = require('mongodb');
 const mongoose = require('mongoose')
 var MongoStore = require('connect-mongo')
-var uniqueValidator = require('mongoose-unique-validator');
 var session = require('express-session');
 var igdb = require('igdb-api-node').default;
 const isAuth = require('./config/authMiddleware').isAuth

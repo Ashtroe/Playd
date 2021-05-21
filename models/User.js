@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-var uniqueValidator = require('mongoose-unique-validator');
 const { DateTime } = require("luxon");
 
 
@@ -34,7 +33,7 @@ let pastWeek =
 
 let gameSchema =
   new Schema({
-    title: { type: 'String', required: true, unique: true },
+    title: { type: 'String', required: true},
     cover: { type: 'String', required: true },
     url: { type: 'String'},
     category: { type: 'String', },
