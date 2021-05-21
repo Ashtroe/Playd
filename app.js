@@ -195,7 +195,7 @@ let task = new Task(
   'simple task',
   ()=>{checkPlaytime()}
 )
-const job = new SimpleIntervalJob({ seconds: 30, }, task)
+const job = new SimpleIntervalJob({ seconds: 43200, }, task)
 scheduler.addSimpleIntervalJob(job)
 
 
