@@ -31,16 +31,10 @@ let nov = DateTime.local(2021, 11, 1).toSeconds()
 let dec = DateTime.local(2021, 12, 1).toSeconds()
 
 /* GET home page. */
-router.get('/', isAuth, (req,res, next)=>{
-
-    res.render('index',{user:req.user})
+router.get('/home', isAuth, (req,res, next)=>{
+   res.render('home',{user:req.user})
   })
 
-
-
-  router.get('/index', (req,res, next)=>{
-    res.render('index')
-  })
   
   router.get('/calendar',  (req,res, next)=>{
     res.render('Calendar')

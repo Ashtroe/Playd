@@ -6,13 +6,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../css/styles.css">
-    <title>Home</title>
+    <title>Playd</title>
 </head>
 <body>
+
     <head>
-        
         <nav>
-            <a href= '/' class="logo-ctnr"></a>
+            <a href= '/home' class="logo-ctnr"></a>
             <a href="/calendar">Calendar</a>
             <a href="/discover">Discover</a>
             <a href="/news">News</a>
@@ -23,18 +23,13 @@
     </head>
 
     <main>
-        <input type="search" class="textbox" id="search" placeholder="Search for a game">
-        <button type="submit" class="search-btn">Search</button>
-
-        <div id='graph-ctnr'></div>
-
-        <div class='recently-played-ctnr'>
-
+        <div class="landing-ctnr">
+            <h1>Welcome to Playd</h1>
+            <p>Use this to trak games or whatever</p>
+            <a href="/signup">signup</a>
+            <a href="/login">Login</a>
         </div>
-
-        <div class='friends-played-ctnr'>
-
-        </div>
+        
     </main>
 
     <footer>
@@ -43,10 +38,9 @@
         <a href="/Import"><p>Import</p></a>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js" integrity="sha512-otOZr2EcknK9a5aa3BbMR9XOjYKtxxscwyRHN6zmdXuRfJ5uApkHB7cz1laWk2g8RKLzV9qv/fl3RPwfCuoxHQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
     <script src="scripts/luxon.js"></script>
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="scripts/index.js" type='module' ></script>
+    <script type="module" src="/scripts/index.js"></script>
 </body>
 </html>

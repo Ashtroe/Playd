@@ -102,7 +102,10 @@ if(document.querySelector('.recently-played-ctnr')){
       })
       gameWrapper.appendChild(removeGame)
       gameWrapper.appendChild(statusIcon)
-      document.querySelector('.recently-played-ctnr').appendChild(gameWrapper)
+
+      if(game.title != ''){
+        document.querySelector('.recently-played-ctnr').appendChild(gameWrapper)
+      }
 
      
   
@@ -686,11 +689,7 @@ search.addEventListener('keydown',(e)=>{
 
 // Sign Up 
 if(document.querySelector('.signup-ctnr')){
-  let image
-  let email = document.querySelector('#email').value
-  let username = document.querySelector('#username').value
-  let password = document.querySelector('#password').value
-  let confirm = document.querySelector('#confirm').value
+
 
   let button1 = document.querySelector('.pic-1')
   let button2 = document.querySelector('.pic-2')
@@ -698,19 +697,28 @@ if(document.querySelector('.signup-ctnr')){
   let button4 = document.querySelector('.pic-4')
   let submit = document.querySelector('.signup-submit')
 
-  // Select profile image 
 
-let buttons = document.querySelectorAll('.profile-pic-select')
-
-buttons.forEach(btn=>{
-  btn.addEventListener('click',(e)=>{
-    e.target.classList.add('selected')
-    image = `/img/profile${e.target.id}.png`
-    console.log(image);
-  })
-})
 
 submit.addEventListener('click',()=>{
+  let image
+  let email = document.querySelector('#email').value
+  let username = document.querySelector('#username').value
+  let password = document.querySelector('#password').value
+  let confirm = document.querySelector('#confirm').value
+  let steamName = document.querySelector('#steam').value
+    
+  // Select profile image 
+
+  let buttons = document.querySelectorAll('.profile-pic-select')
+
+  buttons.forEach(btn=>{
+    btn.addEventListener('click',(e)=>{
+      e.target.classList.add('selected')
+      image = `/img/profile${e.target.id}.png`
+      console.log(image);
+    })
+  })
+
   axios({
     method: 'post',
     url: 'signup',
@@ -718,11 +726,12 @@ submit.addEventListener('click',()=>{
       email,
       username,
       password,
-      image
+      image,
+      steamName
     }
   })
-  .then(()=>{
-    console.log('Signup Succesful');
+  .then((response)=>{
+    console.log(response.data);
   })
 })
 }
@@ -748,7 +757,7 @@ if(document.querySelector('.login-ctnr')){
       }})
     .then(response=>{
       if(response.status === 200){
-        window.location.href = '/'
+        window.location.href = '/home'
       }
     })
   })

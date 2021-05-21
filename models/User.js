@@ -33,8 +33,8 @@ let pastWeek =
 
 let gameSchema =
   new Schema({
-    title: { type: 'String', required: true},
-    cover: { type: 'String', required: true },
+    title: { type: 'String', },
+    cover: { type: 'String', },
     url: { type: 'String'},
     category: { type: 'String', },
     platforms: { type: 'Array', },

@@ -18,6 +18,7 @@ const steam = new SteamAPI(STEAM_KEY);
 
 var newFormat = delete DateTime.DATETIME_MED.time
 
+
 router.get('/signup',(req,res)=>{
     res.render('signup')
 })
@@ -33,7 +34,13 @@ router.post('/signup',(req,res)=>{
     email:req.body.email,
     image:req.body.image,
     hash:hash,
-    salt:salt
+    salt:salt,
+    steamName: req.body.steamName || '',
+    savedGames: [
+      {
+        title: ''
+      }
+    ]
   })
   newUser.save()
   .then(user=>console.log(user))
@@ -55,7 +62,7 @@ router.get('/account',isAuth,(req,res)=>{
 })
 
 router.post('/login',passport.authenticate('local'),(req,res)=>{
-  res.redirect('/')
+  res.redirect('/home')
 })
 
 router.post('/logout',(req,res)=>{
