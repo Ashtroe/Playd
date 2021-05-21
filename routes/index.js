@@ -42,15 +42,15 @@ router.get('/', isAuth, (req,res, next)=>{
     res.render('index')
   })
   
-  router.get('/calendar',  (req,res, next)=>{
+  router.get('/Calendar',  (req,res, next)=>{
     res.render('calendar')
   })
   
-  router.get('/news', (req,res, next)=>{
-    res.sendFile(__dirname + '/views/news.html')
+  router.get('/News', (req,res, next)=>{
+    res.render('news')
   })
   
-  router.get('/discover', (req,res, next)=>{
+  router.get('/Discover', (req,res, next)=>{
     res.render('discover')
   })
 
