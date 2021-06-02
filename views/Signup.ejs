@@ -6,46 +6,80 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../css/styles.css">
-    <title>Home</title>
+    <title>Register for Playd</title>
 </head>
 <body>
 
     <head>
-        
-        <nav>
-            <a href= '/' class="logo-ctnr"></a>
-            <a href="/calendar">Calendar</a>
-            <a href="/discover">Discover</a>
-            <a href="/news">News</a>
-            <a href= "/account" class="profile-ctnr">
-                <img src='/img/profile.png' class="profile-pic"></img>
-            </a>
-        </nav>
     </head>
 
-    <main>
-        <div class='signup-ctnr'>
-            <input type="email" placeholder= 'Email' name="email" class='signup-input' id="email">
-            <input type="text" placeholder= 'Username' name="username" class='signup-input' id="username">
-            <input type="text" placeholder= 'Password' name="password" class='signup-input' id="password">
-            <input type="text" placeholder= 'Confirm Password' name="password" class='signup-input' id="confirm">
-            <h2>Connect to steam (Optional)</h2>
-            <input type="text" placeholder= 'Steam Username' name="steam" class='signup-input' id="steam">
-            <div class="profile-pic-select-ctnr">
-               <button class='profile-pic-select' id= '1'>Image 1</button> 
-               <button class='profile-pic-select' id= '2'>Image 2</button> 
-               <button class='profile-pic-select' id= '3'>Image 3</button> 
-               <button class='profile-pic-select' id= '4'>Image 4</button> 
-            </div>
-            <button type="submit" class="signup-submit">Sign Up</button>
+    <main >
+        <div class="signup-background"></div>
+        <div class='signup-form-ctnr'>
+            
+            <h1>Create Account</h1>
+            <form action="/signup" method="post">
+                <div class="account-info">
+                    <input 
+                    type="email" 
+                    placeholder= 'Email' 
+                    name="email" 
+                    class='signup-input' 
+                    id="email"
+                    value="<%= typeof email != 'undefined' ? email : '' %>"
+                >
+                <input 
+                    type="text" 
+                    placeholder= 'Username' 
+                    name="username" 
+                    class='signup-input' 
+                    id="username"
+                    value="<%= typeof username != 'undefined' ? username : '' %>"
+                >
+                <input 
+                    type="password" 
+                    placeholder= 'Password' 
+                    name="password" 
+                    class='signup-input' 
+                    id="password"
+                >
+                <input 
+                    type="password" 
+                    placeholder= 'Confirm Password' 
+                    name="password-confirm" 
+                    class='signup-input' 
+                    id="confirm"
+                >
+                </div>
+                
+                <h2>Connect to steam (Optional)</h2>
+                <div class="steam">
+                    <input 
+                        type="text" 
+                        placeholder= 'Steam Username' 
+                        name="steamName" 
+                        class='signup-input' 
+                        id="steam"
+                        value="<%= typeof steamName != 'undefined' ? steamName : '' %>"
+                    >
+                    
+                </div>
+                <button type="submit" formaction="/signup" formmethod="post" class="signup-submit">Sign Up</button>
+            </form>
+
+            
+
+            <% if (typeof errors != 'undefined') { %>
+                <% errors.forEach(error => { %>
+                    <div class="error-alert">
+                        <p><%= error.msg %></p>
+                    </div>                    
+                <% }) %>
+            <% } %>
+            
         </div>
     </main>
 
-    <footer>
-        <a href="/About"><p>About</p></a>
-        <a href="/Forums"><p>Forums</p></a>
-        <a href="/Import"><p>Import</p></a>
-    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js" integrity="sha512-otOZr2EcknK9a5aa3BbMR9XOjYKtxxscwyRHN6zmdXuRfJ5uApkHB7cz1laWk2g8RKLzV9qv/fl3RPwfCuoxHQ==" crossorigin="anonymous"></script>
     <script src="scripts/luxon.js"></script>

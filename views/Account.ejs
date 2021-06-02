@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../css/styles.css">
-    <title>Discover</title>
+    <title>Playd | <%= user.username %> </title>
 </head>
 <body>
 
@@ -17,7 +17,7 @@
             <a href="/discover">Discover</a>
             <a href="/news">News</a>
             <a href= "/account" class="profile-ctnr">
-                <img src='/img/profile.png' class="profile-pic"></img>
+                <img src=<%=user ? user.image : 'profile-1'%> alt="profile avatar" class="profile-pic"></img>
             </a>
         </nav>
     </head>
@@ -25,46 +25,59 @@
     <main>
 
         <div class="settings-ctnr">
-                <div class="username-ctnr">
+                <div class="username-banner">
                     <h2><%= user.username %></h2>
                 </div>
                 
                 <div class="account-settings">
 
-
-                    <div class="account-username">
-                        <label for="username">Username:</label>
-                        <input  name="username" placeholder= <%= user.username %>>
-                    </div>
-
-                    <div class="account-password">
-                        <div class="password-top">
-                            <label for="password">New Password:</label>
+                    <div class="account password">
+                        <h4>Change Password</h4>
+                        <form method= 'post' action= '/account/password'>
                             <input  name="password" >  
-                        </div>
-                        <div class="password-bottom">
-                            <label for="password2">Confirm Password:</label>
-                            <input  name="password2" >
-                        </div>
+                            <input  name="password-confirm" >
+                            
+                            <button formmaction= '/account/password' formmethod = 'post'> Update Password</button>
+                        </form>
                     </div>
 
-                    <div class="account-bio">
-                        <label for="bio">Bio:</label>
-                        <input  name="bio" >
+                    <div class="account steam">
+                        <h4>Connections</h4>
+                        <!-- Display Errors for steam connection  -->
+                        <% if (typeof errors != 'undefined' ) { %>
+                            <% errors.forEach(error => { %>
+                                <% if (errors.some(obj=>obj.param === 'steamName')) { %>
+                                 
+                                    <div class="error-alert">
+                                        <p><%= error.msg %></p>
+                                    </div>                    
+                                <% } %>
+                            <% }) %>
+                        <% } %>
+                         
+                        <% if (user.steamName) { %>
+                            <p><%= user.steamName %> already connected </p>
+                        <% } else{ %>
+                            <form class="steam-connection">
+                                <input  
+                                   name="steamName"
+                                   type="text" 
+                                   placeholder= 'Steam Username' 
+                                   name="steam" 
+                                   class='signup-input' 
+                                   id="steam" 
+                               >
+                                <button type='submit' formaction="/steam/connect" formmethod="post" class="steam-submit">Connect Steam</button>   
+                            </form>
+                        <% } %> 
+                        
+                        
                     </div>
-
-                    <div class="account-birthday">
-                        <label for="birthday">Birthday:</label>
-                        <input  name="birthday" >
-                    </div>
-
-
                 </div>
+                <button type="submit" class = 'logout-btn' >Log Out</button>
 
-                <div class="connections-settings">
-                    
-                </div>
             </div>
+            
         </div>
         
     </main>
@@ -75,9 +88,9 @@
         <a href="/Import"><p>Import</p></a>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.21/dist/js/splide.min.js"></script>
+
     <script src="scripts/luxon.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.0/chart.js" integrity="sha512-LlFvdZpYhQdASf4aZfSpmyHD6+waYVfJRwfJrBgki7/Uh+TXMLFYcKMRim65+o3lFsfk20vrK9sJDute7BUAUw==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js" integrity="sha512-otOZr2EcknK9a5aa3BbMR9XOjYKtxxscwyRHN6zmdXuRfJ5uApkHB7cz1laWk2g8RKLzV9qv/fl3RPwfCuoxHQ==" crossorigin="anonymous"></script>
     <script type="module" src="/scripts/index.js"></script>
 </body>
 </html>

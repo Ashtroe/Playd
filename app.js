@@ -34,8 +34,9 @@ var app = express();
 
 let results = indexRouter.results
 
-let now = DateTime.local()
 var newFormat = delete DateTime.DATETIME_MED.time
+let now = DateTime.local()
+let today = now.toLocaleString(DateTime.newFormat)
 let yesterday = now.minus({days:1}).toLocaleString(DateTime.newFormat)
 
 
@@ -80,7 +81,7 @@ app.use(session({
   })
 );
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session())
 
 
 app.get('/',(req,res)=>{
@@ -99,21 +100,25 @@ app.get('/game/:game', indexRouter)
 app.post('/search', indexRouter)
 app.post('/calendar', indexRouter)
 app.post('/discover', indexRouter)
-app.post('/update-status', indexRouter)
+app.post('/update-status', usersRouter)
 app.post('/remove-game', indexRouter)
-
-
 
 app.get('/signup', usersRouter)
 app.get('/login', usersRouter)
 app.get('/account', usersRouter)
 
-
 app.post('/signup', usersRouter)
 app.post('/login', usersRouter)
 app.post('/logout', usersRouter)
 app.post('/user-games', usersRouter)
+app.post('/save', usersRouter)
+app.post('/follow', usersRouter)
+app.post('/steam/connect', usersRouter)
 app.post('/steamID', usersRouter)
+
+app.post('/account/password', usersRouter)
+
+
 
 
 
@@ -131,29 +136,14 @@ app.post('/results',(req,res)=>{
 })
 
 
-app.post('/save',(req,res)=>{
-  
-  User.findOneAndUpdate({_id:req.session.passport.user},
-    {$push: {
-      savedGames: [{
-        title: req.body.title,
-        cover: req.body.cover,
-        url: req.body.url,
-        category: req.body.category,
-        platforms: req.body.platforms,
-        playTime: req.body.playTime
-        }]
-      }
-    })
-  .then(response=>{res.send({response})})
-})
+
 
 // Find user games and compare total playtime with Steam 
 let checkPlaytime = () => {
   User.find({})
   .then(response=>{
     response.forEach(user=>{
-      if(user.steamName){
+      if(user.steamName != ''){
         steam.resolve(`https://steamcommunity.com/id/${user.steamName}`)
         .then(id=>{
           steam.getUserRecentGames(id)
@@ -162,17 +152,23 @@ let checkPlaytime = () => {
             let userGameID = (user.savedGames.find(game=>game.title.toLowerCase() === steamGame.name.toLowerCase()))._id
             let userGameTime = (user.savedGames.find(game=>game.title.toLowerCase() === steamGame.name.toLowerCase())).totalPlaytime.time
             let steamGameTime = Math.floor(steamGame.playTime / 60)
-            let steamTitleFormatted = steamGame.name.toLowerCase()
             if(steamGameTime > userGameTime ){
-            
+            console.log(steamGameTime);
               User.findOneAndUpdate(
                 {'_id':user._id,
-               'savedGames._id': userGameID},
+                 'savedGames._id': userGameID},
                 {$set: { 'savedGames.$.playTime.0': {'date':yesterday,'time':(steamGameTime - userGameTime)}} },
                 {upsert: true, new: true}
                 )
-                .then(response=>{
-                  console.log(response.savedGames[0].playTime[0])
+                .then(()=>{
+                  
+                  User.findOneAndUpdate(
+                    {'_id':user._id,
+                     'savedGames._id': userGameID},
+                    {$set: { 'totalPlaytime': {'lastUpdated':today,'time':steamGameTime}} },
+                    {new: true}
+                    )
+                    .then(response=>console.log(response.savedGames[3].totalPlaytime))
                 })
                 .catch(err=>console.log(`Error: ${err}`))
               
@@ -203,7 +199,7 @@ const job = new SimpleIntervalJob({ seconds: 43200, }, task)
 scheduler.addSimpleIntervalJob(job)
 
 
-
+checkPlaytime()
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

@@ -17,7 +17,7 @@
             <a href="/discover">Discover</a>
             <a href="/news">News</a>
             <a href= "/account" class="profile-ctnr">
-                <img src='/img/profile.png' class="profile-pic"></img>
+                <img src=<%=user ? user.image : '../img/profile-1.png'%> alt="profile avatar" class="profile-pic"></img>
             </a>
         </nav>
     </head>
@@ -28,12 +28,12 @@
 
         <div id='graph-ctnr'></div>
 
+        <h4>Recently Played</h4>
         <div class='recently-played-ctnr'>
-
         </div>
 
+        <h4>Friends' Activity</h4>
         <div class='friends-played-ctnr'>
-
         </div>
     </main>
 

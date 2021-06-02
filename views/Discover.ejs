@@ -18,8 +18,7 @@
             <a href="/discover">Discover</a>
             <a href="/news">News</a>
             <a href= "/account" class="profile-ctnr">
-                <img src='/img/profile.png' class="profile-pic"></img>
-            </a>
+                <img src=<%=user ? user.image : 'profile-1'%> alt="profile avatar" class="profile-pic"></img>
         </nav>
     </head>
 

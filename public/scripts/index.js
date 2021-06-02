@@ -42,9 +42,41 @@ let pastWeek =
 ]
 
 
+// Welcome Page 
+if(document.querySelector('.landing-ctnr')){
 
+   let signUpButton = document.querySelector('.sign-up-ctnr')
+   
+   signUpButton.addEventListener('click',()=>{
+     axios({
+       method: 'get',
+       url:'/signup'
+     })
+     .then((response)=>{
+        window.location.href = '/signup'
+     })
+   })
 
-// Render Page 
+  // Demo Button 
+    let demo = document.createElement('button')
+    demo.classList.add('demo-btn')
+    demo.textContent = 'Demo'
+    demo.addEventListener('click',()=>{
+      axios({
+        method: 'post',
+        url:'/login',
+        data: {
+          username:'Demo',
+          password: 'Demo'
+        }
+      })
+      .then(()=>window.location.href = '/home')
+    })
+
+    document.querySelector('.text-ctnr').appendChild(demo)
+}
+
+// Render Dashboard 
 if(document.querySelector('.recently-played-ctnr')){
   window.onload = 
   
@@ -53,30 +85,33 @@ if(document.querySelector('.recently-played-ctnr')){
     url: '/user-games',
   })
   .then((response)=>{
-    games = response.data
-    console.log(games)
+    games = response.data.savedGames
     games.forEach(game=>{
       
-      let statusIcon = document.createElement('button')
-      let removeGame = document.createElement('button')
+      let buttonConatainer = document.createElement('div')
+      let buttonBackground = document.createElement('div')
+      let statusIcon = document.createElement('div')
+      let removeGame = document.createElement('div')
       let gameWrapper = document.createElement('a')
       
       gameWrapper.classList.add('recent-game')
       gameWrapper.style.backgroundImage = `url(${game.cover})`
 
+      buttonConatainer.classList.add('button-ctnr')
+      buttonBackground.classList.add('button-background')
+
       statusIcon.classList.add('status-icon')
 
       removeGame.classList.add('remove-btn')
-      removeGame.textContent= 'Remove'
 
       // Determine completion Status
       if(game.isCompleted === true){
-        statusIcon.style.backgroundColor = 'green'
+        statusIcon.style.backgroundImage = 'url(../img/complete.png)'
       }else{
-        statusIcon.style.backgroundColor = 'red'
+        statusIcon.style.backgroundImage = 'url(../img/incomplete.png)'
       }
 
-      statusIcon.addEventListener('click',()=>{
+      statusIcon.addEventListener('click',(e)=>{
         axios({
           method:'post',
           url:'/update-status',
@@ -84,7 +119,7 @@ if(document.querySelector('.recently-played-ctnr')){
             gameID:game._id
           }
         })
-        .then(response=>console.log(response.data))
+        .then(()=>window.location.reload() )
         .catch(err=>console.log(err))
       })
 
@@ -100,8 +135,10 @@ if(document.querySelector('.recently-played-ctnr')){
         .then(response=>console.log(response.data))
         .catch(err=>console.log(err))
       })
-      gameWrapper.appendChild(removeGame)
-      gameWrapper.appendChild(statusIcon)
+      buttonConatainer.appendChild(buttonBackground)
+      buttonConatainer.appendChild(statusIcon)
+      buttonConatainer.appendChild(removeGame)
+      gameWrapper.appendChild(buttonConatainer)
 
       if(game.title != ''){
         document.querySelector('.recently-played-ctnr').appendChild(gameWrapper)
@@ -111,14 +148,11 @@ if(document.querySelector('.recently-played-ctnr')){
   
      
 
-
-
-
     })
     
-
+    return response
   })
-  .then(()=>{
+  .then((response)=>{
   
     games.forEach((game,index)=>{
       let yesterdayTime = typeof(game.playTime.find(obj => obj.date === yesterday )) != 'undefined' ? game.playTime.find(obj => obj.date === yesterday ).time : 0
@@ -176,66 +210,50 @@ if(document.querySelector('.recently-played-ctnr')){
     }
 
     generateGraph()
+
+    // Friends  
+    console.log(response.data);
+    let friendsContainer = document.querySelector('.friends-played-ctnr')
+    response.data.friends.forEach(friend=>{
+      let friendDiv = document.createElement('div')
+      let friendTextContainer = document.createElement('div')
+      let friendName = document.createElement('h2')
+      let recentGameTime = document.createElement('h4')
+      let recentGameCover = document.createElement('div')
+      let recentGameDate = document.createElement('p')
+
+      // Find most recent game 
+      let mostRecentGame = friend.savedGames.find(game=>game.playTime[0].time > 0 )
+      console.log(mostRecentGame)
+
+      friendDiv.classList.add('friend-ctnr')
+      friendTextContainer.classList.add('friend-text-ctnr')
+      recentGameCover.classList.add('cover')
+
+      friendName.textContent = friend.username
+
+      if(mostRecentGame.playTime[0].time > 1){
+        recentGameTime.textContent = mostRecentGame.playTime[0].time + ' hrs'
+      }else{
+        recentGameTime.textContent = mostRecentGame.playTime[0].time + ' hr'
+      }
+      
+      recentGameCover.style.backgroundImage = `url(${mostRecentGame.cover})`
+      recentGameDate.textContent = mostRecentGame.playTime[0].date
+
+      friendDiv.appendChild(recentGameCover)
+      friendTextContainer.appendChild(friendName)
+      friendTextContainer.appendChild(recentGameTime)
+      friendTextContainer.appendChild(recentGameDate)
+      friendDiv.appendChild(friendTextContainer)
+      friendsContainer.appendChild(friendDiv)
+    })
+
+    
     return(yesterday, twoDaysAgo, threeDaysAgo, fourDaysAgo, fiveDaysAgo, sixDaysAgo, sevenDaysAgo, pastWeek)
   })
 
 }
-
-
-
-const randomNum = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
-
-
-
-console.log(recentHistory);
-
-
-
-let friends = [
-  {
-      username: 'Friend 1',
-      currentgames:[
-          games[randomNum(0,5)]
-      ]
-    },
-  {
-      username: 'Friend 2',
-      currentgames:[
-        games[randomNum(0,5)] 
-      ]
-  },
-  {
-      username: 'Friend 3',
-      currentgames:[
-        games[randomNum(0,5)] 
-      ]
-  },
-  {
-      username: 'Friend 4',
-      currentgames:[
-        games[randomNum(0,5)]
-          
-      ]
-  },
-]
-
-
-
-
-
-
-
-
-
-
-
-
 
   // Discover Page 
 let currentSlide = 0
@@ -393,31 +411,16 @@ if(document.querySelector('.slide-ctnr')){
 }
 
 // Account page
-if(document.querySelector('.username-ctnr')){
-  let usernameContainer = document.querySelector('.username-ctnr')
-  let usernameInput = document.querySelector("input[name='username']")
-  let passwordInput = document.querySelector('input[name="password"')
-  let bioInput = document.querySelector('input[name="bio"')
-  let birthdayInput = document.querySelector('input[name="birthday"')
-  let profilePic = document.createElement('img')
+if(document.querySelector('.logout-btn')){
+  document.querySelector('.logout-btn')
+    .addEventListener('click',()=>{
+      axios.get('/logout')
+        .then(()=>window.location.href = '/')
+    })
 
-
-
-  usernameContainer.appendChild(profilePic)
-
-  
-
-  let changePassword = (input) =>{
-    user.password = input.value
-  }
-
-  passwordInput.addEventListener('keydown',(e)=>{
-    if(e.key === "Enter" || e.keyCode === 13){
-      changePassword(passwordInput)
-      console.log(user);
-    }
-  })
+    
 }
+
 
 let saveGame = (game) =>{
   let yesterdayInput = document.querySelector('#yesterday-input')
@@ -690,85 +693,20 @@ search.addEventListener('keydown',(e)=>{
 // Sign Up 
 if(document.querySelector('.signup-ctnr')){
 
-
-  let button1 = document.querySelector('.pic-1')
-  let button2 = document.querySelector('.pic-2')
-  let button3 = document.querySelector('.pic-3')
-  let button4 = document.querySelector('.pic-4')
-  let submit = document.querySelector('.signup-submit')
-
-
-
-submit.addEventListener('click',()=>{
-  let image
-  let email = document.querySelector('#email').value
-  let username = document.querySelector('#username').value
-  let password = document.querySelector('#password').value
-  let confirm = document.querySelector('#confirm').value
-  let steamName = document.querySelector('#steam').value
-    
-  // Select profile image 
-
-  let buttons = document.querySelectorAll('.profile-pic-select')
-
-  buttons.forEach(btn=>{
-    btn.addEventListener('click',(e)=>{
-      e.target.classList.add('selected')
-      image = `/img/profile${e.target.id}.png`
-      console.log(image);
-    })
-  })
-
-  axios({
-    method: 'post',
-    url: 'signup',
-    data: {
-      email,
-      username,
-      password,
-      image,
-      steamName
-    }
-  })
-  .then((response)=>{
-    console.log(response.data);
-  })
-})
 }
 // Login 
 if(document.querySelector('.login-ctnr')){
   
-  
 
-  document.querySelector('.login-submit-btn').addEventListener('click',()=>{
-    let username = document.querySelector('.username').value
-    let password = document.querySelector('.password').value
-    axios({
-      method:'post',
-      
-      url:'/login',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      withCredentials:true,
-      data:{
-        username,
-        password,
-      }})
-    .then(response=>{
-      if(response.status === 200){
-        window.location.href = '/home'
-      }
-    })
-  })
 }
 
 
 
 // Calendar Page 
 let upcomingGames
-let gamesInMonth = []
+let selectedMonth
 if(document.querySelector('.calendar-ctnr')){
+  document.querySelector('.calendar-ctnr').textContent = ''
 
   axios({
     method:'post',
@@ -779,62 +717,150 @@ if(document.querySelector('.calendar-ctnr')){
     console.log(upcomingGames);
   })
   .then(()=>{
-    document.querySelector('.calendar-ctnr').textContent = ''
+    let monthsArr = Info.months('short')
     let monthContainer = document.createElement('div')
-    let monthHeader = document.createElement('h2')
-    let currentMonth = DateTime.now().monthShort
-    let daysInMonth = DateTime.now().daysInMonth
-
-    monthHeader.textContent= `${currentMonth} Releases`
+    let monthHeaderContainer = document.createElement('div')
     
-    monthContainer.classList.add(`month-ctnr`)
-    monthContainer.id = currentMonth
-    document.querySelector('.calendar-ctnr').appendChild(monthHeader)
-    document.querySelector('.calendar-ctnr').appendChild(monthContainer)
 
-    for (let i = 0; i <= daysInMonth; i++) {
-      let dayContainer = document.createElement('div')
-      let date = document.createElement('h6')
+    monthHeaderContainer.classList.add('month-header-ctnr')
 
-      dayContainer.classList.add('day-ctnr')
 
-      date.textContent = i
+    // Change view to month 
+    let renderMonth = (selectedMonth)=>{
+      
+      // clear page
+      document.querySelector('.month-ctnr').textContent = ''
 
-      if( i < 10){
-        dayContainer.id = 'day0'+i
-      }else{
-        dayContainer.id = 'day'+i
-      }
-
-      dayContainer.appendChild(date)
-      monthContainer.appendChild(dayContainer)   
-    }
-
-    
-    upcomingGames.forEach(game => {
-      if(Info.months('short')[(game.m -1)] === currentMonth){
-        gamesInMonth.push(game)
-      }
-    })
-
-    gamesInMonth.forEach(game=>{
-      let gameContainer = document.createElement('div')
-      let nameText = document.createElement('h4')
-      gameContainer.id = game.game.name
+      let daysInMonth = DateTime.local(2021,(monthsArr.findIndex(month=>month === selectedMonth)) + 1).daysInMonth
       
 
-      nameText.textContent = game.game.name
+      for (let i = 0; i <= daysInMonth+1; i++) {
+        let dayContainer = document.createElement('div')
+        let dateContainer = document.createElement('div')
+        let date = document.createElement('h6')
+        let weekDay = document.createElement('h5')
 
-      let targetID = game.human.slice((currentMonth.length + 1), (currentMonth.length + 3))
+        let monthIndex = monthsArr.findIndex(month=>month===selectedMonth)
+  
+        dayContainer.classList.add('day-ctnr')
+        dateContainer.classList.add('date-ctnr')
+  
+        date.textContent = i
+        weekDay.textContent = DateTime.local(2021,(monthIndex+1),i).weekdayShort
+  
+        if( i < 10){
+          dayContainer.id = 'day0'+i
+        }else{
+          dayContainer.id = 'day'+i
+        }
+  
+        dateContainer.appendChild(weekDay)
+        dateContainer.appendChild(date)
+        dayContainer.appendChild(dateContainer)
+        monthContainer.appendChild(dayContainer)   
+      }
+  
+      // Filter Games for games in selected month 
+      let gamesInMonth =  upcomingGames.filter(game=>game.human.includes(selectedMonth))
 
-      monthContainer.querySelector(`#day${targetID}`).style.minHeight= '15em'
+      if(gamesInMonth.length > 0){
+        gamesInMonth.forEach(game=>{
+          let gameContainer = document.createElement('a')
+          let gameCover = document.createElement('div')
+          let followBtn = document.createElement('button')
+          let nameText = document.createElement('h4')
+          let releaseText = document.createElement('p')
+          let platform = document.createElement('p')
+          gameContainer.id = game.game.name
+          
+          followBtn.textContent = 'Follow'
+          nameText.textContent = game.game.name
+          releaseText.textContent = game.human
+  
+          gameCover.classList.add('cover')
+          gameCover.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.game.cover.image_id}.jpg)`
+    
+          let targetID = game.human.slice((selectedMonth.length + 1), (selectedMonth.length + 3))
+    
+          monthContainer.querySelector(`#day${targetID}`).style.minHeight= '15em'
+  
+          followBtn.addEventListener('click',(e)=>{
+            // Follow Game 
+            axios({
+              method:'post',
+              url: '/follow',
+              data:{
+                title:game.game.name,
+                cover:`//images.igdb.com/igdb/image/upload/t_cover_big/${game.game.cover.image_id}.jpg`,
+                category:game.game.genres[0].name,
+                platforms: game.platforms,
+                releaseDate: game.human
+              }
+            })
+            .then(()=>{
+                followBtn.textContent = 'Followed'
+                e.target.style.backgroundColor = '#707070'
+            })
+          })
+          
+          
+          gameContainer.appendChild(gameCover)
+          gameContainer.appendChild(followBtn)
+          monthContainer.querySelector(`#day${targetID}`).appendChild(gameContainer)
+        })
+  
+        // Remove empty dates 
+        let removeDate = (div) =>{
+          if (div.childNodes.length < 2){
+            div.remove()
+          }
+        }
+        document.querySelectorAll('.day-ctnr').forEach(day=>removeDate(day))
+      }else{
+        let messageText = document.createElement('h1')
 
-      gameContainer.appendChild(nameText)
-      monthContainer.querySelector(`#day${targetID}`).appendChild(gameContainer)
+        messageText.textContent = 'No releases have been announced yet...'
+
+        monthContainer.textContent = ''
+        monthContainer.style.display = 'flex'
+        monthContainer.style.alignItems = 'center'
+        monthContainer.appendChild(messageText)
+      }
+
+      
+    }
+
+    monthsArr.forEach(month=>{
+      let h2 = document.createElement('h2')
+      h2.id = month
+      h2.textContent = month
+
+      h2.addEventListener('click',(e)=>{
+        if(!document.querySelector('.selected')){
+          e.target.classList.add('selected')
+          selectedMonth = e.target.id
+          renderMonth(month)
+        }else{
+          document.querySelector('.selected').classList.remove('selected')
+          e.target.classList.add('selected')
+          selectedMonth = e.target.id
+          renderMonth(month)
+        }
+      })
+
+      monthHeaderContainer.appendChild(h2)
     })
-    console.log(gamesInMonth);
 
-   
+    
+    monthContainer.classList.add(`month-ctnr`)
+    document.querySelector('.calendar-ctnr').appendChild(monthHeaderContainer)
+    document.querySelector('.calendar-ctnr').appendChild(monthContainer)
+
+
+  //  Default to current month 
+    let thisMonth = DateTime.now().monthShort
+    document.querySelector(`#${thisMonth}`).classList.add('selected')
+    renderMonth(thisMonth)
 
   })
 }

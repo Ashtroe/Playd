@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const genPassword = require('./passwordUtils').genPassword
 const validatePass = require('./passwordUtils').validatePass
 
 
@@ -23,7 +22,7 @@ let verfiyCallback = (username, password, done) => {
     if (isValid) {
       return done(null, user);
     }else{
-      return done(null,false)
+      return done(null,false, { msg: "Incorrect password" })
     }
   })
   .catch(err=>done(err))

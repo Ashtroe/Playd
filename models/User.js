@@ -33,7 +33,7 @@ let pastWeek =
 
 let gameSchema =
   new Schema({
-    title: { type: 'String', },
+    title: { type: 'String',},
     cover: { type: 'String', },
     url: { type: 'String'},
     category: { type: 'String', },
@@ -66,9 +66,9 @@ let gameSchema =
 
 let userSchema =
   new Schema({
-    email: { type: 'String', required: true },
+    email: { type: 'String', required: true},
     username: { type: 'String', required: true },
-    image: { type: 'String', required: true, default: '/img/profile1' },
+    image: { type: 'String', required: true},
     hash: { type: 'String', required: true },
     salt: { type: 'String', required: true },
     savedGames:[gameSchema],

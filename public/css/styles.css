@@ -1,4 +1,9 @@
+html {
+  height: 100%;
+}
+
 body {
+  position: relative;
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -14,25 +19,31 @@ body {
       -ms-flex-align: center;
           align-items: center;
   background-color: #E3E3E3;
+  min-height: 100%;
   width: 100%;
   overflow-x: hidden;
 }
 
+body textarea:focus, body input:focus {
+  outline: none;
+}
+
 nav {
   position: relative;
-  background: #E4E4E4;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  min-height: 5em;
   max-height: 5em;
+  background-color: #F5F5F5;
 }
 
 nav .logo-ctnr {
   min-width: 13.55%;
   margin-right: 8%;
-  background-image: url(../img/logos/logo.png);
-  background-size: 30%;
+  background-image: url(../img/logos/Playd.png);
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -75,7 +86,7 @@ nav .profile-ctnr img {
 }
 
 main {
-  height: 1457px;
+  height: 100%;
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -87,6 +98,462 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+main .landing-ctnr {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .landing-ctnr .landing-background {
+  position: absolute;
+  z-index: -2;
+  width: 186em;
+  height: 186em;
+  top: -80em;
+  left: 20em;
+  background-color: #3765A9;
+  border-radius: 50%;
+}
+
+main .landing-ctnr .top {
+  width: 100%;
+  height: 54em;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+main .landing-ctnr .top #gamer {
+  position: absolute;
+  z-index: -1;
+  top: -10em;
+  left: -3em;
+  width: 66em;
+  height: 66em;
+  background-image: url("../img/gamer.png");
+  background-position: center;
+  background-size: contain;
+}
+
+main .landing-ctnr .top .text-ctnr {
+  max-width: 42em;
+  margin-right: 8.75em;
+}
+
+main .landing-ctnr .top .text-ctnr h1 {
+  font-size: 5.5em;
+  color: #fff;
+}
+
+main .landing-ctnr .top .text-ctnr p {
+  font-size: 2.25em;
+  color: #fff;
+}
+
+main .landing-ctnr .top .text-ctnr .button-ctnr {
+  width: 100%;
+  height: 5.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .landing-ctnr .top .text-ctnr .button-ctnr .sign-up-ctnr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  min-width: 260px;
+  max-width: 260px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2B518A;
+  font-size: 1.875em;
+  text-decoration: none;
+  color: #fff;
+}
+
+main .landing-ctnr .top .text-ctnr .button-ctnr .sign-up-ctnr:hover {
+  cursor: pointer;
+}
+
+main .landing-ctnr .top .text-ctnr .button-ctnr .log-in {
+  text-decoration: none;
+  font-size: 1.875em;
+  color: #fff;
+  max-width: 16.25em;
+  margin-left: 156px;
+}
+
+main .landing-ctnr .top .text-ctnr button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 88px;
+  min-width: 635px;
+  max-width: 635px;
+  margin-top: 3%;
+  border-radius: 10px;
+  border: none;
+  background-color: #343434;
+  font-size: 1.875em;
+  text-decoration: none;
+  color: #fff;
+}
+
+main .landing-ctnr .top .text-ctnr button:hover {
+  cursor: pointer;
+}
+
+main .landing-ctnr .info-ctnr {
+  width: 103em;
+  height: 38em;
+  background-color: #f1f1f1;
+  border-radius: 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-bottom: 10%;
+}
+
+main .landing-ctnr .info-ctnr .info-card {
+  margin: 0;
+  min-width: 29em;
+  max-width: 29em;
+  height: 34.7em;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: inherit;
+}
+
+main .landing-ctnr .info-ctnr .info-card:nth-child(2) {
+  margin: 0 5.4em 0 5.4em;
+}
+
+main .landing-ctnr .info-ctnr .info-card p {
+  font-size: 1.5em;
+  font-weight: 600;
+  text-align: center;
+  max-width: 18em;
+}
+
+main .landing-ctnr .info-ctnr .info-card .info-image {
+  width: 23em;
+  height: 23em;
+}
+
+main .landing-ctnr .info-ctnr #monitor {
+  background-image: url("../img/clock.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+main .landing-ctnr .info-ctnr #friends {
+  background-image: url("../img/friends.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+main .landing-ctnr .info-ctnr #sync {
+  background-image: url("../img/sync.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+main .signup-background {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: #3765a9;
+  background: linear-gradient(315deg, #3765a9 0%, #3765a9 7%, #7499d0 100%);
+}
+
+main .signup-form-ctnr {
+  width: 50em;
+  min-height: 48em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fff;
+  border-radius: 22px;
+  margin-top: 6em;
+}
+
+main .signup-form-ctnr form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .signup-form-ctnr h1 {
+  font-weight: 00;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: 1em;
+  margin-left: 2.2em;
+}
+
+main .signup-form-ctnr h2 {
+  font-weight: 700;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: 3em;
+  margin-left: 3em;
+}
+
+main .signup-form-ctnr input[type=text],
+main .signup-form-ctnr input[type=password],
+main .signup-form-ctnr input[type=email] {
+  width: 19em;
+  height: 3.5em;
+  margin-top: 2%;
+  margin-left: 5.5em;
+  padding-left: 1%;
+  border-radius: 5px;
+  border: none;
+  background-color: #F2F2F2;
+}
+
+main .signup-form-ctnr input[type=text]::-webkit-input-placeholder,
+main .signup-form-ctnr input[type=password]::-webkit-input-placeholder,
+main .signup-form-ctnr input[type=email]::-webkit-input-placeholder {
+  margin-left: 2%;
+}
+
+main .signup-form-ctnr input[type=text]:-ms-input-placeholder,
+main .signup-form-ctnr input[type=password]:-ms-input-placeholder,
+main .signup-form-ctnr input[type=email]:-ms-input-placeholder {
+  margin-left: 2%;
+}
+
+main .signup-form-ctnr input[type=text]::-ms-input-placeholder,
+main .signup-form-ctnr input[type=password]::-ms-input-placeholder,
+main .signup-form-ctnr input[type=email]::-ms-input-placeholder {
+  margin-left: 2%;
+}
+
+main .signup-form-ctnr input[type=text]::placeholder,
+main .signup-form-ctnr input[type=password]::placeholder,
+main .signup-form-ctnr input[type=email]::placeholder {
+  margin-left: 2%;
+}
+
+main .signup-form-ctnr .steam {
+  width: 100%;
+}
+
+main .signup-form-ctnr button {
+  margin-top: 1em;
+  min-height: 80px;
+  max-height: 80px;
+  min-width: 260px;
+  max-width: 260px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2B518A;
+  font-size: 1.875em;
+  text-decoration: none;
+  color: #fff;
+}
+
+main .signup-form-ctnr button:hover {
+  cursor: pointer;
+}
+
+main .signup-form-ctnr .error-alert {
+  width: 80%;
+  height: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #EC8A8A;
+  border-radius: 5px;
+  margin-top: 1%;
+}
+
+main .signup-form-ctnr .error-alert:first-of-type {
+  margin-top: 1em;
+}
+
+main .signup-form-ctnr .error-alert:last-of-type {
+  margin-bottom: 2em;
+}
+
+main .signup-form-ctnr .error-alert p {
+  margin: 0;
+  opacity: .3;
+}
+
+main .login-form-ctnr {
+  width: 50em;
+  min-height: 25em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fff;
+  border-radius: 22px;
+  margin-top: 6em;
+}
+
+main .login-form-ctnr form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .login-form-ctnr form div {
+  width: 45em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .login-form-ctnr h1 {
+  font-weight: 00;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-top: 1em;
+  margin-left: 2.2em;
+}
+
+main .login-form-ctnr input[type=text],
+main .login-form-ctnr input[type=password] {
+  width: 19em;
+  height: 3.5em;
+  margin-top: 2%;
+  padding-left: 1%;
+  border-radius: 5px;
+  border: none;
+  background-color: #F2F2F2;
+}
+
+main .login-form-ctnr input[type=text]::-webkit-input-placeholder,
+main .login-form-ctnr input[type=password]::-webkit-input-placeholder {
+  margin-left: 2%;
+}
+
+main .login-form-ctnr input[type=text]:-ms-input-placeholder,
+main .login-form-ctnr input[type=password]:-ms-input-placeholder {
+  margin-left: 2%;
+}
+
+main .login-form-ctnr input[type=text]::-ms-input-placeholder,
+main .login-form-ctnr input[type=password]::-ms-input-placeholder {
+  margin-left: 2%;
+}
+
+main .login-form-ctnr input[type=text]::placeholder,
+main .login-form-ctnr input[type=password]::placeholder {
+  margin-left: 2%;
+}
+
+main .login-form-ctnr button {
+  margin-top: 2%;
+  min-height: 50px;
+  max-height: 50px;
+  min-width: 260px;
+  max-width: 260px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2B518A;
+  font-size: 1.875em;
+  text-decoration: none;
+  color: #fff;
+}
+
+main .login-form-ctnr button:hover {
+  cursor: pointer;
+}
+
+main .login-form-ctnr a {
+  margin-top: 5%;
+  text-decoration: none;
 }
 
 main #search {
@@ -118,40 +585,97 @@ main #graph-ctnr {
 }
 
 main .recently-played-ctnr {
-  height: 19.5%;
-  margin-top: 2.7%;
+  min-height: 25em;
+  max-height: 25em;
   width: 86%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  border-bottom: 3px solid #C8C8C8;
 }
 
 main .recently-played-ctnr .recent-game {
   border-radius: 1rem;
-  height: 100%;
-  max-width: 13.25%;
-  min-width: 13.25%;
+  height: 20em;
+  width: 15em;
   margin-right: 1em;
   background-position: center;
   background-size: contain;
-}
-
-main .friends-played-ctnr {
-  overflow-x: scroll;
-  background-color: #E4E4E4;
-  height: 23.8%;
-  margin-top: 2.7%;
-  width: 86%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+main .recently-played-ctnr .recent-game .button-ctnr {
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 3.5em;
+  max-height: 3.5em;
+  border-radius: 0 0 1em 1em;
+}
+
+main .recently-played-ctnr .recent-game .button-ctnr .button-background {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: .5;
+  border-radius: inherit;
+}
+
+main .recently-played-ctnr .recent-game .button-ctnr .status-icon {
+  margin-left: 5%;
+  height: 2em;
+  width: 2em;
+  background-size: 120%;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+}
+
+main .recently-played-ctnr .recent-game .button-ctnr .remove-btn {
+  margin-right: 5%;
+  background-image: url(../img/delete.png);
+  background-position: center;
+  background-size: 120%;
+  background-repeat: no-repeat;
+  height: 2em;
+  width: 2em;
+  cursor: pointer;
+}
+
+main .friends-played-ctnr {
+  min-height: 25em;
+  max-height: 25em;
+  width: 86%;
+  margin-bottom: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 3px solid #C8C8C8;
 }
 
 main .friends-played-ctnr .friend-ctnr {
-  background-color: #F1F1F1;
   border-radius: 1rem;
-  min-width: 32%;
-  height: 83%;
+  min-width: 31em;
+  max-width: 31em;
+  min-height: 19.5em;
+  max-height: 19.5em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -161,18 +685,22 @@ main .friends-played-ctnr .friend-ctnr {
   margin-right: 1em;
 }
 
-main .friends-played-ctnr .friend-ctnr .img {
-  border-radius: 1rem;
-  width: 34%;
-  height: 86%;
+main .friends-played-ctnr .friend-ctnr .cover {
+  border-radius: 5px;
+  min-width: 12em;
+  max-width: 12em;
+  min-height: 15.5em;
+  max-height: 15.5em;
   margin-left: 1em;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 main .friends-played-ctnr .friend-ctnr .friend-text-ctnr {
   width: 64%;
-  height: 58%;
+  height: 15em;
+  margin-left: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -180,16 +708,26 @@ main .friends-played-ctnr .friend-ctnr .friend-text-ctnr {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
 }
 
-main .friends-played-ctnr .friend-ctnr .friend-text-ctnr .username {
-  color: #3765A9;
+main .friends-played-ctnr .friend-ctnr .friend-text-ctnr h2 {
+  color: #343434;
   font-size: 2rem;
   font-weight: 600;
   text-decoration: none;
+  margin-top: 0;
+}
+
+main .friends-played-ctnr .friend-ctnr .friend-text-ctnr h4, main .friends-played-ctnr .friend-ctnr .friend-text-ctnr p {
+  color: #707070;
+  font-size: 2rem;
+  font-weight: 400;
+  text-decoration: none;
+  margin-top: 0;
+}
+
+main .friends-played-ctnr .friend-ctnr .friend-text-ctnr p {
+  margin-bottom: 0;
 }
 
 main .slide-ctnr {
@@ -489,6 +1027,31 @@ main .calendar-ctnr {
   width: 100%;
 }
 
+main .calendar-ctnr .month-header-ctnr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 1.2em;
+  width: 85%;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+main .calendar-ctnr .month-header-ctnr h2 {
+  margin-right: 1%;
+  font-weight: 100;
+}
+
+main .calendar-ctnr .month-header-ctnr h2:hover {
+  cursor: pointer;
+}
+
+main .calendar-ctnr .month-header-ctnr .selected {
+  font-weight: 600;
+  color: #3765A9;
+}
+
 main .calendar-ctnr .month-ctnr {
   width: 90%;
   height: 100%;
@@ -499,23 +1062,95 @@ main .calendar-ctnr .month-ctnr {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-bottom: 10%;
 }
 
 main .calendar-ctnr .month-ctnr .day-ctnr {
-  border: solid;
-  width: 100%;
+  border-bottom: 3px solid #C8C8C8;
+  min-width: 100%;
+  max-width: 100%;
   min-height: 5em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2%;
+  overflow: auto;
 }
 
-main .calendar-ctnr .month-ctnr .day-ctnr h4 {
-  margin-left: 2em;
+main .calendar-ctnr .month-ctnr .day-ctnr .date-ctnr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 7.5em;
+  height: 21.6em;
+}
+
+main .calendar-ctnr .month-ctnr .day-ctnr h5 {
+  top: -1.5em;
+  font-size: 3em;
+  font-weight: 200;
+  margin: 0;
 }
 
 main .calendar-ctnr .month-ctnr .day-ctnr h6 {
+  font-size: 3em;
+  font-weight: 400;
+  left: 2.5em;
+  margin: 0;
+}
+
+main .calendar-ctnr .month-ctnr .day-ctnr a {
+  min-height: 21.6em;
+  max-height: 21.6em;
+  min-width: 260px;
+  position: relative;
+  margin-left: 5%;
+  margin-bottom: 1%;
+  border-radius: 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+main .calendar-ctnr .month-ctnr .day-ctnr a .cover {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
   position: absolute;
+  z-index: -1;
+  border-radius: 22px;
+}
+
+main .calendar-ctnr .month-ctnr .day-ctnr a button {
+  width: 30%;
+  height: 2em;
+  margin-bottom: 4%;
+  border-radius: 5px;
+  border: none;
+  background-color: #3765A9;
+  color: #E4E4E4;
+  font-size: 1em;
 }
 
 main .settings-ctnr {
@@ -533,11 +1168,10 @@ main .settings-ctnr {
           align-items: center;
 }
 
-main .settings-ctnr .username-ctnr {
+main .settings-ctnr .username-banner {
   position: relative;
-  border: solid;
   width: 100%;
-  height: 18%;
+  height: 10em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -547,15 +1181,16 @@ main .settings-ctnr .username-ctnr {
       -ms-flex-pack: center;
           justify-content: center;
   margin-bottom: 2%;
+  background-color: #3765A9;
 }
 
-main .settings-ctnr .username-ctnr h1 {
+main .settings-ctnr .username-banner h1 {
   position: absolute;
   z-index: -1;
   font-size: 10em;
 }
 
-main .settings-ctnr .username-ctnr img {
+main .settings-ctnr .username-banner img {
   background-color: #3765A9;
   border-radius: 50%;
   height: 80%;
@@ -565,7 +1200,8 @@ main .settings-ctnr .username-ctnr img {
 main .settings-ctnr .account-settings {
   position: relative;
   width: 42%;
-  height: 36%;
+  height: 30em;
+  margin-bottom: 3em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -576,49 +1212,28 @@ main .settings-ctnr .account-settings {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-color: #F1F1F1;
-}
-
-main .settings-ctnr .account-settings h2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-left: 3%;
-  color: #3765A9;
+  background-color: #fff;
+  border-radius: 22px;
 }
 
 main .settings-ctnr .account-settings input {
-  width: 72%;
+  min-width: 32em;
+  max-width: 32em;
+  min-height: 2.5em;
+  max-height: 2.5em;
   border: none;
-}
-
-main .settings-ctnr .account-settings label {
-  margin-right: 1%;
-  text-align: left;
-  width: 22%;
-  font-weight: bold;
-  font-size: 1.25em;
-}
-
-main .settings-ctnr .account-settings .account-username {
-  width: 68%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  margin-top: 5%;
+  border-radius: 5px;
   margin-bottom: 5%;
+  padding-left: 2%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  background-color: #F2F2F2;
 }
 
-main .settings-ctnr .account-settings .account-password {
+main .settings-ctnr .account-settings .account {
   width: 68%;
+  height: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -626,76 +1241,57 @@ main .settings-ctnr .account-settings .account-password {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  margin-bottom: 5%;
+  margin-top: 3%;
+  margin-bottom: 1%;
 }
 
-main .settings-ctnr .account-settings .account-password .password-top {
-  width: 100%;
+main .settings-ctnr .account-settings .account h4 {
+  margin: 0 0 5% 0;
+  font-size: 1.125em;
+  font-weight: 500;
+}
+
+main .settings-ctnr .account-settings .account form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  margin-bottom: 5%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-main .settings-ctnr .account-settings .account-password .password-top input {
-  min-height: 2em;
-  max-height: 2em;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+main .settings-ctnr .account-settings .account button {
+  margin-top: 1%;
+  min-height: 50px;
+  max-height: 50px;
+  min-width: 260px;
+  max-width: 260px;
+  border-radius: 10px;
+  border: none;
+  background-color: #2B518A;
+  font-size: 1.5em;
+  text-decoration: none;
+  color: #fff;
 }
 
-main .settings-ctnr .account-settings .account-password .password-bottom {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
+main .settings-ctnr .account-settings .account button:hover {
+  cursor: pointer;
 }
 
-main .settings-ctnr .account-settings .account-password .password-bottom input {
-  min-height: 2em;
-  max-height: 2em;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
+main .settings-ctnr .account-settings .account p {
+  font-size: 2em;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  color: #E3E3E3;
 }
 
-main .settings-ctnr .account-settings .account-bio {
-  width: 68%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  margin-bottom: 5%;
-}
-
-main .settings-ctnr .account-settings .account-birthday {
-  width: 68%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-line-pack: center;
-      align-content: center;
+main .settings-ctnr .account-settings .password {
+  height: 200px;
   margin-bottom: 5%;
 }
 
@@ -820,6 +1416,8 @@ main .modal-ctnr .modal-info-ctnr h3, main .modal-ctnr .modal-info-ctnr p {
 }
 
 Footer {
+  position: absolute;
+  bottom: 0;
   width: 100%;
   background: #343434;
   display: -webkit-box;

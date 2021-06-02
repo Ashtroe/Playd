@@ -4,8 +4,12 @@ $secondaryColor: #E4E4E4;
 $linkColor: #343434;
 
 
+html{
+    height: 100%;
+}
 
 body{
+    position: relative;
     margin: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
@@ -13,23 +17,29 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: $bgColor;
+    min-height: 100%;
     width: 100%;
     overflow-x: hidden;
+
+    textarea:focus, input:focus{
+        outline: none;
+    }
 }
 
 nav{
     position: relative;
-    background: $secondaryColor;
     width: 100%;
     display: flex;
+    min-height: 5em;
     max-height: 5em;
+    background-color: #F5F5F5;
 
     .logo-ctnr{
         
         min-width: 13.55%;
         margin-right: 8%;
-        background-image: url(../img/logos/logo.png);
-        background-size: 30%;
+        background-image: url(../img/logos/Playd.png);
+        background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
     }
@@ -46,12 +56,8 @@ nav{
         text-align: center;
         
         &:hover{
-            color: $primaryColor;
+            color:$primaryColor;
         }
-    }
-    
-    :nth-child(4){
-
     }
 
     .profile-ctnr{
@@ -71,12 +77,351 @@ nav{
 
 main{
 
-    height: 1457px;
+    height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    .landing-ctnr{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .landing-background{
+            position: absolute;
+            z-index: -2;
+            width: 186em;
+            height: 186em;
+            top: -80em;
+            left: 20em;
+            background-color: $primaryColor;
+            border-radius: 50%;
+        }
+
+        .top{
+            width: 100%;
+            height: 54em;
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+
+            #gamer{
+                position: absolute;
+                z-index: -1;
+                top: -10em;
+                left: -3em;
+                width: 66em ;
+                height: 66em ;
+                background-image: url('../img/gamer.png');
+                background-position: center;
+                background-size: contain;
+            }
+
+            .text-ctnr{
+                max-width: 42em ;
+                margin-right: 8.75em ;
+
+                h1{
+                    font-size: 5.5em;
+                    color: #fff;
+                }
+
+                p{
+                    font-size: 2.25em;
+                    color: #fff;
+                }
+
+                
+
+                .button-ctnr{
+                    width: 100%;
+                    height: 5.5em;
+                    display: flex;
+                    align-items: center;
+
+                    .sign-up-ctnr{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        min-width: 260px;
+                        max-width: 260px;
+                        border-radius: 10px;
+                        border: none;
+                        background-color: #2B518A;
+                        font-size: 1.875em;
+                        text-decoration: none;
+                        color: #fff;
+
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+
+                    .log-in{
+                        text-decoration: none;
+                        font-size: 1.875em;
+                        color: #fff;
+                        max-width: 16.25em;
+                        margin-left: 156px;
+                    }
+                }
+
+                button{
+                    display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 88px;
+                        min-width: 635px;
+                        max-width: 635px;
+                        margin-top: 3%;
+                        border-radius: 10px;
+                        border: none;
+                        background-color: #343434;
+                        font-size: 1.875em;
+                        text-decoration: none;
+                        color: #fff;
+
+                        &:hover{
+                            cursor: pointer;
+                        }
+                }
+            }
+        }
+
+        .info-ctnr{
+            width: 103em;
+            height: 38em;
+            background-color: #f1f1f1;
+            border-radius: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10%;
+
+            .info-card{
+                margin: 0;
+                min-width: 29em;
+                max-width: 29em;
+                height: 34.7em;
+                background-color: #fff;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                border-radius: inherit;
+                &:nth-child(2){
+                    margin: 0 5.4em 0 5.4em;
+                }
+                
+                p{
+                    font-size: 1.5em;
+                    font-weight: 600;
+                    text-align: center;
+                    max-width: 18em;
+                }
+
+                .info-image{
+                    width: 23em;
+                    height: 23em;
+                    
+                }
+            }
+
+            
+            #monitor{
+                background-image: url('../img/clock.png');
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat; 
+                
+            }
+            #friends{
+                background-image: url('../img/friends.png');
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat; 
+            }
+            #sync{
+                background-image: url('../img/sync.png');
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat; 
+            }
+
+        }
+    }
+
+    // Sign Up Page 
+    .signup-background{
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background: rgb(55,101,169);
+        background: linear-gradient(315deg, rgba(55,101,169,1) 0%, rgba(55,101,169,1) 7%, rgba(116,153,208,1) 100%); 
+    }
+    .signup-form-ctnr{
+       width: 50em;
+       min-height: 48em;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       background-color: #fff;
+       border-radius: 22px;
+       margin-top: 6em;
+
+       form{
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+       }
+       h1{
+           font-weight: 00;
+           align-self: flex-start;
+           margin-top: 1em;
+           margin-left: 2.2em;
+       }
+
+       h2{
+        font-weight: 700;
+        align-self: flex-start;
+        margin-top: 3em;
+        margin-left: 3em;
+       }
+       input[type=text],
+       input[type=password],
+       input[type=email]{
+           width: 19em;
+           height: 3.5em;
+           margin-top: 2%;
+           margin-left: 5.5em;
+           padding-left: 1%;
+           border-radius: 5px;
+           border: none;
+           background-color: #F2F2F2;
+
+           &::placeholder{
+               margin-left: 2%;
+           }
+       }
+
+       .steam{
+           width: 100%;
+       }
+       button{
+            margin-top: 1em;
+            min-height: 80px;
+            max-height: 80px;
+            min-width: 260px;
+            max-width: 260px;
+            border-radius: 10px;
+            border: none;
+            background-color: #2B518A;
+            font-size: 1.875em;
+            text-decoration: none;
+            color: #fff;
+
+            &:hover{
+                cursor: pointer;
+            }
+       }
+
+       
+       .error-alert {
+            width: 80%;
+            height: 2em;
+            display: flex;
+            justify-content: center;
+            background-color: #EC8A8A;
+            border-radius: 5px;
+            margin-top: 1%;
+
+            &:first-of-type{
+                margin-top: 1em;
+            }
+
+            &:last-of-type{
+                margin-bottom: 2em;
+            }
+            
+            p{
+                margin: 0;
+                opacity: .3;
+            }
+       }
+
+    }
+
+    // Login Page 
+    .login-form-ctnr{
+        width: 50em;
+        min-height: 25em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 22px;
+        margin-top: 6em;
+
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            div{
+                width: 45em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        h1{
+            font-weight: 00;
+            align-self: flex-start;
+            margin-top: 1em;
+            margin-left: 2.2em;
+        }
+        input[type=text],
+        input[type=password]{
+            width: 19em;
+            height: 3.5em;
+            margin-top: 2%;
+            padding-left: 1%;
+            border-radius: 5px;
+            border: none;
+            background-color: #F2F2F2;
+
+            &::placeholder{
+                margin-left: 2%;
+            }
+        }
+        button{
+            margin-top: 2%;
+            min-height: 50px;
+            max-height: 50px;
+            min-width: 260px;
+            max-width: 260px;
+            border-radius: 10px;
+            border: none;
+            background-color: #2B518A;
+            font-size: 1.875em;
+            text-decoration: none;
+            color: #fff;
+
+            &:hover{
+                cursor: pointer;
+            }
+       }
+
+       a{
+           margin-top: 5%;
+           text-decoration: none;
+       }
+    }   
+
+    // Home 
     #search{
         border: none;
         border-radius: 1rem;
@@ -110,66 +455,128 @@ main{
 
     .recently-played-ctnr{
         
-        height: 19.5%;
-        margin-top: 2.7%;
+        min-height: 25em;
+        max-height: 25em;
         width: 86%;
         display: flex;
-        
+        border-bottom: 3px solid #C8C8C8;
 
         .recent-game{
             border-radius: 1rem;
-            height:100%;
-            max-width:13.25%;
-            min-width:13.25%;
+            height:20em;
+            width:15em;
             margin-right: 1em;
             background-position: center;
             background-size: contain;
+            display: flex;
+            align-items: flex-end;
+
+            .button-ctnr{
+                position: relative;
+                z-index: 1;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                min-width: 100%;
+                max-width: 100%;
+                min-height: 3.5em;
+                max-height: 3.5em;
+                border-radius: 0 0 1em 1em;
+
+                .button-background{
+                    position: absolute;
+                    z-index: -1;
+                    width: 100%;
+                    height: 100%;
+                    background-color: black;
+                    opacity: .5;
+                    border-radius: inherit;
+                }
+
+                .status-icon{
+                    margin-left: 5%;
+                    height: 2em;
+                    width: 2em;
+                    background-size: 120%;
+                    background-position: center;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                .remove-btn{
+                    
+                    margin-right: 5%;
+                    background-image: url(../img/delete.png);
+                    background-position: center;
+                    background-size: 120%;
+                    background-repeat: no-repeat;
+                    height: 2em;
+                    width: 2em;
+                    cursor: pointer;
+                }
+            }
         }
         
     }
 
     .friends-played-ctnr{
-        overflow-x: scroll;
-        background-color: $secondaryColor;
-        height: 23.8%;
-        margin-top: 2.7%;
+        min-height: 25em;
+        max-height: 25em;
         width: 86%;
+        margin-bottom: 2em;
         display: flex;
+        border-bottom: 3px solid #C8C8C8;
 
         .friend-ctnr{
-            background-color: #F1F1F1;
             border-radius: 1rem;
-            min-width: 32%;
-            height: 83%;
+            min-width: 31em;
+            max-width: 31em;
+            min-height:19.5em;
+            max-height:19.5em;
             display: flex;
-            
             align-items: center;
             margin-right: 1em;
 
             
 
-            .img{
-                border-radius: 1rem;
-                width: 34%;
-                height: 86%;
+            .cover{
+                border-radius: 5px;
+                min-width: 12em;
+                max-width: 12em;
+                min-height: 15.5em;
+                max-height: 15.5em;
                 margin-left: 1em;
                 background-position: center;
-                background-size: contain;
+                background-size: cover;
+                background-repeat: no-repeat;
             }
 
             .friend-text-ctnr{
                 width: 64%;
-                height: 58%;
+                height: 15em;
+                margin-left: 2em;
                 display: flex;
                 flex-direction: column;
-                align-items: center;
 
-                .username{
-                    color: $primaryColor;
+                h2{
+                    color: #343434;
                     font-size: 2rem;
                     font-weight: 600;
                     text-decoration: none;
+                    margin-top: 0;
 
+                }
+
+                h4,p{
+                    color: #707070;
+                    font-size: 2rem;
+                    font-weight: 400;
+                    text-decoration: none;
+                    margin-top: 0;
+
+                }
+                p{
+                    margin-bottom: 0;
                 }
             }
         }
@@ -402,24 +809,103 @@ main{
         align-items: center;
         width: 100%;
 
+        .month-header-ctnr{
+            display: flex;
+            min-height: 1.2em;
+            width: 85%;
+            justify-content: space-between;
+
+            h2{
+                margin-right: 1%;
+                font-weight: 100;
+
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+
+            .selected{
+                font-weight: 600;
+                color: $primaryColor;
+            }
+        }
         .month-ctnr{
             width: 90%;
             height: 100%;
             display: flex;
             flex-direction: column;
+            margin-bottom: 10%;
+
 
             .day-ctnr{
-                border:solid;
-                width: 100%;
+                border-bottom: 3px solid #C8C8C8;
+                min-width: 100%;
+                max-width: 100%;
                 min-height: 5em;
                 display: flex;
+                align-items: center;
+                margin-bottom: 2%;
+                overflow: auto;
 
-                h4{
-                    margin-left: 2em;
+                .date-ctnr{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 7.5em;
+                    height: 21.6em;
                 }
+
+                h5{
+                    top: -1.5em;
+                    font-size: 3em;
+                    font-weight: 200;
+                    margin:0;
+                }
+
                 h6{
-                    position: absolute;
+                    font-size: 3em;
+                    font-weight: 400;
+                    left: 2.5em;
+                    margin:0;
                 }
+
+                a{
+                    min-height: 21.6em;
+                    max-height: 21.6em;
+                    min-width: 260px;
+                    position: relative;
+                    margin-left: 5%;
+                    margin-bottom: 1%;
+                    border-radius: 22px;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: center;
+
+                    .cover{
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        z-index: -1;
+                        border-radius: 22px;
+                    }
+
+                    button{
+                        width: 30%;
+                        height: 2em;
+                        margin-bottom: 4%;
+                        border-radius: 5px;
+                        border:none;
+                        background-color: $primaryColor;
+                        color: $secondaryColor;
+                        font-size: 1em;
+
+                    }
+                }
+
             }
         }
     }
@@ -433,15 +919,15 @@ main{
         flex-direction: column;
         align-items: center;
 
-        .username-ctnr{
+        .username-banner{
             position: relative;
-            border: solid;
             width: 100%;
-            height: 18%;
+            height: 10em;
             display: flex;
             align-content: center;
             justify-content: center;
             margin-bottom: 2%;
+            background-color: $primaryColor;
 
             h1{
                 position: absolute;
@@ -460,93 +946,83 @@ main{
         .account-settings{
             position: relative;
             width: 42%;
-            height: 36%;
+            height: 30em;
+            margin-bottom: 3em;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background-color:#F1F1F1;
-            h2{
-                position: absolute;
-                top: 0;
-                left: 0;
-                margin-left: 3%;
-                color: $primaryColor;
-            }
+            background-color:#fff;
+            border-radius: 22px;
+
+            
 
             input{
-                width: 72%;
+                min-width: 32em;
+                max-width: 32em;
+                min-height: 2.5em;
+                max-height: 2.5em;
                 border: none;
-            }
-
-            label{
-                margin-right: 1%;
-                text-align: left;
-                width: 22%;
-                font-weight: bold;
-                font-size: 1.25em;
-
-            }
-            .account-username{
-                width: 68%;
-                display: flex;
-                justify-content: center;
-                align-content: center;
-                margin-top: 5%;
+                border-radius: 5px;
                 margin-bottom: 5%;
+                padding-left: 2%;
+                align-self: center;
+                background-color: #F2F2F2;
+
+                
+            }
+
+            .account{
+                width: 68%;
+                height: 100px;
+                display: flex;
+                flex-direction: column;
+                margin-top: 3%;
+                margin-bottom: 1%;
+
+               h4{
+                   margin: 0 0 5% 0;
+                   font-size: 1.125em;
+                   font-weight: 500;
+               }
+
+               form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                }
+
+                button{
+                    margin-top: 1%;
+                    min-height: 50px;
+                    max-height: 50px;
+                    min-width: 260px;
+                    max-width: 260px;
+                    border-radius: 10px;
+                    border: none;
+                    background-color: #2B518A;
+                    font-size: 1.5em;
+                    text-decoration: none;
+                    color: #fff;
+        
+                    &:hover{
+                        cursor: pointer;
+                    }
+               }
+
+               p{
+                   font-size: 2em;
+                   align-self: center;
+                   color:#E3E3E3
+               }
                
             }
 
-            .account-password{
-                width: 68%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-content: center;
-                margin-bottom: 5%;
-                
-                .password-top{
-                    width: 100%;
-                    display: flex;
-                    justify-content: center;
-                    align-content: center;
-                    margin-bottom: 5%;
-                    
-                    input{
-                        min-height: 2em;
-                        max-height: 2em;
-                        align-self: flex-end;
-                    }
-                }
-
-                .password-bottom{
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-content: center;
-                
-                    input{
-                        min-height: 2em;
-                        max-height: 2em;
-                        align-self: flex-end;
-                    }
-                }
-            }
-
-            .account-bio{
-                width: 68%;
-                display: flex;
-                justify-content: center;
-                align-content: center;
+            .password{
+                height: 200px;
                 margin-bottom: 5%;
             }
+            .steam{
 
-            .account-birthday{
-                width: 68%;
-                display: flex;
-                justify-content: center;
-                align-content: center;
-                margin-bottom: 5%;
             }
         }
 
@@ -642,7 +1118,8 @@ main{
 }
 
 Footer{
-   
+    position: absolute;
+    bottom: 0;
     width: 100%;
     background: #343434;
     display: flex;

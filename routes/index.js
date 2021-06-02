@@ -30,41 +30,44 @@ let oct = DateTime.local(2021, 10, 1).toSeconds()
 let nov = DateTime.local(2021, 11, 1).toSeconds()
 let dec = DateTime.local(2021, 12, 1).toSeconds()
 
+
+router.use(isAuth)
+
 /* GET home page. */
-router.get('/home', isAuth, (req,res, next)=>{
+router.get('/home',(req,res)=>{
    res.render('home',{user:req.user})
   })
 
   
   router.get('/calendar',  (req,res, next)=>{
-    res.render('Calendar')
+
+    res.render('Calendar',{user:req.user})
   })
   
   router.get('/news', (req,res, next)=>{
-    res.render('News')
+    res.render('News',{user:req.user})
   })
   
+  let getUser = (req,res,next) => {
+    User.findOne({_id:req.session.passport.user},((err,user)=>{
+      if(err){
+        console.log(err)
+        next()
+      }else{
+        req.user = user
+        
+      }
+
+    }))
+      next()
+      
+  }
+
   router.get('/discover', (req,res, next)=>{
-    res.render('Discover')
-  })
-
-  router.get('/results', (req,res, next)=>{
-    console.log(results);
-    res.render('results',{results:results})
+                res.render('Discover',{user:req.user})
   })
 
 
-  router.post('/update-status',(req,res)=>{
-    console.log(req.session.passport.user);
-
-    User.findOneAndUpdate(
-      {'_id':req.session.passport.user,
-      'savedGames._id':req.body.gameID},
-      {$set: {'savedGames.$.isCompleted':true} },
-      )
-      .then(response=>console.log(response))
-      .catch(err=>console.log(err))
-  })
 
   router.post('/remove-game',(req,res)=>{
     console.log(req.session.passport.user);
@@ -97,9 +100,9 @@ router.get('/home', isAuth, (req,res, next)=>{
 
   router.post('/calendar',(req,res)=>{
       igdb(CLIENT_ID, ACCESS_TOKEN)
-      .fields('*, game.name')
-      .where(`date>=${may} & date<${dec - 1} & game.category = 0 & game.hypes != null & game.cover != null`)
-      .limit(200)
+      .fields('*, game.name, game.cover.*, game.genres.*')
+      .where(`date>=${jan-1} & date<${dec - 1} & game.category = 0 & game.hypes != null & game.cover != null`)
+      .limit(500)
       .request('/release_dates')
         .then(response=>{
           sortedData = _.uniqBy(response.data,'game.name');
