@@ -632,9 +632,7 @@ let searchForGame = ()=>{
   })
   .then(()=>{
     if(document.querySelector('#graph-ctnr')){
-      document.querySelector('#graph-ctnr').remove()
-      document.querySelector('.recently-played-ctnr').remove()
-      document.querySelector('.friends-played-ctnr').remove()
+      document.querySelector('main').textContent = ''
   }else if(document.querySelector('.results-ctnr')){
     document.querySelector('.results-ctnr').remove()
   }
