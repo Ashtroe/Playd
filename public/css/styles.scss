@@ -1037,14 +1037,15 @@ main{
         justify-content: center;
         flex-wrap: wrap;
         cursor: pointer;
+        margin-bottom: 8em;
 
         .result{
             position: relative;
             background-position: center;
             background-size: contain;
             background-repeat: no-repeat;
-            width: 10%;
-            height: 100%;
+            height:20em;
+            width:15em;
             margin-right: 1%;
             margin-top: 1%;
             display: flex;
@@ -1057,7 +1058,9 @@ main{
             }
 
             button{
-                height: 20%;
+                height: 3em;
+                width: 5em;
+                margin-bottom: 2%;
                 align-self: flex-end;
             }
         }
