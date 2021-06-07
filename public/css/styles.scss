@@ -1,1148 +1,227 @@
-$bgColor: #E3E3E3;
-$primaryColor: #3765A9;
-$secondaryColor: #E4E4E4;
-$linkColor: #343434;
-
+$primary: #3765a9;
+$tertiary:#343434;
+$background: #E3E3E3;
+$card-background: #F1F1F1;
 
 html{
-    height: 100%;
+    overflow-x: hidden;
 }
 
 body{
-    position: relative;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: $bgColor;
-    min-height: 100%;
-    width: 100%;
     overflow-x: hidden;
-
-    textarea:focus, input:focus{
-        outline: none;
-    }
+    margin: 0;
+    width: 100vw;
+    height: auto;
+    font-family: 'Poppins', sans-serif;
 }
 
+a{
+    text-decoration: none;
+}
 nav{
-    position: relative;
     width: 100%;
+    height: 4.25rem;
     display: flex;
-    min-height: 5em;
-    max-height: 5em;
-    background-color: #F5F5F5;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $card-background;
+    
 
     .logo-ctnr{
-        
-        min-width: 13.55%;
-        margin-right: 8%;
-        background-image: url(../img/logos/Playd.png);
-        background-size: contain;
+        height: 1.375rem;
+        width: 1.375rem;
+        margin-left: 2.375rem;
         background-position: center;
+        background-size: contain;
         background-repeat: no-repeat;
     }
 
-    a{
-        color:$linkColor;
-        font-weight: bold;
-        font-size: 2rem;
-        margin: 1% 0 1% 0;
+    .hamburger{
         text-decoration: none;
-        margin-right: 8%;
-        min-width: 13.5%;
-        max-width: 13.5%;
-        text-align: center;
+        width: 1.5em;
+        height: 1.125rem; 
+        margin-right: 2.375rem;
+        background-image: url(../img/hamburger.png);
+        background-repeat: no-repeat;
+        background-size: 150%;
+        background-position: center;
         
-        &:hover{
-            color:$primaryColor;
+        a{
+            visibility: hidden;
         }
+        
     }
-
-    .profile-ctnr{
+    
+    #open{
+        position: absolute;
+        z-index: 2;
+        background-image: url('');
+        background-color: $card-background;
+        min-width: 100%;
+        top:4.25rem;
+        left: 0;
+        margin-bottom: 1em;
+        height: 14rem;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
-        margin: 0;
-        padding: 1%;
-        img{
-            width: auto;
-            max-height: 100%;
-            background-color: $primaryColor;
-            border-radius: 50%;
+
+        a{
+            visibility: visible;
+            text-align: center;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: $tertiary;
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+
+            &:active{
+                color: $primary;
+            }
+        }
+
+        .button-ctnr{
+            position: absolute;
+            bottom: 1.5em;
         }
     }
 }
 
 main{
-
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
     .landing-ctnr{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .landing-background{
-            position: absolute;
-            z-index: -2;
-            width: 186em;
-            height: 186em;
-            top: -80em;
-            left: 20em;
-            background-color: $primaryColor;
-            border-radius: 50%;
-        }
-
-        .top{
-            width: 100%;
-            height: 54em;
-            position: relative;
-            display: flex;
-            justify-content: flex-end;
-
-            #gamer{
-                position: absolute;
-                z-index: -1;
-                top: -10em;
-                left: -3em;
-                width: 66em ;
-                height: 66em ;
-                background-image: url('../img/landing.png');
-                background-position: center;
-                background-size: contain;
-            }
-
-            .text-ctnr{
-                max-width: 42em ;
-                margin-right: 8.75em ;
-
-                h1{
-                    font-size: 5.5em;
-                    color: #fff;
-                }
-
-                p{
-                    font-size: 2.25em;
-                    color: #fff;
-                }
-
-                
-
-                .button-ctnr{
-                    width: 100%;
-                    height: 5.5em;
-                    display: flex;
-                    align-items: center;
-
-                    .sign-up-ctnr{
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        height: 100%;
-                        min-width: 260px;
-                        max-width: 260px;
-                        border-radius: 10px;
-                        border: none;
-                        background-color: #2B518A;
-                        font-size: 1.875em;
-                        text-decoration: none;
-                        color: #fff;
-
-                        &:hover{
-                            cursor: pointer;
-                        }
-                    }
-
-                    .log-in{
-                        text-decoration: none;
-                        font-size: 1.875em;
-                        color: #fff;
-                        max-width: 16.25em;
-                        margin-left: 156px;
-                    }
-                }
-
-                button{
-                    display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        height: 88px;
-                        min-width: 635px;
-                        max-width: 635px;
-                        margin-top: 3%;
-                        border-radius: 10px;
-                        border: none;
-                        background-color: #343434;
-                        font-size: 1.875em;
-                        text-decoration: none;
-                        color: #fff;
-
-                        &:hover{
-                            cursor: pointer;
-                        }
-                }
-            }
-        }
-
-        .info-ctnr{
-            width: 103em;
-            height: 38em;
-            background-color: #f1f1f1;
-            border-radius: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10%;
-
-            .info-card{
-                margin: 0;
-                min-width: 29em;
-                max-width: 29em;
-                height: 34.7em;
-                background-color: #fff;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                border-radius: inherit;
-                &:nth-child(2){
-                    margin: 0 5.4em 0 5.4em;
-                }
-                
-                p{
-                    font-size: 1.5em;
-                    font-weight: 600;
-                    text-align: center;
-                    max-width: 18em;
-                }
-
-                .info-image{
-                    width: 23em;
-                    height: 23em;
-                    
-                }
-            }
-
-            
-            #monitor{
-                background-image: url('../img/clock.png');
-                background-position: center;
-                background-size: contain;
-                background-repeat: no-repeat; 
-                
-            }
-            #friends{
-                background-image: url('../img/friends.png');
-                background-position: center;
-                background-size: contain;
-                background-repeat: no-repeat; 
-            }
-            #sync{
-                background-image: url('../img/sync.png');
-                background-position: center;
-                background-size: contain;
-                background-repeat: no-repeat; 
-            }
-
-        }
-    }
-
-    // Sign Up Page 
-    .signup-background{
-        position: absolute;
-        z-index: -1;
-        width: 100%;
-        height: 100%;
-        background: rgb(55,101,169);
-        background: linear-gradient(315deg, rgba(55,101,169,1) 0%, rgba(55,101,169,1) 7%, rgba(116,153,208,1) 100%); 
-    }
-    .signup-form-ctnr{
-       width: 50em;
-       min-height: 48em;
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-       background-color: #fff;
-       border-radius: 22px;
-       margin-top: 6em;
-
-       form{
-           display: flex;
-           flex-direction: column;
-           align-items: center;
-       }
-       h1{
-           font-weight: 00;
-           align-self: flex-start;
-           margin-top: 1em;
-           margin-left: 2.2em;
-       }
-
-       h2{
-        font-weight: 700;
-        align-self: flex-start;
-        margin-top: 3em;
-        margin-left: 3em;
-       }
-       input[type=text],
-       input[type=password],
-       input[type=email]{
-           width: 19em;
-           height: 3.5em;
-           margin-top: 2%;
-           margin-left: 5.5em;
-           padding-left: 1%;
-           border-radius: 5px;
-           border: none;
-           background-color: #F2F2F2;
-
-           &::placeholder{
-               margin-left: 2%;
-           }
-       }
-
-       .steam{
-           width: 100%;
-       }
-       button{
-            margin-top: 1em;
-            min-height: 80px;
-            max-height: 80px;
-            min-width: 260px;
-            max-width: 260px;
-            border-radius: 10px;
-            border: none;
-            background-color: #2B518A;
-            font-size: 1.875em;
-            text-decoration: none;
-            color: #fff;
-
-            &:hover{
-                cursor: pointer;
-            }
-       }
-
-       
-       .error-alert {
-            width: 80%;
-            height: 2em;
-            display: flex;
-            justify-content: center;
-            background-color: #EC8A8A;
-            border-radius: 5px;
-            margin-top: 1%;
-
-            &:first-of-type{
-                margin-top: 1em;
-            }
-
-            &:last-of-type{
-                margin-bottom: 2em;
-            }
-            
-            p{
-                margin: 0;
-                opacity: .3;
-            }
-       }
-
-    }
-
-    // Login Page 
-    .login-form-ctnr{
-        width: 50em;
-        min-height: 25em;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #fff;
-        border-radius: 22px;
-        margin-top: 6em;
-
-        form{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            
-            div{
-                width: 45em;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-        h1{
-            font-weight: 00;
-            align-self: flex-start;
-            margin-top: 1em;
-            margin-left: 2.2em;
-        }
-        input[type=text],
-        input[type=password]{
-            width: 19em;
-            height: 3.5em;
-            margin-top: 2%;
-            padding-left: 1%;
-            border-radius: 5px;
-            border: none;
-            background-color: #F2F2F2;
-
-            &::placeholder{
-                margin-left: 2%;
-            }
-        }
-        button{
-            margin-top: 2%;
-            min-height: 50px;
-            max-height: 50px;
-            min-width: 260px;
-            max-width: 260px;
-            border-radius: 10px;
-            border: none;
-            background-color: #2B518A;
-            font-size: 1.875em;
-            text-decoration: none;
-            color: #fff;
-
-            &:hover{
-                cursor: pointer;
-            }
-       }
-
-       a{
-           margin-top: 5%;
-           text-decoration: none;
-       }
-    }   
-
-    // Home 
-    #search{
-        border: none;
-        border-radius: 1rem;
-        background-color: $secondaryColor;
-        font-size: 1.5rem;
-        text-align: center;
-        max-height: 5%;
-        width: 56.67%;
-        margin-top: 2.7%;
-        padding: 1%;
-
-        &:focus{
-            
-            outline: none;
-        }
-    }
-
-    #graph-ctnr{
-        border: none;
-        border-radius: 1rem;
-        background-color: #F1F1F1;
-        margin-top: 2.7%;
-        width: 86%;
-        height: 27%;
-        display: flex;
-
-        #play-graph{
-            
-        }
-    }
-
-    .recently-played-ctnr{
-        
-        min-height: 25em;
-        max-height: 25em;
-        width: 86%;
-        display: flex;
-        border-bottom: 3px solid #C8C8C8;
-
-        .recent-game{
-            border-radius: 1rem;
-            height:20em;
-            width:15em;
-            margin-right: 1em;
-            background-position: center;
-            background-size: contain;
-            display: flex;
-            align-items: flex-end;
-
-            .button-ctnr{
-                position: relative;
-                z-index: 1;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                min-width: 100%;
-                max-width: 100%;
-                min-height: 3.5em;
-                max-height: 3.5em;
-                border-radius: 0 0 1em 1em;
-
-                .button-background{
-                    position: absolute;
-                    z-index: -1;
-                    width: 100%;
-                    height: 100%;
-                    background-color: black;
-                    opacity: .5;
-                    border-radius: inherit;
-                }
-
-                .status-icon{
-                    margin-left: 5%;
-                    height: 2em;
-                    width: 2em;
-                    background-size: 120%;
-                    background-position: center;
-                    border: none;
-                    cursor: pointer;
-                }
-
-                .remove-btn{
-                    
-                    margin-right: 5%;
-                    background-image: url(../img/delete.png);
-                    background-position: center;
-                    background-size: 120%;
-                    background-repeat: no-repeat;
-                    height: 2em;
-                    width: 2em;
-                    cursor: pointer;
-                }
-            }
-        }
-        
-    }
-
-    .friends-played-ctnr{
-        min-height: 25em;
-        max-height: 25em;
-        width: 86%;
-        margin-bottom: 2em;
-        display: flex;
-        border-bottom: 3px solid #C8C8C8;
-
-        .friend-ctnr{
-            border-radius: 1rem;
-            min-width: 31em;
-            max-width: 31em;
-            min-height:19.5em;
-            max-height:19.5em;
-            display: flex;
-            align-items: center;
-            margin-right: 1em;
-
-            
-
-            .cover{
-                border-radius: 5px;
-                min-width: 12em;
-                max-width: 12em;
-                min-height: 15.5em;
-                max-height: 15.5em;
-                margin-left: 1em;
-                background-position: center;
-                background-size: cover;
-                background-repeat: no-repeat;
-            }
-
-            .friend-text-ctnr{
-                width: 64%;
-                height: 15em;
-                margin-left: 2em;
-                display: flex;
-                flex-direction: column;
-
-                h2{
-                    color: #343434;
-                    font-size: 2rem;
-                    font-weight: 600;
-                    text-decoration: none;
-                    margin-top: 0;
-
-                }
-
-                h4,p{
-                    color: #707070;
-                    font-size: 2rem;
-                    font-weight: 400;
-                    text-decoration: none;
-                    margin-top: 0;
-
-                }
-                p{
-                    margin-bottom: 0;
-                }
-            }
-        }
-    }
-    
-    // Discover Page 
-
-    .slide-ctnr{
-        
-        min-width: 50%;
-        min-height: 38%;
-        margin-bottom: 3%;
-        display: flex;
-        align-items: center;
-        
-        .top-month-ctnr{
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: black;
-            
-    
-            .top-game{
-                position: absolute;
-                height: 94%;
-                width: 50%;
-                background-position: center;
-                background-size: cover;
-                display: flex;
-                align-items: flex-end;
-                justify-content: center;
-                visibility: hidden;
-
-                .info-ctnr{
-                    position: relative;
-                    width: 80%;
-                    height: 10%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    
-
-                    p{
-                        margin: 0;
-                    }
-
-                    .game-info-ctnr{
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        width: 30%;
-                    }
-                    .game-info{
-                        font-weight: bold;
-                        color:#E3E3E3;
-                        text-align: center;
-                        white-space: pre;
-                    }
-
-                    .info-text{
-                        color: #E3E3E3;
-                    }
-
-                    
-                }
-                .info-background{
-                    position: absolute;
-                    width: 100%;
-                    height: 10%;
-                    z-index: 0;
-                    background: black;
-                    opacity: .3;
-                }
-            }
-
-            .background-cover{
-                position: absolute;
-                z-index: 0;
-                background-size: cover;
-                width: 100%;
-                height: 100%;
-                opacity: 0.3;
-                visibility: hidden;
-            }
-            .visible{
-                visibility: visible;
-            }
-        }
-
-        .slide-btn{
-            height: 8vw;
-            width: 8vw;
-            border: none;
-            background-color: inherit;
-            opacity: .5;
-            &:hover{
-                cursor: pointer;
-                opacity: 1;
-            }
-        }
-        #left-btn{
-            background-image: url(/../img/Arrow.png);
-            background-position: center;
-            background-size: contain;
-            transform: rotate(180deg);
-        }
-        #right-btn{
-            background-image: url(/../img/Arrow.png);
-            background-position: center;
-            background-size: contain;
-        }
-    }
-    
-    
-    .list-ctnr{
-        width: 100%;
-        padding: 0 5% 0 5% ;
-        display: flex;
-        flex-direction: column;
-    }
-    .list-row{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 1em;
-    }
-
-    .list{
-        width: 24em;
-        height: 19em;
-        margin-right: 1em;
-        background: black;
-        color: #E3E3E3;
         position: relative;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
-        
+        width: 100%;
+        color: white;
+    }
+    
+    .landing-background-blue{
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        width: 100%;
+        height: 38.5rem;
+        background-color: $primary;
+    }
+    
+    .landing-background-orange{
+        position: absolute;
+        rotate: -15deg;
+        z-index: -1;
+        top: 40rem;
+        width: 160%;
+        max-width: 2300px;
+        height:8rem;
+        background-color: #D6933B; 
+    }
+
+    .top{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
         
 
-        .list-info{
-            position: absolute;
-            z-index: 1;
-            width: 100%;
-            height: 50%;
+        img{
+            visibility: hidden;
+        }
+
+        .text-ctnr{
+            margin: 0  2.375rem 0  2.375rem;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            
-            img{
-                max-width: 50%;
-                max-height: 80px;
+            align-content: center;
+
+            h1{
+                font-size: 2.625rem;
+                font-weight: bold;
+                line-height: 3rem;
+                margin-bottom: 3.25rem;
             }
 
             p{
-                width: 50%;
-                font-size: 1.15em;
-                text-align: center;
-                font-weight: bold;
-            }
-        }
-    }
-
-    .list-background{
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: 0;
-        opacity: 0.4;
-        transition: all .3s;
-    }
-    #ign{
-        background-image: url(../img/screenshots/Hades.jpg);
-        background-position: center;
-        background-size: 150%;
-        background-repeat: no-repeat;
-    }
-    #metacritic{
-        background-image: url(../img/screenshots/LastofUS2.png);
-        background-position: center;
-        background-size: 150%;
-        background-repeat: no-repeat;
-    }
-    #polygon{
-        background-image: url(../img/screenshots/Kentucky.jpg);
-        background-position: center;
-        background-size: 150%;
-        background-repeat: no-repeat;
-    }
-    #gamesradar{
-        background-image: url(../img/screenshots/Valhalla.jpg);
-        background-position: center;
-        background-size: 150%;
-        background-repeat: no-repeat;
-    }
-    #reddit{
-        background-image: url(../img/screenshots/Alyx.jpg);
-        background-position: center;
-        background-size: 150%;
-        background-repeat: no-repeat;
-    }
-    #pc{
-        background-image: url(../img/screenshots/DiscoElysium.jpg);
-        background-position: center;
-        background-size: 150%;
-        background-repeat: no-repeat;
-    }
-    #xbox{
-        background-image: url(../img/screenshots/Gears5.jpg);
-        background-position: center;
-        background-size: 150%;
-        background-repeat: no-repeat;
-    }
-    #playstation{
-        background-image: url(../img/screenshots/Spider-man.jpeg);
-        background-position: center;
-        background-size: 150%;
-        background-repeat: no-repeat;
-    }
-
-    .calendar-ctnr{
-        height: 40%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-
-        .month-header-ctnr{
-            display: flex;
-            min-height: 1.2em;
-            width: 85%;
-            justify-content: space-between;
-
-            h2{
-                margin-right: 1%;
-                font-weight: 100;
-
-                &:hover{
-                    cursor: pointer;
-                }
-            }
-
-            .selected{
-                font-weight: 600;
-                color: $primaryColor;
-            }
-        }
-        .month-ctnr{
-            width: 90%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 10%;
-
-
-            .day-ctnr{
-                border-bottom: 3px solid #C8C8C8;
-                min-width: 100%;
-                max-width: 100%;
-                min-height: 5em;
-                display: flex;
-                align-items: center;
-                margin-bottom: 2%;
-                overflow: auto;
-
-                .date-ctnr{
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    width: 7.5em;
-                    height: 21.6em;
-                }
-
-                h5{
-                    top: -1.5em;
-                    font-size: 3em;
-                    font-weight: 200;
-                    margin:0;
-                }
-
-                h6{
-                    font-size: 3em;
-                    font-weight: 400;
-                    left: 2.5em;
-                    margin:0;
-                }
-
-                a{
-                    min-height: 21.6em;
-                    max-height: 21.6em;
-                    min-width: 260px;
-                    position: relative;
-                    margin-left: 5%;
-                    margin-bottom: 1%;
-                    border-radius: 22px;
-                    display: flex;
-                    align-items: flex-end;
-                    justify-content: center;
-
-                    .cover{
-                        background-position: center;
-                        background-repeat: no-repeat;
-                        background-size: contain;
-                        width: 100%;
-                        height: 100%;
-                        position: absolute;
-                        z-index: -1;
-                        border-radius: 22px;
-                    }
-
-                    button{
-                        width: 30%;
-                        height: 2em;
-                        margin-bottom: 4%;
-                        border-radius: 5px;
-                        border:none;
-                        background-color: $primaryColor;
-                        color: $secondaryColor;
-                        font-size: 1em;
-
-                    }
-                }
-
-            }
-        }
-    }
-
-    // Account Page
-    
-    .settings-ctnr{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .username-banner{
-            position: relative;
-            width: 100%;
-            height: 10em;
-            display: flex;
-            align-content: center;
-            justify-content: center;
-            margin-bottom: 2%;
-            background-color: $primaryColor;
-
-            h1{
-                position: absolute;
-                z-index: -1;
-                font-size:10em ;
-            }
-
-            img{
-                background-color: $primaryColor;
-                border-radius: 50%;
-                height: 80%;
-                margin-top: 1%;
-            }
-        }
-
-        .account-settings{
-            position: relative;
-            width: 42%;
-            height: 30em;
-            margin-bottom: 3em;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color:#fff;
-            border-radius: 22px;
-
-            
-
-            input{
-                min-width: 32em;
-                max-width: 32em;
-                min-height: 2.5em;
-                max-height: 2.5em;
-                border: none;
-                border-radius: 5px;
-                margin-bottom: 5%;
-                padding-left: 2%;
-                align-self: center;
-                background-color: #F2F2F2;
-
-                
-            }
-
-            .account{
-                width: 68%;
-                height: 100px;
-                display: flex;
-                flex-direction: column;
-                margin-top: 3%;
-                margin-bottom: 1%;
-
-               h4{
-                   margin: 0 0 5% 0;
-                   font-size: 1.125em;
-                   font-weight: 500;
-               }
-
-               form{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                }
-
-                button{
-                    margin-top: 1%;
-                    min-height: 50px;
-                    max-height: 50px;
-                    min-width: 260px;
-                    max-width: 260px;
-                    border-radius: 10px;
-                    border: none;
-                    background-color: #2B518A;
-                    font-size: 1.5em;
-                    text-decoration: none;
-                    color: #fff;
-        
-                    &:hover{
-                        cursor: pointer;
-                    }
-               }
-
-               p{
-                   font-size: 2em;
-                   align-self: center;
-                   color:#E3E3E3
-               }
-               
-            }
-
-            .password{
-                height: 200px;
-                margin-bottom: 5%;
-            }
-            .steam{
-
-            }
-        }
-
-    }
-
-    // Results Page
-    .results-ctnr{
-        width: 100%;
-        min-height: 16%;
-        max-height: 16%;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        cursor: pointer;
-        margin-bottom: 8em;
-
-        .result{
-            position: relative;
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-            height:20em;
-            width:15em;
-            margin-right: 1%;
-            margin-top: 1%;
-            display: flex;
-            justify-content: center;
-
-            h2{
-                position: absolute;
-                width: 80%;
-                text-align: center;
+                font-size: 1.25rem;
+                font-weight: 500;
+                line-height: 1.875rem;
+                margin: 0;
             }
 
             button{
-                height: 3em;
-                width: 5em;
-                margin-bottom: 2%;
-                align-self: flex-end;
+                align-self: center;
+                width: 50%;
+                height: 4em;
+                max-width: 400px;
+                margin-top: 3.25rem;
+                color: white;
+                background-color: $tertiary;
+                font-size: 1.125em;
+                font-weight: 500;
+                border-radius: 10px;
+                border: none;
             }
+
         }
     }
 
-    
-    .form-container{
-        position: absolute;
-        background-color: $secondaryColor;
-        width: 50%;
-        height: 50%;
-        opacity: 1;
+    .info-ctnr{
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
-    }
+        width: 100%;
+        margin-top: 5.375rem;
 
-    .modal-ctnr{
-        position: relative; 
-        z-index: 2; 
-        left: 0;
-        top: -15em;
-        width: 60%;
-        height: 40%; 
-        overflow: auto; 
-        background-color: #F1F1F1;
-
-        .cover-modal{
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-            width: 30%;
-            height: 40%;
-        }
-        .modal-info-ctnr{
-            display: flex;
-            align-items: flex-start;
+        .info-card{
+            width: 20rem;
+            height: 16.5rem;
             margin-bottom: 1em;
-            h3,p{
-                margin:0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: $card-background;
+            border-radius: 22px;
+
+            .info-image{
+                width: 9.875rem;
+                height: 9.875rem;
+                margin-top: 1rem;
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+            }
+
+            p{
+                font-size: 1.125rem;
+                font-weight: 600;
+                color: $tertiary;
+                width: 15.625rem;
+                text-align: center;
             }
         }
     }
 }
 
-.overlay{
-    background-color: rgba(0, 0, 0, .5);
-    position: absolute; 
-    top: 0;
-    z-index: 0;
-    height: 1624px;
+footer{
     width: 100%;
+    height: 4.25rem;
+    background-color: $tertiary;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-
-Footer{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: #343434;
-    display: flex;
-    justify-content: center;
-
-    p{
-        margin: 0;
-    }
+    justify-content: flex-end;
+    
     a{
-        color:$secondaryColor;
-        font-weight: bold;
-        font-size: 2rem;
-        text-decoration: none;
-        margin: 1% 1% 1% 0;
-        min-width: 13.5%;
-        max-width: 13.5%;
         text-align: center;
-
-         &:hover{
-            color: $primaryColor;
+        font-size: .75rem;
+        font-weight: 500;
+        color: white;
+        margin-right: 1rem;
+        &:last-of-type{
+            margin-right: 2.375rem;
         }
     }
+}
+
+    // Desktop Breakpoint
+@media (min-width: 769px) {
+    
 }

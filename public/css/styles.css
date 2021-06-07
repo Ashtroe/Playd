@@ -1,93 +1,68 @@
 html {
-  height: 100%;
-}
-
-body {
-  position: relative;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #E3E3E3;
-  min-height: 100%;
-  width: 100%;
   overflow-x: hidden;
 }
 
-body textarea:focus, body input:focus {
-  outline: none;
+body {
+  overflow-x: hidden;
+  margin: 0;
+  width: 100vw;
+  height: auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 nav {
-  position: relative;
   width: 100%;
+  height: 4.25rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  min-height: 5em;
-  max-height: 5em;
-  background-color: #F5F5F5;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #F1F1F1;
 }
 
 nav .logo-ctnr {
-  min-width: 13.55%;
-  margin-right: 8%;
-  background-image: url(../img/logos/Playd.png);
-  background-size: contain;
+  height: 1.375rem;
+  width: 1.375rem;
+  margin-left: 2.375rem;
   background-position: center;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 
-nav a {
-  color: #343434;
-  font-weight: bold;
-  font-size: 2rem;
-  margin: 1% 0 1% 0;
+nav .hamburger {
   text-decoration: none;
-  margin-right: 8%;
-  min-width: 13.5%;
-  max-width: 13.5%;
-  text-align: center;
+  width: 1.5em;
+  height: 1.125rem;
+  margin-right: 2.375rem;
+  background-image: url(../img/hamburger.png);
+  background-repeat: no-repeat;
+  background-size: 150%;
+  background-position: center;
 }
 
-nav a:hover {
-  color: #3765A9;
+nav .hamburger a {
+  visibility: hidden;
 }
 
-nav .profile-ctnr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin: 0;
-  padding: 1%;
-}
-
-nav .profile-ctnr img {
-  width: auto;
-  max-height: 100%;
-  background-color: #3765A9;
-  border-radius: 50%;
-}
-
-main {
-  height: 100%;
-  width: 100%;
+nav #open {
+  position: absolute;
+  z-index: 2;
+  background-image: url("");
+  background-color: #F1F1F1;
+  min-width: 100%;
+  top: 4.25rem;
+  left: 0;
+  margin-bottom: 1em;
+  height: 14rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -98,1355 +73,195 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+nav #open a {
+  visibility: visible;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #343434;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+nav #open a:active {
+  color: #3765a9;
+}
+
+nav #open .button-ctnr {
+  position: absolute;
+  bottom: 1.5em;
 }
 
 main .landing-ctnr {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main .landing-ctnr .landing-background {
-  position: absolute;
-  z-index: -2;
-  width: 186em;
-  height: 186em;
-  top: -80em;
-  left: 20em;
-  background-color: #3765A9;
-  border-radius: 50%;
-}
-
-main .landing-ctnr .top {
-  width: 100%;
-  height: 54em;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  color: white;
+}
+
+main .landing-background-blue {
+  position: absolute;
+  z-index: -2;
+  top: 0;
+  width: 100%;
+  height: 38.5rem;
+  background-color: #3765a9;
+}
+
+main .landing-background-orange {
+  position: absolute;
+  rotate: -15deg;
+  z-index: -1;
+  top: 40rem;
+  width: 160%;
+  max-width: 2300px;
+  height: 8rem;
+  background-color: #D6933B;
+}
+
+main .top {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .top img {
+  visibility: hidden;
+}
+
+main .top .text-ctnr {
+  margin: 0  2.375rem 0  2.375rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+main .top .text-ctnr h1 {
+  font-size: 2.625rem;
+  font-weight: bold;
+  line-height: 3rem;
+  margin-bottom: 3.25rem;
+}
+
+main .top .text-ctnr p {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.875rem;
+  margin: 0;
+}
+
+main .top .text-ctnr button {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: 50%;
+  height: 4em;
+  max-width: 400px;
+  margin-top: 3.25rem;
+  color: white;
+  background-color: #343434;
+  font-size: 1.125em;
+  font-weight: 500;
+  border-radius: 10px;
+  border: none;
+}
+
+main .info-ctnr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin-top: 5.375rem;
+}
+
+main .info-ctnr .info-card {
+  width: 20rem;
+  height: 16.5rem;
+  margin-bottom: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #F1F1F1;
+  border-radius: 22px;
+}
+
+main .info-ctnr .info-card .info-image {
+  width: 9.875rem;
+  height: 9.875rem;
+  margin-top: 1rem;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+main .info-ctnr .info-card p {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #343434;
+  width: 15.625rem;
+  text-align: center;
+}
+
+footer {
+  width: 100%;
+  height: 4.25rem;
+  background-color: #343434;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
 
-main .landing-ctnr .top #gamer {
-  position: absolute;
-  z-index: -1;
-  top: -10em;
-  left: -3em;
-  width: 66em;
-  height: 66em;
-  background-image: url("../img/landing.png");
-  background-position: center;
-  background-size: contain;
-}
-
-main .landing-ctnr .top .text-ctnr {
-  max-width: 42em;
-  margin-right: 8.75em;
-}
-
-main .landing-ctnr .top .text-ctnr h1 {
-  font-size: 5.5em;
-  color: #fff;
-}
-
-main .landing-ctnr .top .text-ctnr p {
-  font-size: 2.25em;
-  color: #fff;
-}
-
-main .landing-ctnr .top .text-ctnr .button-ctnr {
-  width: 100%;
-  height: 5.5em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main .landing-ctnr .top .text-ctnr .button-ctnr .sign-up-ctnr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 100%;
-  min-width: 260px;
-  max-width: 260px;
-  border-radius: 10px;
-  border: none;
-  background-color: #2B518A;
-  font-size: 1.875em;
-  text-decoration: none;
-  color: #fff;
-}
-
-main .landing-ctnr .top .text-ctnr .button-ctnr .sign-up-ctnr:hover {
-  cursor: pointer;
-}
-
-main .landing-ctnr .top .text-ctnr .button-ctnr .log-in {
-  text-decoration: none;
-  font-size: 1.875em;
-  color: #fff;
-  max-width: 16.25em;
-  margin-left: 156px;
-}
-
-main .landing-ctnr .top .text-ctnr button {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 88px;
-  min-width: 635px;
-  max-width: 635px;
-  margin-top: 3%;
-  border-radius: 10px;
-  border: none;
-  background-color: #343434;
-  font-size: 1.875em;
-  text-decoration: none;
-  color: #fff;
-}
-
-main .landing-ctnr .top .text-ctnr button:hover {
-  cursor: pointer;
-}
-
-main .landing-ctnr .info-ctnr {
-  width: 103em;
-  height: 38em;
-  background-color: #f1f1f1;
-  border-radius: 22px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 10%;
-}
-
-main .landing-ctnr .info-ctnr .info-card {
-  margin: 0;
-  min-width: 29em;
-  max-width: 29em;
-  height: 34.7em;
-  background-color: #fff;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-radius: inherit;
-}
-
-main .landing-ctnr .info-ctnr .info-card:nth-child(2) {
-  margin: 0 5.4em 0 5.4em;
-}
-
-main .landing-ctnr .info-ctnr .info-card p {
-  font-size: 1.5em;
-  font-weight: 600;
+footer a {
   text-align: center;
-  max-width: 18em;
-}
-
-main .landing-ctnr .info-ctnr .info-card .info-image {
-  width: 23em;
-  height: 23em;
-}
-
-main .landing-ctnr .info-ctnr #monitor {
-  background-image: url("../img/clock.png");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-main .landing-ctnr .info-ctnr #friends {
-  background-image: url("../img/friends.png");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-main .landing-ctnr .info-ctnr #sync {
-  background-image: url("../img/sync.png");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
-
-main .signup-background {
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  background: #3765a9;
-  background: linear-gradient(315deg, #3765a9 0%, #3765a9 7%, #7499d0 100%);
-}
-
-main .signup-form-ctnr {
-  width: 50em;
-  min-height: 48em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #fff;
-  border-radius: 22px;
-  margin-top: 6em;
-}
-
-main .signup-form-ctnr form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main .signup-form-ctnr h1 {
-  font-weight: 00;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  margin-top: 1em;
-  margin-left: 2.2em;
-}
-
-main .signup-form-ctnr h2 {
-  font-weight: 700;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  margin-top: 3em;
-  margin-left: 3em;
-}
-
-main .signup-form-ctnr input[type=text],
-main .signup-form-ctnr input[type=password],
-main .signup-form-ctnr input[type=email] {
-  width: 19em;
-  height: 3.5em;
-  margin-top: 2%;
-  margin-left: 5.5em;
-  padding-left: 1%;
-  border-radius: 5px;
-  border: none;
-  background-color: #F2F2F2;
-}
-
-main .signup-form-ctnr input[type=text]::-webkit-input-placeholder,
-main .signup-form-ctnr input[type=password]::-webkit-input-placeholder,
-main .signup-form-ctnr input[type=email]::-webkit-input-placeholder {
-  margin-left: 2%;
-}
-
-main .signup-form-ctnr input[type=text]:-ms-input-placeholder,
-main .signup-form-ctnr input[type=password]:-ms-input-placeholder,
-main .signup-form-ctnr input[type=email]:-ms-input-placeholder {
-  margin-left: 2%;
-}
-
-main .signup-form-ctnr input[type=text]::-ms-input-placeholder,
-main .signup-form-ctnr input[type=password]::-ms-input-placeholder,
-main .signup-form-ctnr input[type=email]::-ms-input-placeholder {
-  margin-left: 2%;
-}
-
-main .signup-form-ctnr input[type=text]::placeholder,
-main .signup-form-ctnr input[type=password]::placeholder,
-main .signup-form-ctnr input[type=email]::placeholder {
-  margin-left: 2%;
-}
-
-main .signup-form-ctnr .steam {
-  width: 100%;
-}
-
-main .signup-form-ctnr button {
-  margin-top: 1em;
-  min-height: 80px;
-  max-height: 80px;
-  min-width: 260px;
-  max-width: 260px;
-  border-radius: 10px;
-  border: none;
-  background-color: #2B518A;
-  font-size: 1.875em;
-  text-decoration: none;
-  color: #fff;
-}
-
-main .signup-form-ctnr button:hover {
-  cursor: pointer;
-}
-
-main .signup-form-ctnr .error-alert {
-  width: 80%;
-  height: 2em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-color: #EC8A8A;
-  border-radius: 5px;
-  margin-top: 1%;
-}
-
-main .signup-form-ctnr .error-alert:first-of-type {
-  margin-top: 1em;
-}
-
-main .signup-form-ctnr .error-alert:last-of-type {
-  margin-bottom: 2em;
-}
-
-main .signup-form-ctnr .error-alert p {
-  margin: 0;
-  opacity: .3;
-}
-
-main .login-form-ctnr {
-  width: 50em;
-  min-height: 25em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #fff;
-  border-radius: 22px;
-  margin-top: 6em;
-}
-
-main .login-form-ctnr form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main .login-form-ctnr form div {
-  width: 45em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main .login-form-ctnr h1 {
-  font-weight: 00;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-  margin-top: 1em;
-  margin-left: 2.2em;
-}
-
-main .login-form-ctnr input[type=text],
-main .login-form-ctnr input[type=password] {
-  width: 19em;
-  height: 3.5em;
-  margin-top: 2%;
-  padding-left: 1%;
-  border-radius: 5px;
-  border: none;
-  background-color: #F2F2F2;
-}
-
-main .login-form-ctnr input[type=text]::-webkit-input-placeholder,
-main .login-form-ctnr input[type=password]::-webkit-input-placeholder {
-  margin-left: 2%;
-}
-
-main .login-form-ctnr input[type=text]:-ms-input-placeholder,
-main .login-form-ctnr input[type=password]:-ms-input-placeholder {
-  margin-left: 2%;
-}
-
-main .login-form-ctnr input[type=text]::-ms-input-placeholder,
-main .login-form-ctnr input[type=password]::-ms-input-placeholder {
-  margin-left: 2%;
-}
-
-main .login-form-ctnr input[type=text]::placeholder,
-main .login-form-ctnr input[type=password]::placeholder {
-  margin-left: 2%;
-}
-
-main .login-form-ctnr button {
-  margin-top: 2%;
-  min-height: 50px;
-  max-height: 50px;
-  min-width: 260px;
-  max-width: 260px;
-  border-radius: 10px;
-  border: none;
-  background-color: #2B518A;
-  font-size: 1.875em;
-  text-decoration: none;
-  color: #fff;
-}
-
-main .login-form-ctnr button:hover {
-  cursor: pointer;
-}
-
-main .login-form-ctnr a {
-  margin-top: 5%;
-  text-decoration: none;
-}
-
-main #search {
-  border: none;
-  border-radius: 1rem;
-  background-color: #E4E4E4;
-  font-size: 1.5rem;
-  text-align: center;
-  max-height: 5%;
-  width: 56.67%;
-  margin-top: 2.7%;
-  padding: 1%;
-}
-
-main #search:focus {
-  outline: none;
-}
-
-main #graph-ctnr {
-  border: none;
-  border-radius: 1rem;
-  background-color: #F1F1F1;
-  margin-top: 2.7%;
-  width: 86%;
-  height: 27%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-main .recently-played-ctnr {
-  min-height: 25em;
-  max-height: 25em;
-  width: 86%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border-bottom: 3px solid #C8C8C8;
-}
-
-main .recently-played-ctnr .recent-game {
-  border-radius: 1rem;
-  height: 20em;
-  width: 15em;
-  margin-right: 1em;
-  background-position: center;
-  background-size: contain;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-}
-
-main .recently-played-ctnr .recent-game .button-ctnr {
-  position: relative;
-  z-index: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 3.5em;
-  max-height: 3.5em;
-  border-radius: 0 0 1em 1em;
-}
-
-main .recently-played-ctnr .recent-game .button-ctnr .button-background {
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  background-color: black;
-  opacity: .5;
-  border-radius: inherit;
-}
-
-main .recently-played-ctnr .recent-game .button-ctnr .status-icon {
-  margin-left: 5%;
-  height: 2em;
-  width: 2em;
-  background-size: 120%;
-  background-position: center;
-  border: none;
-  cursor: pointer;
-}
-
-main .recently-played-ctnr .recent-game .button-ctnr .remove-btn {
-  margin-right: 5%;
-  background-image: url(../img/delete.png);
-  background-position: center;
-  background-size: 120%;
-  background-repeat: no-repeat;
-  height: 2em;
-  width: 2em;
-  cursor: pointer;
-}
-
-main .friends-played-ctnr {
-  min-height: 25em;
-  max-height: 25em;
-  width: 86%;
-  margin-bottom: 2em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border-bottom: 3px solid #C8C8C8;
-}
-
-main .friends-played-ctnr .friend-ctnr {
-  border-radius: 1rem;
-  min-width: 31em;
-  max-width: 31em;
-  min-height: 19.5em;
-  max-height: 19.5em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-right: 1em;
-}
-
-main .friends-played-ctnr .friend-ctnr .cover {
-  border-radius: 5px;
-  min-width: 12em;
-  max-width: 12em;
-  min-height: 15.5em;
-  max-height: 15.5em;
-  margin-left: 1em;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-main .friends-played-ctnr .friend-ctnr .friend-text-ctnr {
-  width: 64%;
-  height: 15em;
-  margin-left: 2em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-main .friends-played-ctnr .friend-ctnr .friend-text-ctnr h2 {
-  color: #343434;
-  font-size: 2rem;
-  font-weight: 600;
-  text-decoration: none;
-  margin-top: 0;
-}
-
-main .friends-played-ctnr .friend-ctnr .friend-text-ctnr h4, main .friends-played-ctnr .friend-ctnr .friend-text-ctnr p {
-  color: #707070;
-  font-size: 2rem;
-  font-weight: 400;
-  text-decoration: none;
-  margin-top: 0;
-}
-
-main .friends-played-ctnr .friend-ctnr .friend-text-ctnr p {
-  margin-bottom: 0;
-}
-
-main .slide-ctnr {
-  min-width: 50%;
-  min-height: 38%;
-  margin-bottom: 3%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main .slide-ctnr .top-month-ctnr {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background: black;
-}
-
-main .slide-ctnr .top-month-ctnr .top-game {
-  position: absolute;
-  height: 94%;
-  width: 50%;
-  background-position: center;
-  background-size: cover;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  visibility: hidden;
-}
-
-main .slide-ctnr .top-month-ctnr .top-game .info-ctnr {
-  position: relative;
-  width: 80%;
-  height: 10%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-main .slide-ctnr .top-month-ctnr .top-game .info-ctnr p {
-  margin: 0;
-}
-
-main .slide-ctnr .top-month-ctnr .top-game .info-ctnr .game-info-ctnr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 30%;
-}
-
-main .slide-ctnr .top-month-ctnr .top-game .info-ctnr .game-info {
-  font-weight: bold;
-  color: #E3E3E3;
-  text-align: center;
-  white-space: pre;
-}
-
-main .slide-ctnr .top-month-ctnr .top-game .info-ctnr .info-text {
-  color: #E3E3E3;
-}
-
-main .slide-ctnr .top-month-ctnr .top-game .info-background {
-  position: absolute;
-  width: 100%;
-  height: 10%;
-  z-index: 0;
-  background: black;
-  opacity: .3;
-}
-
-main .slide-ctnr .top-month-ctnr .background-cover {
-  position: absolute;
-  z-index: 0;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  opacity: 0.3;
-  visibility: hidden;
-}
-
-main .slide-ctnr .top-month-ctnr .visible {
-  visibility: visible;
-}
-
-main .slide-ctnr .slide-btn {
-  height: 8vw;
-  width: 8vw;
-  border: none;
-  background-color: inherit;
-  opacity: .5;
-}
-
-main .slide-ctnr .slide-btn:hover {
-  cursor: pointer;
-  opacity: 1;
-}
-
-main .slide-ctnr #left-btn {
-  background-image: url(/../img/Arrow.png);
-  background-position: center;
-  background-size: contain;
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
-}
-
-main .slide-ctnr #right-btn {
-  background-image: url(/../img/Arrow.png);
-  background-position: center;
-  background-size: contain;
-}
-
-main .list-ctnr {
-  width: 100%;
-  padding: 0 5% 0 5%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-main .list-row {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 1em;
-}
-
-main .list {
-  width: 24em;
-  height: 19em;
-  margin-right: 1em;
-  background: black;
-  color: #E3E3E3;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main .list .list-info {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-main .list .list-info img {
-  max-width: 50%;
-  max-height: 80px;
-}
-
-main .list .list-info p {
-  width: 50%;
-  font-size: 1.15em;
-  text-align: center;
-  font-weight: bold;
-}
-
-main .list-background {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 0;
-  opacity: 0.4;
-  -webkit-transition: all .3s;
-  transition: all .3s;
-}
-
-main #ign {
-  background-image: url(../img/screenshots/Hades.jpg);
-  background-position: center;
-  background-size: 150%;
-  background-repeat: no-repeat;
-}
-
-main #metacritic {
-  background-image: url(../img/screenshots/LastofUS2.png);
-  background-position: center;
-  background-size: 150%;
-  background-repeat: no-repeat;
-}
-
-main #polygon {
-  background-image: url(../img/screenshots/Kentucky.jpg);
-  background-position: center;
-  background-size: 150%;
-  background-repeat: no-repeat;
-}
-
-main #gamesradar {
-  background-image: url(../img/screenshots/Valhalla.jpg);
-  background-position: center;
-  background-size: 150%;
-  background-repeat: no-repeat;
-}
-
-main #reddit {
-  background-image: url(../img/screenshots/Alyx.jpg);
-  background-position: center;
-  background-size: 150%;
-  background-repeat: no-repeat;
-}
-
-main #pc {
-  background-image: url(../img/screenshots/DiscoElysium.jpg);
-  background-position: center;
-  background-size: 150%;
-  background-repeat: no-repeat;
-}
-
-main #xbox {
-  background-image: url(../img/screenshots/Gears5.jpg);
-  background-position: center;
-  background-size: 150%;
-  background-repeat: no-repeat;
-}
-
-main #playstation {
-  background-image: url(../img/screenshots/Spider-man.jpeg);
-  background-position: center;
-  background-size: 150%;
-  background-repeat: no-repeat;
-}
-
-main .calendar-ctnr {
-  height: 40%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 100%;
-}
-
-main .calendar-ctnr .month-header-ctnr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  min-height: 1.2em;
-  width: 85%;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-main .calendar-ctnr .month-header-ctnr h2 {
-  margin-right: 1%;
-  font-weight: 100;
-}
-
-main .calendar-ctnr .month-header-ctnr h2:hover {
-  cursor: pointer;
-}
-
-main .calendar-ctnr .month-header-ctnr .selected {
-  font-weight: 600;
-  color: #3765A9;
-}
-
-main .calendar-ctnr .month-ctnr {
-  width: 90%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin-bottom: 10%;
-}
-
-main .calendar-ctnr .month-ctnr .day-ctnr {
-  border-bottom: 3px solid #C8C8C8;
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 5em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  margin-bottom: 2%;
-  overflow: auto;
-}
-
-main .calendar-ctnr .month-ctnr .day-ctnr .date-ctnr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 7.5em;
-  height: 21.6em;
-}
-
-main .calendar-ctnr .month-ctnr .day-ctnr h5 {
-  top: -1.5em;
-  font-size: 3em;
-  font-weight: 200;
-  margin: 0;
-}
-
-main .calendar-ctnr .month-ctnr .day-ctnr h6 {
-  font-size: 3em;
-  font-weight: 400;
-  left: 2.5em;
-  margin: 0;
-}
-
-main .calendar-ctnr .month-ctnr .day-ctnr a {
-  min-height: 21.6em;
-  max-height: 21.6em;
-  min-width: 260px;
-  position: relative;
-  margin-left: 5%;
-  margin-bottom: 1%;
-  border-radius: 22px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-main .calendar-ctnr .month-ctnr .day-ctnr a .cover {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: -1;
-  border-radius: 22px;
-}
-
-main .calendar-ctnr .month-ctnr .day-ctnr a button {
-  width: 30%;
-  height: 2em;
-  margin-bottom: 4%;
-  border-radius: 5px;
-  border: none;
-  background-color: #3765A9;
-  color: #E4E4E4;
-  font-size: 1em;
-}
-
-main .settings-ctnr {
-  width: 100%;
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main .settings-ctnr .username-banner {
-  position: relative;
-  width: 100%;
-  height: 10em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 2%;
-  background-color: #3765A9;
-}
-
-main .settings-ctnr .username-banner h1 {
-  position: absolute;
-  z-index: -1;
-  font-size: 10em;
-}
-
-main .settings-ctnr .username-banner img {
-  background-color: #3765A9;
-  border-radius: 50%;
-  height: 80%;
-  margin-top: 1%;
-}
-
-main .settings-ctnr .account-settings {
-  position: relative;
-  width: 42%;
-  height: 30em;
-  margin-bottom: 3em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: #fff;
-  border-radius: 22px;
-}
-
-main .settings-ctnr .account-settings input {
-  min-width: 32em;
-  max-width: 32em;
-  min-height: 2.5em;
-  max-height: 2.5em;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 5%;
-  padding-left: 2%;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  background-color: #F2F2F2;
-}
-
-main .settings-ctnr .account-settings .account {
-  width: 68%;
-  height: 100px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  margin-top: 3%;
-  margin-bottom: 1%;
-}
-
-main .settings-ctnr .account-settings .account h4 {
-  margin: 0 0 5% 0;
-  font-size: 1.125em;
+  font-size: .75rem;
   font-weight: 500;
+  color: white;
+  margin-right: 1rem;
 }
 
-main .settings-ctnr .account-settings .account form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main .settings-ctnr .account-settings .account button {
-  margin-top: 1%;
-  min-height: 50px;
-  max-height: 50px;
-  min-width: 260px;
-  max-width: 260px;
-  border-radius: 10px;
-  border: none;
-  background-color: #2B518A;
-  font-size: 1.5em;
-  text-decoration: none;
-  color: #fff;
-}
-
-main .settings-ctnr .account-settings .account button:hover {
-  cursor: pointer;
-}
-
-main .settings-ctnr .account-settings .account p {
-  font-size: 2em;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  color: #E3E3E3;
-}
-
-main .settings-ctnr .account-settings .password {
-  height: 200px;
-  margin-bottom: 5%;
-}
-
-main .results-ctnr {
-  width: 100%;
-  min-height: 16%;
-  max-height: 16%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  cursor: pointer;
-  margin-bottom: 8em;
-}
-
-main .results-ctnr .result {
-  position: relative;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 20em;
-  width: 15em;
-  margin-right: 1%;
-  margin-top: 1%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-main .results-ctnr .result h2 {
-  position: absolute;
-  width: 80%;
-  text-align: center;
-}
-
-main .results-ctnr .result button {
-  height: 3em;
-  width: 5em;
-  margin-bottom: 2%;
-  -ms-flex-item-align: end;
-      align-self: flex-end;
-}
-
-main .form-container {
-  position: absolute;
-  background-color: #E4E4E4;
-  width: 50%;
-  height: 50%;
-  opacity: 1;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-main .modal-ctnr {
-  position: relative;
-  z-index: 2;
-  left: 0;
-  top: -15em;
-  width: 60%;
-  height: 40%;
-  overflow: auto;
-  background-color: #F1F1F1;
-}
-
-main .modal-ctnr .cover-modal {
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 30%;
-  height: 40%;
-}
-
-main .modal-ctnr .modal-info-ctnr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  margin-bottom: 1em;
-}
-
-main .modal-ctnr .modal-info-ctnr h3, main .modal-ctnr .modal-info-ctnr p {
-  margin: 0;
-}
-
-.overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  top: 0;
-  z-index: 0;
-  height: 1624px;
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-Footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: #343434;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-Footer p {
-  margin: 0;
-}
-
-Footer a {
-  color: #E4E4E4;
-  font-weight: bold;
-  font-size: 2rem;
-  text-decoration: none;
-  margin: 1% 1% 1% 0;
-  min-width: 13.5%;
-  max-width: 13.5%;
-  text-align: center;
-}
-
-Footer a:hover {
-  color: #3765A9;
+footer a:last-of-type {
+  margin-right: 2.375rem;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -41,23 +41,30 @@ let pastWeek =
   sevenDaysAgo
 ]
 
+if(document.querySelector('.hamburger')){
+  // Hamburger click handler 
+  let hamburger = document.querySelector('.hamburger')
+  
+  hamburger.addEventListener('click', ()=>{
+    hamburger.id = 'open'
+    
+  })
+  
+  document.addEventListener('click', (e)=>{
+    if(!e.target.classList.contains('hamburger')){
+      hamburger.removeAttribute('id')
+      console.log('d');
+    }
+  })
+}
 
 // Welcome Page 
 if(document.querySelector('.landing-ctnr')){
 
-   let signUpButton = document.querySelector('.sign-up-ctnr')
-   
-   signUpButton.addEventListener('click',()=>{
-     axios({
-       method: 'get',
-       url:'/signup'
-     })
-     .then((response)=>{
-        window.location.href = '/signup'
-     })
-   })
-
   // Demo Button 
+  
+    
+
     let demo = document.createElement('button')
     demo.classList.add('demo-btn')
     demo.textContent = 'Demo'
@@ -94,6 +101,7 @@ if(document.querySelector('.recently-played-ctnr')){
       let removeGame = document.createElement('div')
       let gameWrapper = document.createElement('a')
       
+      gameWrapper.id = game._id
       gameWrapper.classList.add('recent-game')
       gameWrapper.style.backgroundImage = `url(${game.cover})`
 
@@ -132,7 +140,7 @@ if(document.querySelector('.recently-played-ctnr')){
             gameID:game._id
           }
         })
-        .then(response=>console.log(response.data))
+        .then(()=>document.getElementById(game._id).remove())
         .catch(err=>console.log(err))
       })
       buttonConatainer.appendChild(buttonBackground)
@@ -422,10 +430,13 @@ if(document.querySelector('.logout-btn')){
 }
 
 
-let saveGame = (game) =>{
-  let yesterdayInput = document.querySelector('#yesterday-input')
-  let twoDaysInput = document.querySelector('#two-days-input')
-  let threeDaysInput = document.querySelector('#three-days-input')
+let saveGame = (game,yesterdayValue,twoDaysAgoValue,threeDaysAgoValue) =>{
+
+  if(document.querySelector('#yesterday-input')){
+    let yesterdayInput = document.querySelector('#yesterday-input')
+    let twoDaysInput = document.querySelector('#two-days-input')
+    let threeDaysInput = document.querySelector('#three-days-input')
+  }
   axios({
     method:'post',
     url: '/save',
@@ -437,11 +448,11 @@ let saveGame = (game) =>{
       platforms: game.platforms,
       playTime: [
         { date: yesterday,
-          time:yesterdayInput.value != '' ? parseInt(yesterdayInput.value) :0},
+          time:yesterdayValue  ? parseInt(yesterdayValue) :0},
         { date: twoDaysAgo,
-          time:twoDaysInput.value != '' ? parseInt(twoDaysInput.value) :0},
+          time:twoDaysAgoValue  ? parseInt(twoDaysAgoValue) :0},
         { date: threeDaysAgo,
-          time:threeDaysInput.value != '' ? parseInt(threeDaysInput.value) :0},
+          time:threeDaysAgoValue  ? parseInt(threeDaysAgoValue) :0},
         {date: fourDaysAgo,
           time: 0
         },
@@ -465,115 +476,90 @@ let saveGame = (game) =>{
 
 let renderTimeInput = (game)=>{
 
+  let modalContainer = document.querySelector('.modal-ctnr')
   // Render play history form 
   let overlay = document.createElement('div')
   let formContainer = document.createElement('div')
-  let yesterdayLabel = document.createElement('label')
-  let twoDaysLabel = document.createElement('label')
-  let threeDaysLabel = document.createElement('label')
   let yesterdayInput = document.createElement('input')
   let twoDaysInput = document.createElement('input')
   let threeDaysInput = document.createElement('input')
-  let btn = document.createElement('button')
-  let heading = document.createElement('h4')
+  let saveBtn = document.createElement('button')
+  let heading = document.createElement('h5')
 
-  btn.textContent = 'Submit'
+  saveBtn.textContent = 'Save'
   heading.textContent = 'How many hours did you play recently?'
 
   yesterdayInput.id = 'yesterday-input'
   twoDaysInput.id = 'two-days-input'
   threeDaysInput.id = 'three-days-input'
+  saveBtn.id = 'save'
 
-  yesterdayLabel.htmlFor = 'yesterday-input'
-  twoDaysLabel.htmlFor = 'two-days-input'
-  threeDaysLabel.htmlFor = 'three-days-input'
-
-  yesterdayLabel.textContent = 'Yesterday'
-  twoDaysLabel.textContent = 'Two Days Ago'
-  threeDaysLabel.textContent = 'Three Days Ago'
+  yesterdayInput.placeholder = 'Yesterday'
+  twoDaysInput.placeholder = 'Two Days Ago'
+  threeDaysInput.placeholder = 'Three Days Ago'
 
   overlay.classList.add('overlay')
   formContainer.classList.add('form-container')
   
 
-  btn.addEventListener('click',()=>
-    saveGame(game)
-  )
+  saveBtn.addEventListener('click',()=>{
+    saveGame(game,yesterdayInput.value,twoDaysInput.value,threeDaysInput.value)
+    heading.textContent = `${game.name} was succesfully added!`
+    modalContainer.style.justifyContent = 'center'
+    yesterdayInput.remove()
+    twoDaysInput.remove()
+    threeDaysInput.remove()
+    saveBtn.remove()
 
+    setTimeout(() => {
+      window.location.href = '/home'
+    }, 2500);
+  })
+
+  modalContainer.textContent = ''
+  modalContainer.style.flexDirection = 'column' 
   
 
 
-  formContainer.appendChild(heading)
-  formContainer.appendChild(yesterdayLabel)
-  formContainer.appendChild(yesterdayInput)
-  formContainer.appendChild(twoDaysLabel)
-  formContainer.appendChild(twoDaysInput)
-  formContainer.appendChild(threeDaysLabel)
-  formContainer.appendChild(threeDaysInput)
-  formContainer.appendChild(btn)
-  overlay.appendChild(formContainer)
-  document.querySelector('main').appendChild(overlay)
+  modalContainer.appendChild(heading)
+  modalContainer.appendChild(yesterdayInput)
+  modalContainer.appendChild(twoDaysInput)
+  modalContainer.appendChild(threeDaysInput)
+  modalContainer.appendChild(saveBtn)
 }
 
 let renderGameOverlay = (game) =>{
   let overlayBackground = document.createElement('div')
   let modalContainer = document.createElement('div')
-  let releaseContainer = document.createElement('div')
-  let descContainer = document.createElement('div')
-  let developerContainer = document.createElement('div')
-  let platformContainer = document.createElement('div')
-  let genreContainer = document.createElement('div')
-  let storeContainer = document.createElement('div')
+  let textContainer = document.createElement('div')
+  
   let cover = document.createElement('div')
+  let title = document.createElement('h1')
+  let release = document.createElement('h4')
+  let genre = document.createElement('h4')
+  let desc = document.createElement('p')
 
-  let title = document.createElement('h2')
-
-  let release = document.createElement('h3')
-  let desc = document.createElement('h3')
-  let developer = document.createElement('h3')
-  let platforms = document.createElement('h3')
-  let genre = document.createElement('h3')
-
-  let releaseBody = document.createElement('p')
-  let descBody = document.createElement('p')
-  let developerBody = document.createElement('p')
-  let genreBody = document.createElement('p')
-
-  let addBtn = document.createElement('button')
+  let saveBtn = document.createElement('button')
   let closeBtn = document.createElement('button')
 
 
   overlayBackground.classList.add('overlay')
   overlayBackground.id = 'overlay'
   modalContainer.classList.add('modal-ctnr')
-  modalContainer.id = 'modal'
+  textContainer.classList.add('modal-text-ctnr')
   cover.classList.add('cover-modal')
-  releaseContainer.classList.add('modal-info-ctnr')
-  descContainer.classList.add('modal-info-ctnr')
-  developerContainer.classList.add('modal-info-ctnr')
-  platformContainer.classList.add('modal-info-ctnr')
-  genreContainer.classList.add('modal-info-ctnr')
+  genre.id = 'genre'
+  saveBtn.id = 'save'
+  closeBtn.id = 'close'
+
+  cover.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg)`
 
   title.textContent = game.name
-  release.textContent = 'Released:'
-  desc.textContent = 'Summary:'
-  developer.textContent = 'Developer:'
-  platforms.textContent = 'Platforms:'
-  genre.textContent = 'Genre:'
-  addBtn.textContent = 'Add'
-  closeBtn.textContent = 'Close'
+  release.textContent = `${DateTime.fromSeconds(game.first_release_date).toLocaleString(DateTime.DATE_MED)}`
+  desc.textContent = game.summary
+  genre.textContent = game.genres[0].name
+  saveBtn.textContent = 'Save'
 
-  if(game.first_release_date){
-    releaseBody.textContent = `${DateTime.fromSeconds(game.first_release_date).toLocaleString(DateTime.DATE_MED)}`
-  }else{
-    release.textContent = ''
-    releaseBody.textContent = ''
-  }
-
-  descBody.textContent = game.summary
-  developerBody.textContent = ``
-  genreBody.textContent = game.genres[0].name
-  cover.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.cover.image_id}.jpg)`
 
   // Detect click outside modal 
   document.addEventListener('click',(e)=>{
@@ -583,37 +569,20 @@ let renderGameOverlay = (game) =>{
     }
   })
 
-  addBtn.addEventListener('click',()=>{
-    modalContainer.remove()
-    overlayBackground.remove()
+  saveBtn.addEventListener('click',()=>{
     renderTimeInput(game)
   })
 
-  closeBtn.addEventListener('click',()=>{
-    modalContainer.remove()
-    overlayBackground.remove()
-  })
-  
-
-  releaseContainer.appendChild(release)
-  releaseContainer.appendChild(releaseBody)
-  descContainer.appendChild(desc)
-  descContainer.appendChild(descBody)
-  developerContainer.appendChild(developer)
-  developerContainer.appendChild(developerBody)
-  genreContainer.appendChild(genre)
-  genreContainer.appendChild(genreBody)
-
-  modalContainer.appendChild(title)
-  modalContainer.appendChild(cover)
-  modalContainer.appendChild(releaseContainer)
-  modalContainer.appendChild(genreContainer)
-  modalContainer.appendChild(descContainer)
-  modalContainer.appendChild(platformContainer)
-  modalContainer.appendChild(addBtn)
-  modalContainer.appendChild(closeBtn)
-  document.querySelector('body').appendChild(overlayBackground)
+  document.querySelector('main').appendChild(overlayBackground)
   document.querySelector('main').appendChild(modalContainer)
+  modalContainer.appendChild(cover)
+  modalContainer.appendChild(textContainer)
+  modalContainer.appendChild(saveBtn)
+  textContainer.appendChild(title)
+  textContainer.appendChild(release)
+  textContainer.appendChild(genre)
+  textContainer.appendChild(desc)
+
 }
 
 let searchForGame = ()=>{

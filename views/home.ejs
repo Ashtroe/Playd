@@ -10,21 +10,25 @@
 </head>
 <body>
     <head>
-        
         <nav>
-            <a href= '/home' class="logo-ctnr"></a>
-            <a href="/calendar">Calendar</a>
-            <a href="/discover">Discover</a>
-            <a href="/news">News</a>
-            <a href= "/account" class="profile-ctnr">
-                <img src=<%=user ? user.image : '../img/profile-1.png'%> alt="profile avatar" class="profile-pic"></img>
-            </a>
+            <a href= '/home' class="logo-ctnr " style= 'background-image: url(/img/logos/logo-only.png);'></a>
+            <div class="hamburger" '>
+                <a href="/calendar" class='hvr-underline'>Calendar</a>
+                <a href="/discover">Discover</a>
+                <a href="/news" id='news' >News</a>
+                <div class="button-ctnr">
+                    <a href="/signup" class="sign-up">Sign up</a>
+                    <a href="/login" class="log-in">Log in</a>
+                </div>
+            </div>
         </nav>
     </head>
 
     <main>
-        <input type="search" class="textbox" id="search" placeholder="Search for a game">
-        <button type="submit" class="search-btn">Search</button>
+        <div class="search-ctnr">
+            <input type="search" class="textbox" id="search" placeholder="Search for a game">
+            <button type="submit" class="search-btn">Search</button>
+        </div>
 
         <div id='graph-ctnr'></div>
 

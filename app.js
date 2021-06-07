@@ -150,6 +150,7 @@ let checkPlaytime = () => {
         .then(steamInfo=>{
           steamInfo.forEach(steamGame=>{
             let userGameID = (user.savedGames.find(game=>game.title.toLowerCase() === steamGame.name.toLowerCase()))._id
+            console.log(userGameID);
             let userGameTime = (user.savedGames.find(game=>game.title.toLowerCase() === steamGame.name.toLowerCase())).totalPlaytime.time
             let steamGameTime = Math.floor(steamGame.playTime / 60)
             if(steamGameTime > userGameTime ){
@@ -189,17 +190,17 @@ let checkPlaytime = () => {
       })
     }})
   })
+  .catch(err=>console.log(err))
 }
 
-let task = new Task(
-  'simple task',
-  ()=>{checkPlaytime()}
-)
-const job = new SimpleIntervalJob({ seconds: 43200, }, task)
-scheduler.addSimpleIntervalJob(job)
+// let task = new Task(
+//   'simple task',
+//   ()=>{checkPlaytime()}
+// )
+// const job = new SimpleIntervalJob({ seconds: 43200, }, task)
+// scheduler.addSimpleIntervalJob(job)
 
 
-checkPlaytime()
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

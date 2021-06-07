@@ -12,41 +12,43 @@
 
     <head>
         <nav>
-            <a href= '/home' class="logo-ctnr "></a>
-            <a href="/calendar" class='hvr-underline'>Calendar</a>
-            <a href="/discover">Discover</a>
-            <a href="/news">News</a>
+            <a href= '/home' class="logo-ctnr " style= 'background-image: url(/img/logos/logo-only.png);'></a>
+            <div class="hamburger" '>
+                <a href="/calendar" class='hvr-underline'>Calendar</a>
+                <a href="/discover">Discover</a>
+                <a href="/news" id='news' >News</a>
+                <div class="button-ctnr">
+                    <a href="/signup" class="sign-up">Sign up</a>
+                    <a href="/login" class="log-in">Log in</a>
+                </div>
+            </div>
         </nav>
     </head>
 
     <main>
         <div class="landing-ctnr">
-            <div class="landing-background"></div>
+            <div class="landing-background-blue" ></div>
+            <div class="landing-background-orange" ></div>
             <div class="top">
                 <div class="image-ctnr" id='gamer' ></div>
                 <div class="text-ctnr">
                     <h1>Where did the time go?</h1>
                     <p>Playd allows you to collect all of your games in one place to see your play times.</p>
-                    <div class="button-ctnr">
-                        <div class="sign-up-ctnr">
-                            <a class="sign-up">Sign up</a>
-                        </div>
-                        <a href="/login" class="log-in">Log in</a>
-                    </div>
+                    
                 </div>
             </div>
 
             <div class="info-ctnr">
                 <div class="info-card" >
-                    <div class="info-image" id='monitor' ></div>
+                    <div class="info-image" id='monitor' style= 'background-image: url(/img/clock.png)'></div>
                     <p>Monitor hours spent in your favorite games</p>
                 </div>
                 <div class="info-card" >
-                    <div class="info-image" id='friends'></div>
+                    <div class="info-image" id='friends' style= 'background-image: url(/img/friends.png)'></div>
                     <p>See what games your friends are currently playing</p>
                 </div>
                 <div class="info-card" >
-                    <div class="info-image" id='sync'></div>
+                    <div class="info-image" id='sync' style= 'background-image: url(/img/sync.png)'></div>
                     <p>Automatically sync times from different libraries</p>
                 </div>
             </div>

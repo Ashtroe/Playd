@@ -88,9 +88,9 @@ router.get('/home',(req,res)=>{
     
     igdb(CLIENT_ID, ACCESS_TOKEN)
     .fields(['name,cover.*,genres.*,involved_companies.*, platforms.*, websites.*, *'])
-    .limit(40)
+    .limit(18)
     .search(game)
-    .where('category=0 & cover!=null ')
+    .where('category=0 & cover!=null & rating_count > 2 ')
     .request('/games')
       .then(response=>{
         results = response.data;
