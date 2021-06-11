@@ -1,4 +1,5 @@
 $primary: #3765a9;
+$secondary: #9B37B1;
 $tertiary:#343434;
 $background: #E3E3E3;
 $card-background: #F1F1F1;
@@ -13,6 +14,7 @@ body{
     width: 100vw;
     height: auto;
     font-family: 'Poppins', sans-serif;
+    background-color: $background;
 }
 
 a{
@@ -28,19 +30,22 @@ nav{
     
 
     .logo-ctnr{
-        height: 1.375rem;
         width: 1.375rem;
-        margin-left: 2.375rem;
+        height: 1.375rem;
+        margin-left: clamp(2.25rem,8vw,8.75rem);
+        background-image: url(/img/logos/logo-only.png);
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
     }
 
     .hamburger{
+        position: relative;
+        z-index: 3;
         text-decoration: none;
         width: 1.5em;
         height: 1.125rem; 
-        margin-right: 2.375rem;
+        margin-right: 9vw;
         background-image: url(../img/hamburger.png);
         background-repeat: no-repeat;
         background-size: 150%;
@@ -48,6 +53,12 @@ nav{
         
         a{
             visibility: hidden;
+        }
+
+        .button-ctnr{
+            position: absolute;
+            z-index: -2;
+            display: none;
         }
         
     }
@@ -61,7 +72,8 @@ nav{
         top:4.25rem;
         left: 0;
         margin-bottom: 1em;
-        height: 14rem;
+        min-height: 3rem;
+        max-height: 14rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -81,6 +93,7 @@ nav{
         }
 
         .button-ctnr{
+            display: block;
             position: absolute;
             bottom: 1.5em;
         }
@@ -88,6 +101,11 @@ nav{
 }
 
 main{
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .landing-ctnr{
         position: relative;
         display: flex;
@@ -96,31 +114,15 @@ main{
         width: 100%;
         color: white;
     }
-    
-    .landing-background-blue{
-        position: absolute;
-        z-index: -2;
-        top: 0;
-        width: 100%;
-        height: 38.5rem;
-        background-color: $primary;
-    }
-    
-    .landing-background-orange{
-        position: absolute;
-        rotate: -15deg;
-        z-index: -1;
-        top: 40rem;
-        width: 160%;
-        max-width: 2300px;
-        height:8rem;
-        background-color: #D6933B; 
-    }
 
     .top{
         width: 100%;
+        height: auto;
         display: flex;
         flex-direction: column;
+        border-radius: 0 0 clamp(1rem, 12vw, 10rem) 0;
+        background: rgb(55,101,169);
+        background: linear-gradient(163deg, rgba(55,101,169,1) 0%, rgba(55,101,169,1) 7%, rgba(164,84,174,1) 100%);
         
 
         img{
@@ -128,16 +130,19 @@ main{
         }
 
         .text-ctnr{
-            margin: 0  2.375rem 0  2.375rem;
             display: flex;
             flex-direction: column;
             align-content: center;
+            margin: 2rem  9% 0  9%;
+            min-width: 2.625rem;
+            max-width: 42.125rem;
 
             h1{
-                font-size: 2.625rem;
+                font-size: clamp(2rem,10vw,5.5rem);
                 font-weight: bold;
-                line-height: 3rem;
+                line-height: clamp(2rem,12vw,100px);
                 margin-bottom: 3.25rem;
+                text-align: center;
             }
 
             p{
@@ -145,14 +150,17 @@ main{
                 font-weight: 500;
                 line-height: 1.875rem;
                 margin: 0;
+                text-align: center;
             }
 
             button{
                 align-self: center;
                 width: 50%;
-                height: 4em;
+                min-height: 4em;
+                max-height: 4em;
                 max-width: 400px;
                 margin-top: 3.25rem;
+                margin-bottom: 4rem;
                 color: white;
                 background-color: $tertiary;
                 font-size: 1.125em;
@@ -169,37 +177,586 @@ main{
         flex-direction: column;
         align-items: center;
         width: 100%;
-        margin-top: 5.375rem;
+        margin-top: 4rem;
 
         .info-card{
             width: 20rem;
-            height: 16.5rem;
+            height: auto;
             margin-bottom: 1em;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: $card-background;
-            border-radius: 22px;
+
+            
+
+            &:nth-child(2){
+                margin-left: clamp(.8em, 1em, 1.2em);
+                margin-right: clamp(.8em, 1em, 1.2em);
+            }
 
             .info-image{
-                width: 9.875rem;
-                height: 9.875rem;
+                width: 4.8rem;
+                height: 4.8rem;
                 margin-top: 1rem;
                 background-position: center;
                 background-size: contain;
                 background-repeat: no-repeat;
+                background-color: $primary;
+                border-radius: clamp(1em, 1em, 2em);
             }
-
+            h6{
+                font-size: clamp(1.375rem, 1.375rem, 2rem);
+                font-weight: 600;
+                color: $tertiary;
+                margin: 1rem 0 1rem 0;
+            }
             p{
                 font-size: 1.125rem;
-                font-weight: 600;
+                font-weight: 400;
                 color: $tertiary;
                 width: 15.625rem;
                 text-align: center;
+                margin: 1rem 0 1rem 0;
             }
         }
     }
 }
+
+    // Home
+    .search-ctnr{
+        position: relative;
+        width: 82vw;
+        height: 2.625rem;
+        margin-top: 2.375rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        
+        
+        input{
+            width: 100%;
+            height: 100%;
+            background-color: #F5F5F5;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            color: $tertiary;
+            
+            &::placeholder{
+                color: #C6C6C6;
+            }
+
+        }
+
+        button{
+            position: absolute;
+            z-index: 2;
+            width: clamp(4em,15%,7em);
+            height: 85%;
+            margin-right: 2%;
+            align-self: flex-end;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: $secondary;
+            font-size: .6rem;
+            font-weight: 200;
+        }
+
+    }
+
+    #graph-ctnr{
+        display: none;
+    }
+
+    h4{
+        font-weight: 500;
+        font-size: 1.25rem;
+        color: $tertiary;
+    }
+
+    .recently-played-ctnr{
+        display: flex;
+        width: 100vw;
+        height: 13.625rem;
+        margin-left: clamp(2.25rem,8vw,8.75rem);
+        overflow-x: scroll;
+        overflow-y: hidden;
+
+        .recent-game{
+            width: 10.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            flex-shrink: 0;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 10px;
+            margin-right: .625em;
+
+            &::before{
+                content: '';
+                display: block;
+                padding-top: 75%;
+
+            }
+
+            &:last-of-type{
+                margin-right: 3rem;
+            }
+
+            .button-ctnr{
+                position: relative;
+                align-self: flex-end;
+                width: 100%;
+                height: 18%;
+                border-radius:  0 0 10px 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+
+                .button-background{
+                    width: 100%;
+                    height: 100%;
+                    background-color: black;
+                    opacity: .6;
+                    border-radius:  0 0 10px 10px;
+                    position: absolute;
+                    z-index: 1;
+                }
+
+                div{
+                    position: relative;
+                    z-index: 1;
+                    width: clamp(2rem,19%,3rem);
+                    background-position: center;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+
+                    &::after{
+                        padding-top: 100%;
+                        content: '';
+                        display: block;
+                    }
+                }
+
+                .status-icon{
+                    margin-left: .625rem;
+                }
+                .remove-btn{
+                    background-image: url(../img/delete.png);
+                    margin-right: .625rem;
+                }
+            }
+        }
+    }
+
+    .friends-played-ctnr{
+        display: flex;
+        width: 100vw;
+        height: 13.625rem;
+        margin-left: clamp(2.25rem,8vw,8.75rem);
+        overflow-y: hidden;
+        overflow-x: scroll;
+        margin-bottom: 12vh;
+
+        .friend-ctnr{
+            position: relative;
+            flex-shrink: 0;
+            display: flex;
+            align-items: flex-end;
+            width: 15.875rem;
+            height: 100%;
+            margin-right: 1rem;
+            border-radius: .5rem;
+
+            &:last-of-type{
+                margin-right: 3rem;
+            }
+
+            .cover{
+                width: 100%;
+                height: 100%;
+                background-size: 100%;
+                background-repeat: no-repeat;
+                border-radius: .5rem;
+            }
+
+            .friend-text-ctnr{
+                width: 100%;
+                height: 38%;
+                border-radius:  0 0 .5rem .5rem;
+                background-color: $tertiary;
+                color: white; 
+                position: absolute;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+
+                h2,p{
+                    margin: 0 0 0 1rem;
+                }
+                h2{
+                    margin-top: .5rem;
+                    font-size: .875rem;
+                    font-weight: 500;
+                }
+
+                p{
+                    font-size: .75rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    // Sign Up 
+    .signup-background{
+        position: absolute;
+        z-index: -5;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgb(55,101,169);
+        background: linear-gradient(163deg, rgba(55,101,169,1) 0%, rgba(55,101,169,1) 7%, rgba(164,84,174,1) 100%);
+    }
+
+    .signup-form-ctnr{
+        width: clamp(21.375rem, 83%, 50rem);
+        margin-top: 4.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 22px;
+        background-color: white;
+
+        form{
+            min-height: 31rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1,h2{
+            font-size: 1.125rem;
+            margin-left: clamp(1.25rem,5.5%,3rem);
+        }
+        h1{
+            font-weight: 600;
+        }
+        
+        h2{
+            font-weight: 400;
+        }
+
+        input{
+            width: clamp(13.875rem,54%, 28.3rem);
+            height: 2.375rem;
+            color: $tertiary;
+            background-color: #F2F2F2;
+            border: none;
+            border-radius: 5px;
+            flex-shrink: 0;
+            align-self: center;
+            margin-top: 1rem;
+
+            &::placeholder{
+                color: #8B8B8B;
+            }
+        }
+        .account-info{
+            width: 100%;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #password-confirm{
+            margin-bottom: 2rem;
+        }
+
+        .steam-info{
+            width: 100%;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        button{
+            width: clamp(10.375rem,13vw,16.25rem);
+            margin:  2rem 0 clamp(1rem,1vh, 5.8rem) 0;
+            align-self: center;
+            background-color: $primary;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(1.125rem, 35%, 1.875rem);
+
+            &::after{
+                padding-top: 25%;
+                content: '';
+                display: block;
+            }
+        }
+        
+    }
+
+    // Log In 
+    .login-form-ctnr{
+        width: clamp(21.375rem, 83%, 50rem);
+        margin-top: 4.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 22px;
+        background-color: white;
+
+        h1{
+            align-self: flex-start;
+            font-size: clamp(1.125rem, 4vw, 2.25rem);
+            margin-left: clamp(1.25rem,5.5%,3rem);
+        }
+
+        form{
+            width: clamp(13.875rem, 53vw, 28.3rem);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            input{
+                width: 100%;
+                height: clamp(2.375rem, 4vh, 3.5rem);
+                margin-top: 1rem;
+                border: none;
+                border-radius: 5px;
+                background-color: #F2F2F2;
+                color: $tertiary;
+
+                &::placeholder{
+                    color: #8B8B8B;
+                }
+            }
+
+            button{
+                width: clamp(10.375rem,13vw,16.25rem);
+                margin:  1rem 0 clamp(1rem,1vh, 5.8rem) 0;
+                align-self: center;
+                background-color: $primary;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: clamp(1.125rem, 35%, 1.875rem);
+    
+                &::after{
+                    padding-top: 25%;
+                    content: '';
+                    display: block;
+                }
+            }
+        } 
+    }
+
+    .error-alert{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: fit-content;
+        margin: 0;
+
+        p{
+            font-size: .75rem;
+            font-weight: 300;
+            text-align: center;
+            margin: 0 clamp(1.25rem,5.5%,3rem) 0 clamp(1.25rem,5.5%,3rem);
+            color: #D82222;  
+        }
+    }
+
+    // Results 
+
+    .results-ctnr{
+        width: 100%;
+        max-height: 50.75rem;
+        overflow-y: scroll;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .result{
+            width: clamp(10.375rem, 40vw, 16.25rem);
+            height: clamp(13.875rem, 54vw, 21.625rem);
+            border-radius: 10px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-bottom: 1rem;
+
+            &::after{
+                padding-top: 75%;
+                content: '';
+                display: block;
+            }
+
+            button{
+                position: relative;
+                z-index: 3;
+                width: clamp(3.3rem,32%, 5.125rem);
+                height: clamp(1.5rem,11%,2.375rem);
+                background-color: $tertiary;
+                color: white;
+                font-size: clamp(.5rem, 1vw, .75rem);
+                font-weight: 600;
+                margin-bottom: 4%;
+                border-radius: 5px;
+                border: none;
+
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .overlay{
+        position: absolute;
+        z-index: 4;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: .5;
+    }
+
+    .modal-ctnr{
+        position: absolute;
+        top:50%;
+        transform: translateY(-50%);
+        z-index: 5;
+        width: clamp(21.375rem, 82%, 50.75rem);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        border-radius: 22px;
+
+        .cover-modal{
+            width: clamp(10.375rem, 40vw, 16.25rem);
+            height: clamp(13.875rem, 54vw, 21.625rem);
+            margin-top: 4%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 10px;
+
+            &::after{
+                padding-top: 75%;
+                content: '';
+                display: block;
+            }
+        }
+
+        .modal-text-ctnr{
+            width: clamp(9.5rem, 87%, 28.25rem);
+            height: clamp(16.6rem, 44%, 18.4rem);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            
+            h1,h4,p{
+                margin: 0;
+                width: 100%;
+            }
+            
+            h1{
+                font-size: 2.375rem;
+                font-weight: 600;
+                text-align: center;
+                line-height: 2.25rem;
+                
+                
+            }
+            
+            h4{
+                font-size: 1.125rem;
+                font-weight: 200;
+                text-align: center;
+            }
+            
+            p{
+                width: 100%;
+                max-height: 9.5rem;
+                font-size: .875rem;
+                overflow-y: auto;
+                overflow-x: hidden;
+                margin-bottom: 1rem;
+            }
+
+            #genre{
+                font-style: italic;
+            }
+        }
+
+        h5{
+            width: clamp(11.25rem, 45vw, 33.5rem);
+            line-height: 1.125rem;
+            font-size: clamp(1rem, 3.8vw, 1.5rem);
+            font-weight: 600;
+            text-align: center;
+        }
+
+        input{
+            width: clamp(10.375rem, 40%, 16.25rem);
+            height: clamp(2.375rem, 4vh, 3.5rem);
+            margin-bottom: 1rem; 
+            text-align: center;
+            background-color: #DADADA;
+            color: $tertiary;
+            border: none;
+            border-radius: 5px;
+            
+            &::placeholder{
+                color: #9E9E9E;
+            }
+        }
+
+        button{
+            width: clamp(10.375rem,13vw,16.25rem);
+            margin:  1rem 0 clamp(1rem,1vh, 5.8rem) 0;
+            align-self: center;
+            background-color: $primary;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(1.125rem, 35%, 1.875rem);
+
+            &::after{
+                padding-top: 25%;
+                content: '';
+                display: block;
+            }
+        }
+    }
+
+
 
 footer{
     width: 100%;
@@ -216,12 +773,223 @@ footer{
         color: white;
         margin-right: 1rem;
         &:last-of-type{
-            margin-right: 2.375rem;
+            margin-right: 9vw;
         }
     }
 }
 
     // Desktop Breakpoint
 @media (min-width: 769px) {
+    nav{
+        position: relative;
+
+        .logo-ctnr{
+            width: clamp(5rem,6%,6.25rem);
+            background-image: url(/img/logos/playd.png);
+        }
+
+        .hamburger{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-image: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a{
+                visibility: visible;
+                
+                font-size: clamp(1rem,1.5vw,1.375rem);
+                font-weight: 500;
+                color: $tertiary;
+
+                &:hover{
+                    color: $primary;
+                }
+
+                &:nth-child(2){
+                    margin: 0 5rem 0 5rem;
+                }
+            }
+
+            .button-ctnr{
+                position: absolute;
+                right: 0;
+                height: 100%;
+                width: clamp(10rem,13vw,16.375rem);
+                display: flex;
+                align-items: center;
+
+                a{
+                    height: clamp(2rem,38%,2.5rem);
+                    text-align: center;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .sign-up{
+                    background-color: $secondary;
+                    color: white;
+                    width: clamp(5rem,46.5%,7.625rem);
+                    border-radius: 10px;
+                    font-size: .875rem;
+                    font-weight: 400;
+                    margin-right: 1rem;
+                }
+
+                .log-in{
+                    color: $secondary;
+                    font-weight: 500;
+                }
+            }
+        }
+
+    }
+    main{
+        .landing-ctnr{
+            
+        }
+        .top{
+            flex-direction: row;
+            justify-content: center;
+            height: clamp(31.5rem,40rem,51rem);
+            min-width: 100%;
+            max-width: 100%;
+
+            .text-ctnr{
+                h1{
+                    text-align:left; 
+                }
+
+                p{
+                    text-align:left; 
+                }
+
+            }
+            
+        }
+
+        .info-ctnr{
+            flex-direction: row;
+            justify-content: center;
+            margin: 7.375rem 8vw 4rem 8vw;
+        }
+
+        // Home
+        .search-ctnr{
+            position: relative;
+            width: 51vw;
+            display: flex;
+            justify-content: center;
+        }
+
+        .recently-played-ctnr{
+            height: 21.625rem;
+            margin-left: clamp(2.25rem,9vw,8.75rem);
+            
+
+            .recent-game{
+                overflow-y: hidden;
+                overflow-x: auto;
+                width: 16.25rem;
+
+            }
+        }
+
+        .friends-played-ctnr{
+            height: 21.625rem;
+            overflow: hidden;
+
+            .friend-ctnr{
+                width: 24.875rem;
+                height: 100%;
+                
+                .friend-text-ctnr{
+
+                    h4{
+                        font-size: 1.25rem;
+                        margin-top: 1rem;
+                    }
+                    p{
+                        font-size: 1rem;
+                        margin-top: .825rem;
+                    }
+                }
+            }
+
+        }
+
+        // Sign up 
+        .signup-form-ctnr{
+            h1{
+                font-size: 2.25rem;
+            }
+            h2{
+                font-size: 1.5rem;
+                align-self: flex-start;
+            }
+            
+        }
+
+        .login-form-ctnr{
+            h1{
+                font-size: 2.25rem;
+            }
+        }
+
+        .error-alert{
+            p{
+                font-size: 1rem;
+            }
+        }
+
+        // Results 
+        .results-ctnr{
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+
+            .result{
+                margin: 2rem 1rem 0 0;
+            }
+        }
+
+        .modal-ctnr{
+            
+        }
+    }
+}
+
+@media (min-width: 1330px){
     
+    main{
+
+        .top{
+            .text-ctnr{
+                margin-left: 0;
+            }
+    
+        }
+        #gamer{
+            visibility: visible;
+            min-width: 32%;
+            height: 95%;
+            margin-left: 10vw;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center bottom;
+            align-self: flex-end;
+            
+        }
+
+        .recently-played-ctnr{
+            overflow-x: hidden;
+        }
+    }
 }

@@ -41,23 +41,25 @@ let pastWeek =
   sevenDaysAgo
 ]
 
-if(document.querySelector('.hamburger')){
+
   // Hamburger click handler 
-  let hamburger = document.querySelector('.hamburger')
   
+  let hamburger = document.querySelector('.hamburger')
   hamburger.addEventListener('click', ()=>{
-    hamburger.id = 'open'
+    if(screen.width<=769 ){
+      hamburger.id = 'open'
+      console.log('hf');
+    }
     
   })
   
-  document.addEventListener('click', (e)=>{
-    if(!e.target.classList.contains('hamburger')){
-      hamburger.removeAttribute('id')
-      console.log('d');
-    }
-  })
-}
 
+
+document.addEventListener('click', (e)=>{
+  if(!e.target.classList.contains('hamburger')){
+    hamburger.removeAttribute('id')
+  }
+})
 // Welcome Page 
 if(document.querySelector('.landing-ctnr')){
 
@@ -226,9 +228,10 @@ if(document.querySelector('.recently-played-ctnr')){
       let friendDiv = document.createElement('div')
       let friendTextContainer = document.createElement('div')
       let friendName = document.createElement('h2')
-      let recentGameTime = document.createElement('h4')
+      let recentGameTime = document.createElement('p')
+      let recentGameTitle = document.createElement('p')
       let recentGameCover = document.createElement('div')
-      let recentGameDate = document.createElement('p')
+
 
       // Find most recent game 
       let mostRecentGame = friend.savedGames.find(game=>game.playTime[0].time > 0 )
@@ -247,12 +250,12 @@ if(document.querySelector('.recently-played-ctnr')){
       }
       
       recentGameCover.style.backgroundImage = `url(${mostRecentGame.cover})`
-      recentGameDate.textContent = mostRecentGame.playTime[0].date
+      recentGameTitle.textContent = mostRecentGame.title
 
       friendDiv.appendChild(recentGameCover)
       friendTextContainer.appendChild(friendName)
+      friendTextContainer.appendChild(recentGameTitle)
       friendTextContainer.appendChild(recentGameTime)
-      friendTextContainer.appendChild(recentGameDate)
       friendDiv.appendChild(friendTextContainer)
       friendsContainer.appendChild(friendDiv)
     })
@@ -628,15 +631,15 @@ let searchForGame = ()=>{
       button.classList.add('result-add-btn')
       button.textContent = 'Add'
 
-      button.addEventListener('click',()=>{
-        renderTimeInput(game)
-      })
+      // button.addEventListener('click',()=>{
+      //   renderTimeInput(game)
+      // })
 
       result.addEventListener('click', ()=>{
         renderGameOverlay(game)
       })
 
-      result.appendChild(button)
+      
       resultContainer.appendChild(result)
     })})}
 // Search 

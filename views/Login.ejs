@@ -18,20 +18,29 @@
         <div class="login-form-ctnr">
             <h1>Log In</h1>
             <form class="login-ctnr">
-                <div class="input-ctnr">
                     <input type="text" name="username" class='username' placeholder="username">
+                    <% if (typeof errors != 'undefined') { %>
+                        <% errors.forEach(error => { %>
+                            <% if (error.param === 'username') { %>
+                                <div class="error-alert">
+                                    <p><%= error.msg %></p>
+                                </div>
+                            <% } %>                    
+                        <% }) %>
+                    <% } %>
                     <input type="text" name="password" class='password' placeholder="password">
-                </div>
+                    <% if (typeof errors != 'undefined') { %>
+                        <% errors.forEach(error => { %>
+                            <% if (error.param === 'password') { %>
+                                <div class="error-alert">
+                                    <p><%= error.msg %></p>
+                                </div>
+                            <% } %>                    
+                        <% }) %>
+                    <% } %>
                 <button type="submit" formmaction="/login" formmethod='post'  lass="login-submit-btn">Submit</button>
-                <% if (typeof errors != 'undefined') { %>
-                    <% errors.forEach(error => { %>
-                        <div class="error-alert">
-                            <p><%= error.msg %></p>
-                        </div>                    
-                    <% }) %>
-                <% } %>
             </form>
-            <a href="/signup">No Account? Sign up!</a>
+            <a href="/signup">No account? Sign up!</a>
         </div>
     </main>
 

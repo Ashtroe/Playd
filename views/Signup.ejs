@@ -28,6 +28,15 @@
                     id="email"
                     value="<%= typeof email != 'undefined' ? email : '' %>"
                 >
+                <% if (typeof errors != 'undefined') { %>
+                    <% errors.forEach(error => { %>
+                        <% if (error.param === 'email') { %>
+                            <div class="error-alert">
+                                <p><%= error.msg %></p>
+                            </div>
+                        <% } %>                    
+                    <% }) %>
+                <% } %>
                 <input 
                     type="text" 
                     placeholder= 'Username' 
@@ -36,6 +45,15 @@
                     id="username"
                     value="<%= typeof username != 'undefined' ? username : '' %>"
                 >
+                <% if (typeof errors != 'undefined') { %>
+                    <% errors.forEach(error => { %>
+                        <% if (error.param === 'username') { %>
+                            <div class="error-alert">
+                                <p><%= error.msg %></p>
+                            </div>
+                        <% } %>                    
+                    <% }) %>
+                <% } %>
                 <input 
                     type="password" 
                     placeholder= 'Password' 
@@ -43,6 +61,15 @@
                     class='signup-input' 
                     id="password"
                 >
+                <% if (typeof errors != 'undefined') { %>
+                    <% errors.forEach(error => { %>
+                        <% if (error.param === 'password') { %>
+                            <div class="error-alert">
+                                <p><%= error.msg %></p>
+                            </div>
+                        <% } %>                    
+                    <% }) %>
+                <% } %>
                 <input 
                     type="password" 
                     placeholder= 'Confirm Password' 
@@ -50,10 +77,18 @@
                     class='signup-input' 
                     id="confirm"
                 >
+                <% if (typeof errors != 'undefined') { %>
+                    <% errors.forEach(error => { %>
+                        <% if (error.param === 'password-confirm') { %>
+                            <div class="error-alert">
+                                <p><%= error.msg %></p>
+                            </div>
+                        <% } %>                    
+                    <% }) %>
+                <% } %>
                 </div>
-                
-                <h2>Connect to steam (Optional)</h2>
-                <div class="steam">
+                <div class="steam-info">
+                    <h2>Connect to steam (Optional)</h2>
                     <input 
                         type="text" 
                         placeholder= 'Steam Username' 
@@ -62,20 +97,19 @@
                         id="steam"
                         value="<%= typeof steamName != 'undefined' ? steamName : '' %>"
                     >
-                    
+                    <% if (typeof errors != 'undefined') { %>
+                        <% errors.forEach(error => { %>
+                            <% if (error.param === 'steam') { %>
+                                <div class="error-alert">
+                                    <p><%= error.msg %></p>
+                                </div>
+                            <% } %>                    
+                        <% }) %>
+                    <% } %>
                 </div>
                 <button type="submit" formaction="/signup" formmethod="post" class="signup-submit">Sign Up</button>
             </form>
 
-            
-
-            <% if (typeof errors != 'undefined') { %>
-                <% errors.forEach(error => { %>
-                    <div class="error-alert">
-                        <p><%= error.msg %></p>
-                    </div>                    
-                <% }) %>
-            <% } %>
             
         </div>
     </main>

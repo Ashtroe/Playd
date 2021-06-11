@@ -48,7 +48,7 @@ router.post(
     }),
   body("email")
     .notEmpty()
-    .withMessage("Username is required")
+    .withMessage("email is required")
     .isEmail()
     .withMessage("Must enter a valid email"),
   (req, res) => {
