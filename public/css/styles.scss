@@ -9,6 +9,9 @@ html{
 }
 
 body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     overflow-x: hidden;
     margin: 0;
     width: 100vw;
@@ -101,11 +104,13 @@ nav{
 }
 
 main{
+    width: clamp(1rem, 100%, 100rem);
     min-height: 100vh;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .landing-ctnr{
         position: relative;
         display: flex;
@@ -167,6 +172,10 @@ main{
                 font-weight: 500;
                 border-radius: 10px;
                 border: none;
+
+                &:hover{
+                    cursor: pointer;
+                }
             }
 
         }
