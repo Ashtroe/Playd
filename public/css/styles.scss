@@ -33,7 +33,7 @@ nav{
         width: 1.375rem;
         height: 1.375rem;
         margin-left: clamp(2.25rem,8vw,8.75rem);
-        background-image: url(../img/logos/logo-only.png);
+        background-image: url(../img/playd-short.png);
         background-position: center;
         background-size: contain;
         background-repeat: no-repeat;
@@ -790,7 +790,7 @@ footer{
 
         .logo-ctnr{
             width: clamp(5rem,6%,6.25rem);
-            background-image: url(../img/logos/playd.png);
+            background-image: url(../img/playd-full.png);
         }
 
         .hamburger{
@@ -856,9 +856,6 @@ footer{
 
     }
     main{
-        .landing-ctnr{
-            
-        }
         .top{
             flex-direction: row;
             justify-content: center;
@@ -963,10 +960,6 @@ footer{
             .result{
                 margin: 2rem 1rem 0 0;
             }
-        }
-
-        .modal-ctnr{
-            
         }
     }
 }
