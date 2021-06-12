@@ -1,0 +1,1202 @@
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  width: 100vw;
+  height: auto;
+  font-family: 'Poppins', sans-serif;
+  background-color: #E3E3E3;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  width: 100%;
+  height: 4.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #F1F1F1;
+}
+
+nav .logo-ctnr {
+  width: 1.375rem;
+  height: 1.375rem;
+  margin-left: clamp(2.25rem, 8vw, 8.75rem);
+  background-image: url(../img/playd-short.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+nav .hamburger {
+  position: relative;
+  z-index: 3;
+  text-decoration: none;
+  width: 1.5em;
+  height: 1.125rem;
+  margin-right: 9vw;
+  background-image: url(../img/menu.png);
+  background-repeat: no-repeat;
+  background-size: 150%;
+  background-position: center;
+}
+
+nav .hamburger a {
+  visibility: hidden;
+}
+
+nav .hamburger .button-ctnr {
+  position: absolute;
+  z-index: -2;
+  display: none;
+}
+
+nav #open {
+  position: absolute;
+  z-index: 2;
+  background-image: url("");
+  background-color: #F1F1F1;
+  min-width: 100%;
+  top: 4.25rem;
+  left: 0;
+  margin-bottom: 1em;
+  min-height: 3rem;
+  max-height: 14rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+nav #open a {
+  visibility: visible;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #343434;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+nav #open a:active {
+  color: #3765a9;
+}
+
+nav #open .button-ctnr {
+  display: block;
+  position: absolute;
+  bottom: 1.5em;
+}
+
+main {
+  min-height: 100vh;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .landing-ctnr {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  color: white;
+}
+
+main .top {
+  width: 100%;
+  height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-radius: 0 0 clamp(1rem, 12vw, 10rem) 0;
+  background: #3765a9;
+  background: linear-gradient(163deg, #3765a9 0%, #3765a9 7%, #a454ae 100%);
+}
+
+main .top img {
+  visibility: hidden;
+}
+
+main .top .text-ctnr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin: 2rem  9% 0  9%;
+  min-width: 2.625rem;
+  max-width: 42.125rem;
+}
+
+main .top .text-ctnr h1 {
+  font-size: clamp(2rem, 10vw, 5.5rem);
+  font-weight: bold;
+  line-height: clamp(2rem, 12vw, 100px);
+  margin-bottom: 3.25rem;
+  text-align: center;
+}
+
+main .top .text-ctnr p {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.875rem;
+  margin: 0;
+  text-align: center;
+}
+
+main .top .text-ctnr button {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  width: 50%;
+  min-height: 4em;
+  max-height: 4em;
+  max-width: 400px;
+  margin-top: 3.25rem;
+  margin-bottom: 4rem;
+  color: white;
+  background-color: #343434;
+  font-size: 1.125em;
+  font-weight: 500;
+  border-radius: 10px;
+  border: none;
+}
+
+main .top .text-ctnr button:hover {
+  cursor: pointer;
+}
+
+main .info-ctnr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin-top: 4rem;
+}
+
+main .info-ctnr .info-card {
+  width: 20rem;
+  height: auto;
+  margin-bottom: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .info-ctnr .info-card:nth-child(2) {
+  margin-left: clamp(0.8em, 1em, 1.2em);
+  margin-right: clamp(0.8em, 1em, 1.2em);
+}
+
+main .info-ctnr .info-card .info-image {
+  width: 4.8rem;
+  height: 4.8rem;
+  margin-top: 1rem;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #3765a9;
+  border-radius: clamp(1em, 1em, 2em);
+}
+
+main .info-ctnr .info-card h6 {
+  font-size: clamp(1.375rem, 1.375rem, 2rem);
+  font-weight: 600;
+  color: #343434;
+  margin: 1rem 0 1rem 0;
+}
+
+main .info-ctnr .info-card p {
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #343434;
+  width: 15.625rem;
+  text-align: center;
+  margin: 1rem 0 1rem 0;
+}
+
+.search-ctnr {
+  position: relative;
+  width: 82vw;
+  height: 2.625rem;
+  margin-top: 2.375rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.search-ctnr input {
+  width: 100%;
+  height: 100%;
+  background-color: #F5F5F5;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  color: #343434;
+}
+
+.search-ctnr input::-webkit-input-placeholder {
+  color: #C6C6C6;
+}
+
+.search-ctnr input:-ms-input-placeholder {
+  color: #C6C6C6;
+}
+
+.search-ctnr input::-ms-input-placeholder {
+  color: #C6C6C6;
+}
+
+.search-ctnr input::placeholder {
+  color: #C6C6C6;
+}
+
+.search-ctnr button {
+  position: absolute;
+  z-index: 2;
+  width: clamp(4em, 15%, 7em);
+  height: 85%;
+  margin-right: 2%;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #9B37B1;
+  font-size: .6rem;
+  font-weight: 200;
+}
+
+#graph-ctnr {
+  display: none;
+}
+
+h4 {
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: #343434;
+}
+
+.recently-played-ctnr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  height: 13.625rem;
+  margin-left: clamp(2.25rem, 8vw, 8.75rem);
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.recently-played-ctnr .recent-game {
+  width: 10.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  margin-right: .625em;
+}
+
+.recently-played-ctnr .recent-game::before {
+  content: '';
+  display: block;
+  padding-top: 75%;
+}
+
+.recently-played-ctnr .recent-game:last-of-type {
+  margin-right: 3rem;
+}
+
+.recently-played-ctnr .recent-game .button-ctnr {
+  position: relative;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  width: 100%;
+  height: 18%;
+  border-radius: 0 0 10px 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.recently-played-ctnr .recent-game .button-ctnr .button-background {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: .6;
+  border-radius: 0 0 10px 10px;
+  position: absolute;
+  z-index: 1;
+}
+
+.recently-played-ctnr .recent-game .button-ctnr div {
+  position: relative;
+  z-index: 1;
+  width: clamp(2rem, 19%, 3rem);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.recently-played-ctnr .recent-game .button-ctnr div::after {
+  padding-top: 100%;
+  content: '';
+  display: block;
+}
+
+.recently-played-ctnr .recent-game .button-ctnr .status-icon {
+  margin-left: .625rem;
+}
+
+.recently-played-ctnr .recent-game .button-ctnr .remove-btn {
+  background-image: url(../img/delete.png);
+  margin-right: .625rem;
+}
+
+.friends-played-ctnr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  height: 13.625rem;
+  margin-left: clamp(2.25rem, 8vw, 8.75rem);
+  overflow-y: hidden;
+  overflow-x: scroll;
+  margin-bottom: 12vh;
+}
+
+.friends-played-ctnr .friend-ctnr {
+  position: relative;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  width: 15.875rem;
+  height: 100%;
+  margin-right: 1rem;
+  border-radius: .5rem;
+}
+
+.friends-played-ctnr .friend-ctnr:last-of-type {
+  margin-right: 3rem;
+}
+
+.friends-played-ctnr .friend-ctnr .cover {
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-radius: .5rem;
+}
+
+.friends-played-ctnr .friend-ctnr .friend-text-ctnr {
+  width: 100%;
+  height: 38%;
+  border-radius: 0 0 .5rem .5rem;
+  background-color: #343434;
+  color: white;
+  position: absolute;
+  z-index: 2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.friends-played-ctnr .friend-ctnr .friend-text-ctnr h2, .friends-played-ctnr .friend-ctnr .friend-text-ctnr p {
+  margin: 0 0 0 1rem;
+}
+
+.friends-played-ctnr .friend-ctnr .friend-text-ctnr h2 {
+  margin-top: .5rem;
+  font-size: .875rem;
+  font-weight: 500;
+}
+
+.friends-played-ctnr .friend-ctnr .friend-text-ctnr p {
+  font-size: .75rem;
+  font-weight: 500;
+}
+
+.signup-background {
+  position: absolute;
+  z-index: -5;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: #3765a9;
+  background: linear-gradient(163deg, #3765a9 0%, #3765a9 7%, #a454ae 100%);
+}
+
+.signup-form-ctnr {
+  width: clamp(21.375rem, 83%, 50rem);
+  margin-top: 4.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 22px;
+  background-color: white;
+}
+
+.signup-form-ctnr form {
+  min-height: 31rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.signup-form-ctnr h1, .signup-form-ctnr h2 {
+  font-size: 1.125rem;
+  margin-left: clamp(1.25rem, 5.5%, 3rem);
+}
+
+.signup-form-ctnr h1 {
+  font-weight: 600;
+}
+
+.signup-form-ctnr h2 {
+  font-weight: 400;
+}
+
+.signup-form-ctnr input {
+  width: clamp(13.875rem, 54%, 28.3rem);
+  height: 2.375rem;
+  color: #343434;
+  background-color: #F2F2F2;
+  border: none;
+  border-radius: 5px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-top: 1rem;
+}
+
+.signup-form-ctnr input::-webkit-input-placeholder {
+  color: #8B8B8B;
+}
+
+.signup-form-ctnr input:-ms-input-placeholder {
+  color: #8B8B8B;
+}
+
+.signup-form-ctnr input::-ms-input-placeholder {
+  color: #8B8B8B;
+}
+
+.signup-form-ctnr input::placeholder {
+  color: #8B8B8B;
+}
+
+.signup-form-ctnr .account-info {
+  width: 100%;
+  margin-bottom: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.signup-form-ctnr #password-confirm {
+  margin-bottom: 2rem;
+}
+
+.signup-form-ctnr .steam-info {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.signup-form-ctnr button {
+  width: clamp(10.375rem, 13vw, 16.25rem);
+  margin: 2rem 0 clamp(1rem, 1vh, 5.8rem) 0;
+  -ms-flex-item-align: center;
+      align-self: center;
+  background-color: #3765a9;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: clamp(1.125rem, 35%, 1.875rem);
+}
+
+.signup-form-ctnr button::after {
+  padding-top: 25%;
+  content: '';
+  display: block;
+}
+
+.login-form-ctnr {
+  width: clamp(21.375rem, 83%, 50rem);
+  margin-top: 4.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 22px;
+  background-color: white;
+}
+
+.login-form-ctnr h1 {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  font-size: clamp(1.125rem, 4vw, 2.25rem);
+  margin-left: clamp(1.25rem, 5.5%, 3rem);
+}
+
+.login-form-ctnr form {
+  width: clamp(13.875rem, 53vw, 28.3rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.login-form-ctnr form input {
+  width: 100%;
+  height: clamp(2.375rem, 4vh, 3.5rem);
+  margin-top: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #F2F2F2;
+  color: #343434;
+}
+
+.login-form-ctnr form input::-webkit-input-placeholder {
+  color: #8B8B8B;
+}
+
+.login-form-ctnr form input:-ms-input-placeholder {
+  color: #8B8B8B;
+}
+
+.login-form-ctnr form input::-ms-input-placeholder {
+  color: #8B8B8B;
+}
+
+.login-form-ctnr form input::placeholder {
+  color: #8B8B8B;
+}
+
+.login-form-ctnr form button {
+  width: clamp(10.375rem, 13vw, 16.25rem);
+  margin: 1rem 0 clamp(1rem, 1vh, 5.8rem) 0;
+  -ms-flex-item-align: center;
+      align-self: center;
+  background-color: #3765a9;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: clamp(1.125rem, 35%, 1.875rem);
+}
+
+.login-form-ctnr form button::after {
+  padding-top: 25%;
+  content: '';
+  display: block;
+}
+
+.error-alert {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin: 0;
+}
+
+.error-alert p {
+  font-size: .75rem;
+  font-weight: 300;
+  text-align: center;
+  margin: 0 clamp(1.25rem, 5.5%, 3rem) 0 clamp(1.25rem, 5.5%, 3rem);
+  color: #D82222;
+}
+
+.results-ctnr {
+  width: 100%;
+  max-height: 50.75rem;
+  overflow-y: scroll;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.results-ctnr .result {
+  width: clamp(10.375rem, 40vw, 16.25rem);
+  height: clamp(13.875rem, 54vw, 21.625rem);
+  border-radius: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
+.results-ctnr .result::after {
+  padding-top: 75%;
+  content: '';
+  display: block;
+}
+
+.results-ctnr .result button {
+  position: relative;
+  z-index: 3;
+  width: clamp(3.3rem, 32%, 5.125rem);
+  height: clamp(1.5rem, 11%, 2.375rem);
+  background-color: #343434;
+  color: white;
+  font-size: clamp(0.5rem, 1vw, 0.75rem);
+  font-weight: 600;
+  margin-bottom: 4%;
+  border-radius: 5px;
+  border: none;
+}
+
+.results-ctnr .result button:hover {
+  cursor: pointer;
+}
+
+.overlay {
+  position: absolute;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: .5;
+}
+
+.modal-ctnr {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: 5;
+  width: clamp(21.375rem, 82%, 50.75rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: white;
+  border-radius: 22px;
+}
+
+.modal-ctnr .cover-modal {
+  width: clamp(10.375rem, 40vw, 16.25rem);
+  height: clamp(13.875rem, 54vw, 21.625rem);
+  margin-top: 4%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.modal-ctnr .cover-modal::after {
+  padding-top: 75%;
+  content: '';
+  display: block;
+}
+
+.modal-ctnr .modal-text-ctnr {
+  width: clamp(9.5rem, 87%, 28.25rem);
+  height: clamp(16.6rem, 44%, 18.4rem);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-ctnr .modal-text-ctnr h1, .modal-ctnr .modal-text-ctnr h4, .modal-ctnr .modal-text-ctnr p {
+  margin: 0;
+  width: 100%;
+}
+
+.modal-ctnr .modal-text-ctnr h1 {
+  font-size: 2.375rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 2.25rem;
+}
+
+.modal-ctnr .modal-text-ctnr h4 {
+  font-size: 1.125rem;
+  font-weight: 200;
+  text-align: center;
+}
+
+.modal-ctnr .modal-text-ctnr p {
+  width: 100%;
+  max-height: 9.5rem;
+  font-size: .875rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 1rem;
+}
+
+.modal-ctnr .modal-text-ctnr #genre {
+  font-style: italic;
+}
+
+.modal-ctnr h5 {
+  width: clamp(11.25rem, 45vw, 33.5rem);
+  line-height: 1.125rem;
+  font-size: clamp(1rem, 3.8vw, 1.5rem);
+  font-weight: 600;
+  text-align: center;
+}
+
+.modal-ctnr input {
+  width: clamp(10.375rem, 40%, 16.25rem);
+  height: clamp(2.375rem, 4vh, 3.5rem);
+  margin-bottom: 1rem;
+  text-align: center;
+  background-color: #DADADA;
+  color: #343434;
+  border: none;
+  border-radius: 5px;
+}
+
+.modal-ctnr input::-webkit-input-placeholder {
+  color: #9E9E9E;
+}
+
+.modal-ctnr input:-ms-input-placeholder {
+  color: #9E9E9E;
+}
+
+.modal-ctnr input::-ms-input-placeholder {
+  color: #9E9E9E;
+}
+
+.modal-ctnr input::placeholder {
+  color: #9E9E9E;
+}
+
+.modal-ctnr button {
+  width: clamp(10.375rem, 13vw, 16.25rem);
+  margin: 1rem 0 clamp(1rem, 1vh, 5.8rem) 0;
+  -ms-flex-item-align: center;
+      align-self: center;
+  background-color: #3765a9;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: clamp(1.125rem, 35%, 1.875rem);
+}
+
+.modal-ctnr button::after {
+  padding-top: 25%;
+  content: '';
+  display: block;
+}
+
+footer {
+  width: 100%;
+  height: 4.25rem;
+  background-color: #343434;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+footer a {
+  text-align: center;
+  font-size: .75rem;
+  font-weight: 500;
+  color: white;
+  margin-right: 1rem;
+}
+
+footer a:last-of-type {
+  margin-right: 9vw;
+}
+
+@media (min-width: 769px) {
+  nav {
+    position: relative;
+  }
+  nav .logo-ctnr {
+    width: clamp(5rem, 6%, 6.25rem);
+    background-image: url(../img/playd-full.png);
+  }
+  nav .hamburger {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-image: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  nav .hamburger a {
+    visibility: visible;
+    font-size: clamp(1rem, 1.5vw, 1.375rem);
+    font-weight: 500;
+    color: #343434;
+  }
+  nav .hamburger a:hover {
+    color: #3765a9;
+  }
+  nav .hamburger a:nth-child(2) {
+    margin: 0 5rem 0 5rem;
+  }
+  nav .hamburger .button-ctnr {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: clamp(10rem, 13vw, 16.375rem);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  nav .hamburger .button-ctnr a {
+    height: clamp(2rem, 38%, 2.5rem);
+    text-align: center;
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  nav .hamburger .button-ctnr .sign-up {
+    background-color: #9B37B1;
+    color: white;
+    width: clamp(5rem, 46.5%, 7.625rem);
+    border-radius: 10px;
+    font-size: .875rem;
+    font-weight: 400;
+    margin-right: 1rem;
+  }
+  nav .hamburger .button-ctnr .log-in {
+    color: #9B37B1;
+    font-weight: 500;
+  }
+  main .top {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    height: clamp(31.5rem, 40rem, 51rem);
+    min-width: 100%;
+    max-width: 100%;
+  }
+  main .top .text-ctnr h1 {
+    text-align: left;
+  }
+  main .top .text-ctnr p {
+    text-align: left;
+  }
+  main .info-ctnr {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: 7.375rem 8vw 4rem 8vw;
+  }
+  main .search-ctnr {
+    position: relative;
+    width: 51vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  main .recently-played-ctnr {
+    height: 21.625rem;
+    margin-left: clamp(2.25rem, 9vw, 8.75rem);
+  }
+  main .recently-played-ctnr .recent-game {
+    overflow-y: hidden;
+    overflow-x: auto;
+    width: 16.25rem;
+  }
+  main .friends-played-ctnr {
+    height: 21.625rem;
+    overflow: hidden;
+  }
+  main .friends-played-ctnr .friend-ctnr {
+    width: 24.875rem;
+    height: 100%;
+  }
+  main .friends-played-ctnr .friend-ctnr .friend-text-ctnr h4 {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+  }
+  main .friends-played-ctnr .friend-ctnr .friend-text-ctnr p {
+    font-size: 1rem;
+    margin-top: .825rem;
+  }
+  main .signup-form-ctnr h1 {
+    font-size: 2.25rem;
+  }
+  main .signup-form-ctnr h2 {
+    font-size: 1.5rem;
+    -ms-flex-item-align: start;
+        align-self: flex-start;
+  }
+  main .login-form-ctnr h1 {
+    font-size: 2.25rem;
+  }
+  main .error-alert p {
+    font-size: 1rem;
+  }
+  main .results-ctnr {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 2rem;
+  }
+  main .results-ctnr .result {
+    margin: 2rem 1rem 0 0;
+  }
+}
+
+@media (min-width: 1330px) {
+  main .top .text-ctnr {
+    margin-left: 0;
+  }
+  main #gamer {
+    visibility: visible;
+    min-width: 32%;
+    height: 95%;
+    margin-left: 10vw;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+  }
+  main .recently-played-ctnr {
+    overflow-x: hidden;
+  }
+}
+/*# sourceMappingURL=styles.css.map */
