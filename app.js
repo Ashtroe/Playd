@@ -83,7 +83,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session())
 
-
+app.set('case sensitive routing', true);
 app.get('/',(req,res)=>{
   res.render('index')
 })
