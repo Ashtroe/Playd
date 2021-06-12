@@ -34,7 +34,7 @@ nav .logo-ctnr {
   width: 1.375rem;
   height: 1.375rem;
   margin-left: clamp(2.25rem, 8vw, 8.75rem);
-  background-image: url(/img/logos/logo-only.png);
+  background-image: url(../img/logos/logo-only.png);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -1016,7 +1016,7 @@ footer a:last-of-type {
   }
   nav .logo-ctnr {
     width: clamp(5rem, 6%, 6.25rem);
-    background-image: url(/img/logos/playd.png);
+    background-image: url(../img/logos/playd.png);
   }
   nav .hamburger {
     position: absolute;
