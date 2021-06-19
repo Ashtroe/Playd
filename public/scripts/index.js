@@ -43,7 +43,8 @@ let pastWeek =
 
 
   // Hamburger click handler 
-  
+  if(document.querySelector('.hamburger')){
+
   let hamburger = document.querySelector('.hamburger')
   hamburger.addEventListener('click', ()=>{
     if(screen.width<=769 ){
@@ -52,24 +53,22 @@ let pastWeek =
     }
     
   })
+
+  document.addEventListener('click', (e)=>{
+    if(!e.target.classList.contains('hamburger')){
+      hamburger.removeAttribute('id')
+    }
+  })
+}
   
 
 
-document.addEventListener('click', (e)=>{
-  if(!e.target.classList.contains('hamburger')){
-    hamburger.removeAttribute('id')
-  }
-})
+
 // Welcome Page 
 if(document.querySelector('.landing-ctnr')){
 
   // Demo Button 
-  
-    
-
-    let demo = document.createElement('button')
-    demo.classList.add('demo-btn')
-    demo.textContent = 'Demo'
+    let demo = document.querySelector('.demo-btn')
     demo.addEventListener('click',()=>{
       axios({
         method: 'post',
@@ -707,12 +706,14 @@ if(document.querySelector('.calendar-ctnr')){
       for (let i = 0; i <= daysInMonth+1; i++) {
         let dayContainer = document.createElement('div')
         let dateContainer = document.createElement('div')
+        let gameContainer = document.createElement('div')
         let date = document.createElement('h6')
         let weekDay = document.createElement('h5')
 
         let monthIndex = monthsArr.findIndex(month=>month===selectedMonth)
   
         dayContainer.classList.add('day-ctnr')
+        gameContainer.classList.add('game-ctnr')
         dateContainer.classList.add('date-ctnr')
   
         date.textContent = i
@@ -727,6 +728,7 @@ if(document.querySelector('.calendar-ctnr')){
         dateContainer.appendChild(weekDay)
         dateContainer.appendChild(date)
         dayContainer.appendChild(dateContainer)
+        dayContainer.appendChild(gameContainer)
         monthContainer.appendChild(dayContainer)   
       }
   
@@ -751,8 +753,6 @@ if(document.querySelector('.calendar-ctnr')){
           gameCover.style.backgroundImage = `url(//images.igdb.com/igdb/image/upload/t_cover_big/${game.game.cover.image_id}.jpg)`
     
           let targetID = game.human.slice((selectedMonth.length + 1), (selectedMonth.length + 3))
-    
-          monthContainer.querySelector(`#day${targetID}`).style.minHeight= '15em'
   
           followBtn.addEventListener('click',(e)=>{
             // Follow Game 
@@ -772,20 +772,22 @@ if(document.querySelector('.calendar-ctnr')){
                 e.target.style.backgroundColor = '#707070'
             })
           })
-          
+          let dayContainer = monthContainer.querySelector(`#day${targetID}`)
           
           gameContainer.appendChild(gameCover)
           gameContainer.appendChild(followBtn)
-          monthContainer.querySelector(`#day${targetID}`).appendChild(gameContainer)
+          dayContainer.querySelector('.game-ctnr').appendChild(gameContainer)
         })
   
         // Remove empty dates 
         let removeDate = (div) =>{
-          if (div.childNodes.length < 2){
-            div.remove()
+          if (div.childNodes.length === 0){
+            div.parentNode.remove()
           }
         }
-        document.querySelectorAll('.day-ctnr').forEach(day=>removeDate(day))
+        document.querySelectorAll('.game-ctnr').forEach(container=>removeDate(container))
+
+        
       }else{
         let messageText = document.createElement('h1')
 

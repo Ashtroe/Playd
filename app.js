@@ -94,6 +94,8 @@ app.get('/account',indexRouter)
 app.get('/calendar',indexRouter)
 app.get('/news',indexRouter)
 app.get('/discover',indexRouter)
+app.get('/forums',indexRouter)
+app.get('/import',indexRouter)
 app.get('/results',indexRouter)
 app.get('/game/:game', indexRouter)
 

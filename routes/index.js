@@ -47,7 +47,18 @@ router.get('/home',(req,res)=>{
   router.get('/news', (req,res, next)=>{
     res.render('News',{user:req.user})
   })
+
+  router.get('/about', (req,res, next)=>{
+    res.render('404')
+  })
   
+  router.get('/forum', (req,res, next)=>{
+    res.render('404')
+  })
+
+  router.get('/import', (req,res, next)=>{
+    res.render('404')
+  })
   let getUser = (req,res,next) => {
     User.findOne({_id:req.session.passport.user},((err,user)=>{
       if(err){
@@ -124,6 +135,8 @@ router.get('/home',(req,res)=>{
           res.send(sortedData)})
         .catch(err=>console.log(err.response))
   })
+
+  
 
   // Individual game info 
   router.get('/game/:game',(req,res)=>{

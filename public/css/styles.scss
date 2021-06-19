@@ -65,15 +65,14 @@ nav{
     
     #open{
         position: absolute;
-        z-index: 2;
+        z-index: 5;
+        min-width: 100%;
+        height: fit-content;
         background-image: url('');
         background-color: $card-background;
-        min-width: 100%;
         top:4.25rem;
         left: 0;
         margin-bottom: 1em;
-        min-height: 3rem;
-        max-height: 14rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -96,6 +95,31 @@ nav{
             display: block;
             position: absolute;
             bottom: 1.5em;
+        }
+    }
+
+    .landing-button-ctnr{
+        width: clamp(10.25rem, 40vw, 15.7rem);
+        margin-right: clamp(2.25rem,8vw,8.75rem);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .sign-up{
+            width: clamp(4rem, 18.5vw, 6.8rem);
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background-color: $secondary;
+            color: white;
+            font-size: .75rem;
+        }
+
+        .log-in{
+            margin-right: 1rem;
+            font-weight: 500;
         }
     }
 }
@@ -335,11 +359,13 @@ main{
 
                 div{
                     position: relative;
-                    z-index: 1;
+                    z-index: 3;
                     width: clamp(2rem,19%,3rem);
                     background-position: center;
                     background-size: contain;
                     background-repeat: no-repeat;
+
+                    
 
                     &::after{
                         padding-top: 100%;
@@ -350,10 +376,18 @@ main{
 
                 .status-icon{
                     margin-left: .625rem;
+
+                    &:hover{
+                        cursor: pointer;
+                    }
                 }
                 .remove-btn{
                     background-image: url(../img/delete.png);
                     margin-right: .625rem;
+
+                    &:hover{
+                        cursor: pointer;
+                    }
                 }
             }
         }
@@ -761,6 +795,357 @@ main{
         }
     }
 
+    // Discover Page 
+    .slide-ctnr{
+        position: relative;
+        width: clamp(21.375rem,82.6vw,68rem); 
+        height: clamp(14.875rem,57vw,47.3rem); 
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+
+       .slide-btn{
+        position: absolute;
+        z-index: 4;
+        width: 2rem;
+        height: 3.125rem;
+        background-image: url(../img/arrow.png);
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: '';
+        border:none;
+        border-radius: 5px;
+        }
+
+        #left-btn{
+            left: 0;
+            margin-left: .5rem;
+            rotate: 180deg;
+        }
+        
+        #right-btn{
+            right: 0;
+            margin-right: .5rem;
+        }
+
+       .top-month-ctnr{
+           position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            border-radius: 22px;
+
+           .background-cover{
+               visibility: hidden;
+               position: absolute;
+               width: 100%;
+               height: 100%;
+               background-position: top;
+               background-size: cover;
+               background-repeat: no-repeat;
+               opacity: .5;
+               border-radius: 22px;
+           }
+
+           .top-game{
+               position: absolute;
+               visibility: hidden;
+               width: clamp(10.375rem, 40vw, 33.5rem);
+               height: clamp(13.5rem, 90%, 44.625rem);
+               background-position: center;
+               background-size: cover;
+               background-repeat: no-repeat;
+               display: flex;
+               align-items: flex-end;
+               justify-content: center;
+               border-radius: 1rem;
+
+               &::after{
+                padding-top: 75%;
+                content: '';
+                display: block;
+                }
+
+                .info-background{
+                    position: absolute;
+                    bottom: 0;
+                    background-color: black;
+                    width: 100%;
+                    height: clamp(2.125rem, 16%, 7.25rem);
+                    display: flex;
+                    align-items: center;
+                    opacity: .4;
+                    border-radius: 0 0 1rem 1rem;
+                }
+
+                .info-ctnr{
+                    position: relative;
+                    z-index: 2;
+                    width: 100%;
+                    height: clamp(2.125rem, 16%, 7.25rem);
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: .375rem;
+                    border-radius: 0 0 1rem 1rem;
+
+                    .game-info-ctnr{
+                        height: 100%;
+                        width: 33%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+
+                        p{
+                            margin:0;
+                            text-align: center;
+                        }
+                    }
+                }
+           }
+
+           .visible{
+               visibility: visible;
+           }
+
+           
+       }
+    }
+
+    .list-ctnr{
+        position: relative;
+        width: clamp(21.375rem,82.6vw,102.5rem);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        &:nth-child(odd){
+            margin-right: 1rem;
+        }
+
+        
+
+        .list{
+            position: relative;
+            width: clamp(10.375rem, 40vw, 24.875rem);
+            height: clamp(8.125rem, 31.4vw, 19.4rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &::after{
+                padding-top: 78%;
+                content: '';
+                display: block;
+            }
+
+            &:last-of-type{
+                background-color: $primary;
+                width: clamp(20.75rem, 80vw, 49.75rem);
+                height: 4rem;
+                margin-top: 1rem;
+                border-radius: 10px;
+            }
+
+            .list-info{
+                position: relative;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                img{
+                    width: clamp(3.125rem, 12%, 7.625rem);
+                    
+                    &::after{
+                        padding-top: 100%;
+                        content: '';
+                        display: block;
+                    }
+                }
+
+                p{
+                    width: clamp(3.125rem,60%,16.25rem);
+                    font-size: clamp(.5rem, 2.8vw, 1.875rem);
+                    line-height: .875rem;
+                    text-align: center;
+                    color: white;
+                }
+
+            }
+            .list-background{
+                position: absolute;
+                z-index: -3;
+                width: 100%;
+                height: 100%;
+                background-position: center;
+                background-size: 150%;
+                background-repeat: no-repeat;
+
+                &::before{
+                    content: '';
+                    width: 100%;
+                    height: 100%;
+                    background-color: black;
+                    position: absolute;
+                    z-index: 2;
+                    opacity: .6;
+                }
+            }
+        }
+    }
+
+    // Calendar Page 
+
+    .calendar-ctnr{
+        position: relative;
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .month-header-ctnr{
+            width: 100vw;
+            height: clamp(1.8rem, 7.7%, 6.625rem);
+            margin-left: clamp(2.25rem, 8vw, 8.75rem);
+            display: flex;
+            align-items: center;
+            overflow-x: scroll;
+            overflow-y: hidden;
+
+            h2{
+                font-size: clamp(1.5rem, 5.8%, 3rem);
+                font-weight: 300;
+                margin: 0 1rem 1rem 0;
+                color: #8B8B8B;
+                
+                &:hover{
+                    cursor: pointer;
+                }
+
+                &:last-of-type{
+                    margin-right: 3rem;
+                }
+            }
+
+            .selected{
+                font-weight: 600;
+                color: $primary;
+            }
+
+            
+
+        }
+
+        .month-ctnr{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .day-ctnr{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                border-bottom: 3px solid #c8c8c8 ;
+
+                .date-ctnr{
+                    margin-bottom: 1rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    h5,h6{
+                        margin: 0;
+                        font-size: 1.5rem;
+                    }
+
+                    h5{
+                       font-weight: 300;
+                       color: #8B8B8B; 
+                    }
+
+                    h6{
+                        font-weight: 600;
+                        color: $tertiary;
+                    }
+                }
+
+                .game-ctnr{
+                    display: flex;
+                    overflow-x: auto;
+                    align-items: flex-start;
+                    width: 100%;
+                    margin-bottom: 2rem;
+
+                    a{
+                        position: relative;
+                        width: clamp(10.375rem, 40vw, 16.25rem);
+                        height: clamp(13.875rem, 54vw, 21.625rem);
+                        margin-right: 1rem;
+                        display: flex;
+                        align-items: flex-end;
+                        justify-content: center;
+                        flex-shrink: 0;
+
+                        &::after{
+                            content: '';
+                            display: block;
+                            padding-top: 75.8%;
+                        }
+
+                        .cover{
+                            position: absolute;
+                            z-index: -1;
+                            width: 100%;
+                            height: 100%;
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                            border-radius: 10px;
+                        }
+
+                        button{
+                            position: relative;
+                            z-index: 3;
+                            width: clamp(3.3rem,32%, 5.125rem);
+                            height: clamp(1.5rem,11%,2.375rem);
+                            background-color: $tertiary;
+                            color: white;
+                            font-size: clamp(.5rem, 1vw, .75rem);
+                            font-weight: 600;
+                            margin-bottom: 4%;
+                            border-radius: 5px;
+                            border: none;
+
+                            &:hover{
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
 
 footer{
@@ -789,6 +1174,8 @@ footer{
         position: relative;
 
         .logo-ctnr{
+            position: relative;
+            z-index: 10;
             width: clamp(5rem,6%,6.25rem);
             background-image: url(../img/playd-full.png);
         }
@@ -810,13 +1197,10 @@ footer{
                 font-size: clamp(1rem,1.5vw,1.375rem);
                 font-weight: 500;
                 color: $tertiary;
+                margin: 0 2rem 0 2rem;
 
                 &:hover{
                     color: $primary;
-                }
-
-                &:nth-child(2){
-                    margin: 0 5rem 0 5rem;
                 }
             }
 
@@ -854,6 +1238,32 @@ footer{
             }
         }
 
+        .landing-button-ctnr{
+            position: absolute;
+            right: 0;
+            height: 100%;
+            width: clamp(10rem,13vw,16.375rem);
+            display: flex;
+            align-items: center;
+
+            
+
+            .sign-up{
+                background-color: $secondary;
+                color: white;
+                width: clamp(5rem,46.5%,7.625rem);
+                border-radius: 10px;
+                font-size: .875rem;
+                font-weight: 400;
+                margin-right: 1rem;
+            }
+
+            .log-in{
+                color: $secondary;
+                font-weight: 500;
+            }
+        }
+        
     }
     main{
         .top{
@@ -959,6 +1369,69 @@ footer{
 
             .result{
                 margin: 2rem 1rem 0 0;
+            }
+        }
+
+        // Discover Page 
+        .list-ctnr{
+
+            .list{
+
+                &:last-of-type{
+                    position: relative;
+                    width: clamp(10.375rem, 40vw, 24.875rem);
+                    height: clamp(8.125rem, 31.4vw, 19.4rem);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 0;
+                    margin: 0;
+                }
+                .list-info{
+                    p{
+                        line-height: 2.625rem;
+                    }
+                }
+            }
+        }
+
+        // Calendar Page 
+        .calendar-ctnr{
+
+            .month-header-ctnr{
+                width: clamp(30.5rem, 85.4vw, 102.5rem);
+                justify-content: center;
+                margin-left: 0;
+                overflow: hidden;
+
+                h2{
+                    font-size: clamp(.875rem, 2vw, 3rem);
+                    margin-right: clamp(.875rem, 1vw, 2.5rem);
+                }
+            }
+
+            .month-ctnr{
+                .day-ctnr{
+                    width: 100vw;
+                    flex-direction: row;
+                    align-items: center;
+                    margin-bottom: 3rem;
+
+                    .date-ctnr{
+                        align-self: center;
+                        justify-content: center;
+                        margin-left: clamp(2.25rem,9vw,8.75rem); 
+
+                        h5{
+                            width: clamp(3.5rem, 6.5vw, 7.25rem);
+                            text-align: center;
+                        }
+                    }
+
+                    .game-ctnr{
+                        margin-left:clamp(3rem, 9vw, 9.625rem);
+                    }
+                }
             }
         }
     }
