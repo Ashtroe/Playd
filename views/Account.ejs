@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="../css/styles.css">
-    <title>Playd | <%= user.username %> </title>
+    <title><%= user.username %>'s account </title>
 </head>
 <body>
 
@@ -17,10 +17,7 @@
                 <a href="/calendar" class='hvr-underline'>Calendar</a>
                 <a href="/discover">Discover</a>
                 <a href="/news" id='news' >News</a>
-                <div class="button-ctnr">
-                    <a href="/signup" class="sign-up">Sign up</a>
-                    <a href="/login" class="log-in">Log in</a>
-                </div>
+                <a href="/account" id='account' >Account</a>
             </div>
         </nav>
     </head>
@@ -29,7 +26,7 @@
 
         <div class="settings-ctnr">
                 <div class="username-banner">
-                    <h2><%= user.username %></h2>
+                    <img src="<%= user.image %> " alt="User profile image">
                 </div>
                 
                 <div class="account-settings">
@@ -37,14 +34,14 @@
                     <div class="account password">
                         <h4>Change Password</h4>
                         <form method= 'post' action= '/account/password'>
-                            <input  name="password" >  
-                            <input  name="password-confirm" >
+                            <input  name="password" placeholder= 'New password'>  
+                            <input  name="password-confirm" placeholder= 'Confirm password'>
                             
-                            <button formmaction= '/account/password' formmethod = 'post'> Update Password</button>
+                            <button > Update Password</button>
                         </form>
                     </div>
 
-                    <div class="account steam">
+                    <div class="account connections">
                         <h4>Connections</h4>
                         <!-- Display Errors for steam connection  -->
                         <% if (typeof errors != 'undefined' ) { %>

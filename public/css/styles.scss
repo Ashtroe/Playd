@@ -20,6 +20,16 @@ body{
 a{
     text-decoration: none;
 }
+
+button{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover{
+        cursor: pointer;
+    }
+}
 nav{
     width: 100%;
     height: 4.25rem;
@@ -283,7 +293,7 @@ main{
             z-index: 2;
             width: clamp(4em,15%,7em);
             height: 85%;
-            margin-right: 2%;
+            margin-right: .5%;
             align-self: flex-end;
             border: none;
             border-radius: 5px;
@@ -646,6 +656,10 @@ main{
             flex-shrink: 0;
             margin-bottom: 1rem;
 
+            &:hover{
+                cursor: pointer;
+            }
+
             &::after{
                 padding-top: 75%;
                 content: '';
@@ -665,9 +679,7 @@ main{
                 border-radius: 5px;
                 border: none;
 
-                &:hover{
-                    cursor: pointer;
-                }
+                
             }
         }
     }
@@ -1146,6 +1158,102 @@ main{
         }
     }
 
+    // Account Page 
+    
+    .settings-ctnr{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+
+        .username-banner{
+            width: 100%;
+            height: clamp(10.1875rem, 40vw, 16.25rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(55,101,169);
+            background: linear-gradient(163deg, rgba(55,101,169,1) 0%, rgba(55,101,169,1) 7%, rgba(164,84,174,1) 100%);
+
+            img{
+                width: clamp(6.75rem, 26vw, 11.875rem);
+                border-radius: 50%;
+                background-color: $primary;
+            }
+        }
+
+        .account-settings{
+            width: clamp(1rem, 100vw, 50.75rem);
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+
+            .account{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                h4{
+                    margin-bottom: clamp(.25rem, 2.8vw, 1.875rem);
+                    font-weight: 300;
+                    color: $tertiary;
+                }
+
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    input{
+                        width: clamp(21.375rem, 82vw, 33.5rem);
+                        height: clamp(1.75rem, 6.7vw, 2.625rem);
+                        font-size: clamp(.875rem, 4%, 2rem);
+                        background-color: #F2F2F2;
+                        border-radius: 5px;
+                        border: none;
+                        margin-bottom: 1rem;
+
+                        &::placeholder{
+                            color: #CACACA;
+                            font-weight: 300;
+                        }
+                    }
+                }
+            }
+
+            .connections{
+                width: clamp(21.375rem, 82vw, 33.5rem);
+                p{
+                    text-align: center;
+                    margin-top: 0;
+                    font-weight: 600;
+                    font-size: clamp(1rem, 3.8vw, 1.75rem);
+                }
+            }
+
+            
+        } 
+
+        button{
+            width: clamp(10.375rem, 40vw, 16.25rem);
+            height: clamp(2.625rem, 10vw, 4rem);
+            margin-bottom: 3rem;
+            background-color: $primary;
+            border-radius: 10px;
+            border:none;
+            font-size: clamp(.625rem, 2.4vw, 1.125rem);
+            color: white;
+        }
+
+        .logout-btn{
+            background-color: $secondary;
+            margin-top: 3rem;
+        }
+    }
+
 
 
 footer{
@@ -1433,6 +1541,26 @@ footer{
                     }
                 }
             }
+        }
+
+        // Account Page 
+        .settings-ctnr{
+
+            .account-settings{
+                
+                .password{
+                    h4{
+                        align-self: flex-start;
+                    }
+                }
+                .connections{
+                    h4{
+                        align-self: flex-start;
+                    }
+                }
+
+            }
+
         }
     }
 }
